@@ -1,7 +1,7 @@
 ![alt tag](http://i.imgur.com/mmEakQO.png)
 </br>
 
-<strong>Cooked up by :</strong>
+<strong>Created by :</strong>
 ```java
 String Ali_Sanaknaki = "http://github.com/sanaknaki";
 String Peter_Doan = "http://github.com/pdoan017";
