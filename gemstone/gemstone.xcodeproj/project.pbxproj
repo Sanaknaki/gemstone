@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		237B39DB1DD6260800DCEF69 /* CardHierarchy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 237B39DA1DD6260800DCEF69 /* CardHierarchy.cpp */; };
+		235A13091DD90E6F00B16D9D /* gemstones.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A13071DD90E6F00B16D9D /* gemstones.cpp */; };
+		235A130C1DD90EDB00B16D9D /* cardfactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A130A1DD90EDB00B16D9D /* cardfactory.cpp */; };
+		235A130F1DD90EE500B16D9D /* deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A130D1DD90EE500B16D9D /* deck.cpp */; };
+		235A13121DD90EFD00B16D9D /* discard_pile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A13101DD90EFD00B16D9D /* discard_pile.cpp */; };
+		235A13161DD90F1C00B16D9D /* table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A13141DD90F1C00B16D9D /* table.cpp */; };
+		235A13191DD90F2700B16D9D /* trade_area.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A13171DD90F2700B16D9D /* trade_area.cpp */; };
+		235A131C1DD90F2F00B16D9D /* hand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A131A1DD90F2F00B16D9D /* hand.cpp */; };
+		235A131F1DD90F4100B16D9D /* players.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A131D1DD90F4100B16D9D /* players.cpp */; };
+		235A13211DD90F4D00B16D9D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 235A13201DD90F4D00B16D9D /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,9 +31,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		235A13071DD90E6F00B16D9D /* gemstones.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gemstones.cpp; sourceTree = "<group>"; };
+		235A13081DD90E6F00B16D9D /* gemstones.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gemstones.hpp; sourceTree = "<group>"; };
+		235A130A1DD90EDB00B16D9D /* cardfactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cardfactory.cpp; sourceTree = "<group>"; };
+		235A130B1DD90EDB00B16D9D /* cardfactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cardfactory.hpp; sourceTree = "<group>"; };
+		235A130D1DD90EE500B16D9D /* deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = deck.cpp; sourceTree = "<group>"; };
+		235A130E1DD90EE500B16D9D /* deck.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = deck.hpp; sourceTree = "<group>"; };
+		235A13101DD90EFD00B16D9D /* discard_pile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = discard_pile.cpp; sourceTree = "<group>"; };
+		235A13111DD90EFD00B16D9D /* discard_pile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = discard_pile.hpp; sourceTree = "<group>"; };
+		235A13131DD90F0A00B16D9D /* chain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chain.hpp; sourceTree = "<group>"; };
+		235A13141DD90F1C00B16D9D /* table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = table.cpp; sourceTree = "<group>"; };
+		235A13151DD90F1C00B16D9D /* table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = table.hpp; sourceTree = "<group>"; };
+		235A13171DD90F2700B16D9D /* trade_area.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trade_area.cpp; sourceTree = "<group>"; };
+		235A13181DD90F2700B16D9D /* trade_area.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = trade_area.hpp; sourceTree = "<group>"; };
+		235A131A1DD90F2F00B16D9D /* hand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hand.cpp; sourceTree = "<group>"; };
+		235A131B1DD90F2F00B16D9D /* hand.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = hand.hpp; sourceTree = "<group>"; };
+		235A131D1DD90F4100B16D9D /* players.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = players.cpp; sourceTree = "<group>"; };
+		235A131E1DD90F4100B16D9D /* players.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = players.hpp; sourceTree = "<group>"; };
+		235A13201DD90F4D00B16D9D /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		237B39D71DD6260800DCEF69 /* gemstone */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gemstone; sourceTree = BUILT_PRODUCTS_DIR; };
-		237B39DA1DD6260800DCEF69 /* CardHierarchy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CardHierarchy.cpp; sourceTree = "<group>"; };
-		237B39E11DD6262D00DCEF69 /* CardHierarchy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CardHierarchy.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +82,24 @@
 		237B39D91DD6260800DCEF69 /* gemstone */ = {
 			isa = PBXGroup;
 			children = (
-				237B39DA1DD6260800DCEF69 /* CardHierarchy.cpp */,
-				237B39E11DD6262D00DCEF69 /* CardHierarchy.hpp */,
+				235A13071DD90E6F00B16D9D /* gemstones.cpp */,
+				235A13081DD90E6F00B16D9D /* gemstones.hpp */,
+				235A130A1DD90EDB00B16D9D /* cardfactory.cpp */,
+				235A130B1DD90EDB00B16D9D /* cardfactory.hpp */,
+				235A130D1DD90EE500B16D9D /* deck.cpp */,
+				235A130E1DD90EE500B16D9D /* deck.hpp */,
+				235A13101DD90EFD00B16D9D /* discard_pile.cpp */,
+				235A13111DD90EFD00B16D9D /* discard_pile.hpp */,
+				235A13131DD90F0A00B16D9D /* chain.hpp */,
+				235A13141DD90F1C00B16D9D /* table.cpp */,
+				235A13151DD90F1C00B16D9D /* table.hpp */,
+				235A13171DD90F2700B16D9D /* trade_area.cpp */,
+				235A13181DD90F2700B16D9D /* trade_area.hpp */,
+				235A131A1DD90F2F00B16D9D /* hand.cpp */,
+				235A131B1DD90F2F00B16D9D /* hand.hpp */,
+				235A131D1DD90F4100B16D9D /* players.cpp */,
+				235A131E1DD90F4100B16D9D /* players.hpp */,
+				235A13201DD90F4D00B16D9D /* main.cpp */,
 			);
 			path = gemstone;
 			sourceTree = "<group>";
@@ -121,7 +161,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237B39DB1DD6260800DCEF69 /* CardHierarchy.cpp in Sources */,
+				235A131C1DD90F2F00B16D9D /* hand.cpp in Sources */,
+				235A13121DD90EFD00B16D9D /* discard_pile.cpp in Sources */,
+				235A13211DD90F4D00B16D9D /* main.cpp in Sources */,
+				235A130C1DD90EDB00B16D9D /* cardfactory.cpp in Sources */,
+				235A13161DD90F1C00B16D9D /* table.cpp in Sources */,
+				235A131F1DD90F4100B16D9D /* players.cpp in Sources */,
+				235A13091DD90E6F00B16D9D /* gemstones.cpp in Sources */,
+				235A130F1DD90EE500B16D9D /* deck.cpp in Sources */,
+				235A13191DD90F2700B16D9D /* trade_area.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +296,7 @@
 				237B39E01DD6260800DCEF69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

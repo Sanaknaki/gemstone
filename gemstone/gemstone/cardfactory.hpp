@@ -9,7 +9,19 @@
 //  Copyright © 2016 commitCommittee. All rights reserved.
 // ==========================================================================
 
-#include "CardHierarchy.hpp"
-#include <iostream>
+#ifndef cardfactory_hpp
+#define cardfactory_hpp
 
+#include <stdio.h>
 
+#include "deck.hpp"
+
+class CardFactory{
+private:
+
+public:
+    static CardFactory* getFactory();
+    //Deck getDeck();
+};
+
+#endif /* cardfactory_hpp */
