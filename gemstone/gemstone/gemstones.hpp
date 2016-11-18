@@ -1,6 +1,6 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : gemstones.hpp
 //  Student : Ali Sanaknaki (7745880)
 //  Student : Peter Doan (#######)
 //
@@ -18,25 +18,20 @@
 
 using std::string; using std::ostream;
 
-enum Gemstone                                                           // Enumerator for the gemstone types
-{
-    Q,
-    H,
-    O,
-    M,
-    T,
-    R,
-    A,
-    E
-};
-
 class Card{
-private:
-    
+    string d_name;
 public:
-    virtual int getCardsPerCoin(int coins);                             // Returns how many cards are needed for the coins
-    virtual string getName();                                           // Returns the name of the card corresponding to its type
-    virtual void print(const ostream& out);                             // Inserts the first character for the card into the output stream supplied as argument.
+    //Constructor
+    Card();
+    Card(int& _name);
+    //Gemstone types
+    enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
+    //Returns how many cards are needed for the coins
+    virtual int getCardsPerCoin(int _coins);
+    //Returns the name of the card corresponding to its type
+    virtual string getName();
+    //Inserts the first character for the card into the output stream supplied as argument.
+    //virtual void print(const ostream& out);
 };
 
 #endif /* gemstones_hpp */

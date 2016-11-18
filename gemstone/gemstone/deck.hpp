@@ -1,6 +1,6 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : deck.hpp
 //  Student : Ali Sanaknaki (7745880)
 //  Student : Peter Doan (#######)
 //
@@ -15,19 +15,21 @@
 #include <stdio.h>
 #include <vector>
 
-#include "cardfactory.hpp"
 #include "gemstones.hpp"
 
-using std::istream;
+using std::istream; using std::vector;
 
 class Deck{
-private:
-
+    vector<Card*> d_original;
+    vector<Card*> d_playable;
 public:
-    //Deck(const istream&,CardFactory*);
-    ~Deck();
+    Deck();
+    //~Deck();
     Deck& operator+=(ostream&);
     Card* draw();
+    void add(Card* _card);
+    bool isEmpty();
+    void shuffle();
 };
 
 

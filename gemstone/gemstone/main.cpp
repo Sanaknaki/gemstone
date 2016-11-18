@@ -1,6 +1,6 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.cpp
+//  File    : main.cpp
 //  Student : Ali Sanaknaki (7745880)
 //  Student : Peter Doan (#######)
 //
@@ -41,6 +41,17 @@ int main(void)
     Player playerOne = *new Player(p1Name);
     Player playerTwo = *new Player(p2Name);
     
+    CardFactory factory = *new CardFactory();
+    Deck deck = factory.getDeck();
     
+    Card* drawCard;
+    int i = 0;
     
+    while(!deck.isEmpty())
+    {
+        drawCard = deck.draw();
+        cout << i << endl;
+        cout << "Card drawn : " << drawCard->getName()<< endl;
+        i++;
+    }
 }

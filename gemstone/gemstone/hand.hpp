@@ -1,6 +1,6 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : hand.hpp
 //  Student : Ali Sanaknaki (7745880)
 //  Student : Peter Doan (6842312)
 //
