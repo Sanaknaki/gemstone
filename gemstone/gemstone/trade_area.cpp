@@ -2,7 +2,7 @@
 //  Project : gemstone
 //  File    : trade_area.cpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================
@@ -10,3 +10,28 @@
 // ==========================================================================
 
 #include "trade_area.hpp"
+
+TradeArea::TradeArea( const istream& _is, CardFactory* _cardPool )
+{
+
+}
+
+TradeArea& TradeArea::operator+=( Card* _card)
+{
+
+}
+
+bool TradeArea::legal( Card* _card )
+{
+
+}
+
+Card TradeArea::trade( string _gemName )
+{
+
+}
+
+int TradeArea::numCards()
+{
+
+}
