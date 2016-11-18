@@ -19,7 +19,9 @@
 using std::string; using std::ostream;
 
 class Card{
+protected:
     string d_name;
+    string d_title;
 public:
     //Constructor
     Card();
@@ -32,6 +34,62 @@ public:
     virtual string getName();
     //Inserts the first character for the card into the output stream supplied as argument.
     //virtual void print(const ostream& out);
+    void setName(string _name) { d_name = _name; }
+    string getTitle() { return d_title; }
 };
+
+class Quartz : public Card
+{
+public:
+    Quartz() { Card::d_title = "Quartz"; }
+};
+
+class Hematite : public Card
+{
+public:
+    Hematite() { Card::d_title = "Hematite"; }
+};
+
+class Obsidian : public Card
+{
+public:
+    Obsidian() { Card::d_title = "Obsidian"; }
+};
+
+
+class Malachite : public Card
+{
+public:
+    Malachite() { Card::d_title = "Malachite"; }
+};
+
+
+class Turquois : public Card
+{
+public:
+    Turquois() { Card::d_title = "Turquois"; }
+};
+
+
+class Ruby : public Card
+{
+public:
+    Ruby() { Card::d_title = "Ruby"; }
+};
+
+
+class Amethyst : public Card
+{
+public:
+    Amethyst() { Card::d_title = "Amethyst"; }
+};
+
+
+class Emerald : public Card
+{
+public:
+    Emerald() { Card::d_title = "Emerald"; }
+};
+
 
 #endif /* gemstones_hpp */

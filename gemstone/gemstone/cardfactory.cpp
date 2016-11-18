@@ -26,8 +26,47 @@ void CardFactory::buildDeck()
     {
         for(int j = 0; j < count; ++j)
         {
-            Card* card = new Card(i);
-            d_deck.add(card);
+            if(i == 0)
+            {
+                Quartz* card = new Quartz();
+                card->setName("Q");
+                d_deck.add(card);
+            }else if(i == 1)
+            {
+                Hematite* card = new Hematite();
+                card->setName("H");
+                d_deck.add(card);
+            }else if(i == 2)
+            {
+                Obsidian* card = new Obsidian();
+                card->setName("O");
+                d_deck.add(card);
+            }else if(i == 3)
+            {
+                Malachite* card = new Malachite();
+                card->setName("M");
+                d_deck.add(card);
+            }else if(i == 4)
+            {
+                Turquois* card = new Turquois();
+                card->setName("T");
+                d_deck.add(card);
+            }else if(i == 5)
+            {
+                Ruby* card = new Ruby();
+                card->setName("R");
+                d_deck.add(card);
+            }else if(i == 6)
+            {
+                Amethyst* card = new Amethyst();
+                card->setName("A");
+                d_deck.add(card);
+            }else
+            {
+                Emerald* card = new Emerald();
+                card->setName("E");
+                d_deck.add(card);
+            }
         }
         
         count = count - 2;

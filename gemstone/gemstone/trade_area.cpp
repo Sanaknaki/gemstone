@@ -10,7 +10,7 @@
 // ==========================================================================
 
 #include "trade_area.hpp"
-
+/*
 TradeArea::TradeArea( const istream& _is, CardFactory* _cardPool )
 {
 
@@ -35,3 +35,4 @@ int TradeArea::numCards()
 {
 
 }
+*/

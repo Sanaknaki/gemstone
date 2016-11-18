@@ -10,7 +10,7 @@
 // ==========================================================================
 
 #include "discard_pile.hpp"
-
+/*
 DiscardPile::DiscardPile( const istream& _is, CardFactory* _cardPool)
 {
 
@@ -18,7 +18,7 @@ DiscardPile::DiscardPile( const istream& _is, CardFactory* _cardPool)
 
 DiscardPile& DiscardPile::operator+=( Card* _card )
 {
-
+    
 }
 
 Card* DiscardPile::pickUp()
@@ -30,6 +30,7 @@ Card* DiscardPile::top()
 {
 
 }
+*/
 
 void DiscardPile::print( ostream& _os )
 {

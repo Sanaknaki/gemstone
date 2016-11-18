@@ -14,43 +14,19 @@ Card::Card(){}
 
 Card::Card(int& _name) : d_name("")
 {
-    if(_name == Gemstone::Q)     { d_name = "Q"; }
-    else if(_name == Gemstone::H){ d_name = "H"; }
-    else if(_name == Gemstone::O){ d_name = "O"; }
-    else if(_name == Gemstone::M){ d_name = "M"; }
-    else if(_name == Gemstone::T){ d_name = "T"; }
-    else if(_name == Gemstone::R){ d_name = "R"; }
-    else if(_name == Gemstone::A){ d_name = "A"; }
-    else                         { d_name = "E"; }
+    if(_name == Gemstone::Q)     { Quartz quartz; quartz.setName("Q"); }
+    else if(_name == Gemstone::H){ Hematite hematite; hematite.setName("H"); }
+    else if(_name == Gemstone::O){ Obsidian obsidian; obsidian.setName("O"); }
+    else if(_name == Gemstone::M){ Malachite malachite; malachite.setName("M"); }
+    else if(_name == Gemstone::T){ Turquois turquois; turquois.setName("T"); }
+    else if(_name == Gemstone::R){ Ruby ruby; ruby.setName("R"); }
+    else if(_name == Gemstone::A){ Amethyst amethyst; amethyst.setName("A"); }
+    else                         { Emerald emerald; emerald.setName("E");}
 }
 
 string Card::getName()
 {
-    if(d_name == "Q")
-    {
-        return "Quartz";
-    }else if(d_name == "H")
-    {
-        return "Hematite";
-    }else if(d_name == "O")
-    {
-        return "Obsidian";
-    }else if(d_name == "M")
-    {
-        return "Malachite";
-    }else if(d_name == "T")
-    {
-        return "Turquois";
-    }else if(d_name == "R")
-    {
-        return "Ruby";
-    }else if(d_name == "A")
-    {
-        return "Amethyst";
-    }else
-    {
-        return "Emerald";
-    }
+    return d_title;
 }
 
 int Card::getCardsPerCoin(int _coins)
