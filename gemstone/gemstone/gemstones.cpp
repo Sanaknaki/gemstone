@@ -70,7 +70,7 @@ int Card::getCardsPerCoin(int _nCards)
     {
         if(_nCards < 3)                    { return 0; }
         if(_nCards >= 3 && _nCards <= 4)   { return 1; }
-        if(_nCards >= 5 && _nCards <= 6)   { return 2; }
+        if(_nCards == 5)                   { return 2; }
         if(_nCards == 6)                   { return 3; }
         if(_nCards >= 7)                   { return 4; }
         else return 0;
