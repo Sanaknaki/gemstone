@@ -1,6 +1,6 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : discard_pile.hpp
+//  File    : discard_pile.cpp
 //  Student : Ali Sanaknaki (7745880)
 //  Student : Peter Doan (6842312)
 //

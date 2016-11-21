@@ -2,7 +2,7 @@
 //  Project : gemstone
 //  File    : players.cpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================
@@ -10,6 +10,7 @@
 // ==========================================================================
 
 #include "players.hpp"
+#include "hand.hpp"
 
 using std::string;
 
@@ -18,6 +19,7 @@ Player::Player(string& _name)
     d_name = _name;
     d_coin = 0;
     d_chain = 2;
+    //Hand hand;  --Each player has a hand.--
 }
 
 string Player::getName()
