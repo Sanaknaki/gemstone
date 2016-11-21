@@ -29,7 +29,7 @@ public:
     //Gemstone types
     enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
     //Returns how many cards are needed for the coins
-    virtual int getCardsPerCoin(int _coins);
+    virtual int getCardsPerCoin(int _nCards);
     //Returns the name of the card corresponding to its type
     virtual string getName();
     //Inserts the first character for the card into the output stream supplied as argument.
@@ -67,7 +67,7 @@ public:
 class Turquois : public Card
 {
 public:
-    Turquois() { Card::d_title = "Turquois"; }
+    Turquois() { Card::d_title = "Turquoise"; }
 };
 
 

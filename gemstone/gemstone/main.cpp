@@ -51,7 +51,8 @@ int main(void)
     {
         drawCard = deck.draw();
         cout << i << endl;
-        cout << "Card drawn : " << drawCard->getTitle()<< endl;
+        cout << "Card drawn : " << drawCard->getTitle() << endl;
+        cout << "Card worth : " << drawCard->getCardsPerCoin(5) << endl;
         i++;
     }
     
