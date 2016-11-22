@@ -13,14 +13,14 @@
 #define discard_pile_hpp
 
 #include <stdio.h>
-#include <vector>
 
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
 
-using std::ostream; using std::istream;
+using std::ostream; using std::istream; using std::vector;
 
 class DiscardPile{
+    vector<Card*> d_cards;
 
 protected:
 
