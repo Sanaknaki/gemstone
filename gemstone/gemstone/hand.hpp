@@ -19,6 +19,10 @@
 
 using std::istream; using std::ostream; using std::vector;
 
+class Hand;
+
+ostream& operator<<( ostram&, const Hand& );
+
 class Hand {
     vector<Card*> d_cards;
 

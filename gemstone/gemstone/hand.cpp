@@ -13,32 +13,58 @@
 
 using std::cout; using std::endl;
 
-Hand& Hand::operator+=(Card* _card)
+Hand::Hand( const istream& _is, CardFactor* _cardPool )
 {
-    this->d_cards.push_back(_card);
-    return *this;
+    // read from file
 }
 
-Card* Hand::top()
+Hand& Hand::operator+=( Card* _card )
 {
-    if(d_cards.empty())
-    {
-        cout << "You have no cards in your hand!" << endl;
-        return 0;
-    }else{
-        return d_cards.front();
-    }
+    d_cards.push_back( _card );
+    return *this;
 }
 
 Card* Hand::play()
 {
-    if(d_cards.empty())
+    if( d_cards.empty() )
     {
-        cout << "You have no cards in your hands!" << endl;
-        return 0;
-    }else{
+        cout << "You have no cards in your hand!" << endl;
+        return nullptr;
+    } else {
         Card* playCard = d_cards.front();
         d_cards.erase(d_cards.begin());
         return playCard;
+    }
+}
+
+Card* Hand::top()
+{
+    if( d_cards.empty() )
+    {
+        cout << "You have no cards in your hand!" << endl;
+        return nullptr;
+    } else {
+        return d_cards.front();
+    }
+}
+
+ostream& operator<<( ostream& _os, const Hand& _hand )
+{
+    for( auto card : _hand.d_cards )
+    {
+        //print card
+    }
+}
+
+Card* Hand::operator[]( int i )
+{
+    if( i >= d_cards.size() )
+    {
+        cout << "Given index is out of bounds!" << endl;
+        return nullptr;
+    } else {
+        Card* cardAtIndex = d_cards[i];
+        d_cards.erase(d_cards.begin()+i);
+        return cardAtIndex;
     }
 }
