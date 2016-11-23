@@ -21,6 +21,10 @@
 
 using std::istream; using std::list;
 
+class TradeArea;
+
+ostream& operator<<( ostream&, const TradeArea );
+
 class TradeArea {
     list<Card*> d_cards;
 
@@ -35,6 +39,8 @@ public:
     Card* trade( string _gemName );
     // returns the number of cards currently in the trade area
     int numCards();
+    // insertion operator to insert all the cards of the trade area to an ostream
+    friend ostream& operator<<( ostream&, const TradeArea );
 };
 
 #endif /* trade_area_hpp */

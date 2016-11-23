@@ -56,3 +56,8 @@ int TradeArea::numCards()
 {
     return d_cards.size();
 }
+
+ostream& operator<<( ostream& _os, const TradeArea tradeArea )
+{
+    // output to file
+}
