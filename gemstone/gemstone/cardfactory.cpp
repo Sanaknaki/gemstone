@@ -15,11 +15,6 @@
 
 CardFactory::CardFactory()
 {
-    buildDeck();
-}
-
-void CardFactory::buildDeck()
-{
     int count = 20;
     
     for(int i = 0; i < 8; ++i)
@@ -28,44 +23,42 @@ void CardFactory::buildDeck()
         {
             if(i == 0)
             {
-                Quartz* card = new Quartz();
-                card->setName("Q");
-                d_deck.add(card);
+                d_deck.add(new Quartz);
             }else if(i == 1)
             {
-                Hematite* card = new Hematite();
-                card->setName("H");
-                d_deck.add(card);
+                //Hematite* card = new Hematite();
+                d_deck.add(new Hematite);
+                //d_deck.add(card);
             }else if(i == 2)
             {
-                Obsidian* card = new Obsidian();
-                card->setName("O");
-                d_deck.add(card);
+                //Obsidian* card = new Obsidian();
+                d_deck.add(new Obsidian);
+                //d_deck.add(card);
             }else if(i == 3)
             {
-                Malachite* card = new Malachite();
-                card->setName("M");
-                d_deck.add(card);
+                //Malachite* card = new Malachite();
+                d_deck.add(new Malachite);
+                //d_deck.add(card);
             }else if(i == 4)
             {
-                Turquois* card = new Turquois();
-                card->setName("T");
-                d_deck.add(card);
+                //Turquoise* card = new Turquoise();
+                d_deck.add(new Turquoise);
+                //d_deck.add(card);
             }else if(i == 5)
             {
-                Ruby* card = new Ruby();
-                card->setName("R");
-                d_deck.add(card);
+                //Ruby* card = new Ruby();
+                d_deck.add(new Ruby);
+                //d_deck.add(card);
             }else if(i == 6)
             {
-                Amethyst* card = new Amethyst();
-                card->setName("A");
-                d_deck.add(card);
+                //Amethyst* card = new Amethyst();
+                d_deck.add(new Amethyst);
+                //d_deck.add(card);
             }else
             {
-                Emerald* card = new Emerald();
-                card->setName("E");
-                d_deck.add(card);
+                //Emerald* card = new Emerald();
+                d_deck.add(new Emerald);
+                //d_deck.add(card);
             }
         }
         
@@ -74,6 +67,11 @@ void CardFactory::buildDeck()
     
     d_deck.shuffle();
 }
+
+/*CardFactory* CardFactory::getFactory()
+{
+    
+}*/
 
 Deck CardFactory::getDeck()
 {

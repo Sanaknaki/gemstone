@@ -10,20 +10,10 @@
 // ==========================================================================
 
 #include "gemstones.hpp"
-Card::Card(){}
 
-Card::Card(int& _name) : d_name("")
-{
-    if(_name == Gemstone::Q)     { Quartz quartz; quartz.setName("Q"); }
-    else if(_name == Gemstone::H){ Hematite hematite; hematite.setName("H"); }
-    else if(_name == Gemstone::O){ Obsidian obsidian; obsidian.setName("O"); }
-    else if(_name == Gemstone::M){ Malachite malachite; malachite.setName("M"); }
-    else if(_name == Gemstone::T){ Turquois turquois; turquois.setName("T"); }
-    else if(_name == Gemstone::R){ Ruby ruby; ruby.setName("R"); }
-    else if(_name == Gemstone::A){ Amethyst amethyst; amethyst.setName("A"); }
-    else                         { Emerald emerald; emerald.setName("E");}
-}
+using std::cout; using std::endl; using std::string;
 
+/*
 string Card::getName()
 {
     return d_title;
@@ -115,4 +105,122 @@ int Card::getCardsPerCoin(int _nCards)
     }
     
     else return 0;
+}*/
+
+/***** QUARTZ IMPLEMENTATION (START) *****/
+int Quartz::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 3)      { return 0; }
+    else if(_nCards <= 5) { return 1; }
+    else if(_nCards <= 7) { return 2; }
+    else if(_nCards <= 9) { return 3; }
+    else                  { return 4; }
 }
+
+string Quartz::getName()          { return "Quartz"; }
+void Quartz::print(ostream & out) { out << "Q"; }
+/***************************************/
+
+/***** HEMATITE IMPLEMENTATION (START) *****/
+int Hematite::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 2)      { return 0; }
+    else if(_nCards <= 5) { return 1; }
+    else if(_nCards <= 7) { return 2; }
+    else if(_nCards == 8) { return 3; }
+    else                  { return 4; }
+}
+
+string Hematite::getName()         { return "Hematite"; }
+void Hematite::print(ostream &out) { out << "H"; }
+/*******************************************/
+
+/***** OBSIDIAN IMPLEMENTATION (START) *****/
+int Obsidian::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 2)      { return 0; }
+    else if(_nCards <= 4) { return 1; }
+    else if(_nCards <= 6) { return 2; }
+    else if(_nCards == 7) { return 3; }
+    else                  { return 4; }
+}
+
+string Obsidian::getName()         { return "Obsidian"; }
+void Obsidian::print(ostream &out) { out << "O"; }
+/*******************************************/
+
+/***** MALACHITE IMPLEMENTATION (START) *****/
+int Malachite::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 2)      { return 0; }
+    else if(_nCards <= 4) { return 1; }
+    else if(_nCards == 5) { return 2; }
+    else if(_nCards == 6) { return 3; }
+    else                  { return 4; }
+}
+
+string Malachite::getName()         { return "Malachite"; }
+void Malachite::print(ostream &out) { out << "M"; }
+/********************************************/
+
+/***** TURQUOISE IMPLEMENTATION (START) *****/
+int Turquoise::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 1)      { return 0; }
+    else if(_nCards <= 3) { return 1; }
+    else if(_nCards <= 5) { return 2; }
+    else if(_nCards == 6) { return 3; }
+    else                  { return 4; }
+}
+
+string Turquoise::getName()         { return "Turquoise"; }
+void Turquoise::print(ostream &out) { out << "T"; }
+/********************************************/
+
+/***** RUBY IMPLEMENTATION (START) *****/
+int Ruby::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 1)      { return 0; }
+    else if(_nCards <= 3) { return 1; }
+    else if(_nCards == 4) { return 2; }
+    else if(_nCards == 5) { return 3; }
+    else                  { return 4; }
+}
+
+string Ruby::getName()         { return "Ruby"; }
+void Ruby::print(ostream &out) { out << "R"; }
+/****************************************/
+
+/***** AMETHYST IMPLEMENTATION (START) *****/
+int Amethyst::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards <= 1)      { return 0; }
+    else if(_nCards == 2) { return 1; }
+    else if(_nCards == 3) { return 2; }
+    else if(_nCards == 4) { return 3; }
+    else                  { return 4; }
+}
+
+string Amethyst::getName()         { return "Amethyst"; }
+void Amethyst::print(ostream &out) { out << "A"; }
+/*******************************************/
+
+/***** EMERALD IMPLEMENTATION (START) *****/
+int Emerald::getCardsPerCoin(int _nCards)
+{
+    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
+    if(_nCards < 2)       { return 0; }
+    else if(_nCards == 2) { return 2; }
+    else                  { return 3; }
+}
+
+string Emerald::getName()         { return "Emerald"; }
+void Emerald::print(ostream &out) { out << "E"; }
+/******************************************/

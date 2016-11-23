@@ -51,7 +51,7 @@ int main(void)
     {
         drawCard = deck.draw();
         cout << i << endl;
-        cout << "Card drawn : " << drawCard->getTitle() << endl;
+        cout << "Card drawn : " << drawCard->getName() << endl;
         
         for(int j = 0; j < 11; ++j)
         {

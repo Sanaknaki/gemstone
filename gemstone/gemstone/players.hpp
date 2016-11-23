@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "chain.hpp"
+#include "hand.hpp"
 
 using std::string; using std::ostream; using std::cout; using std::endl;
 
@@ -22,6 +23,7 @@ class Player{
     string d_name;
     int d_coin;
     int d_chain;
+    //Hand d_hand;
 public:
     Player(string& _name);                                              // Player constructor
     string getName();                                                   // Return name of player

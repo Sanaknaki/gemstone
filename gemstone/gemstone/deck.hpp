@@ -26,10 +26,10 @@ public:
     Deck();
     //~Deck();
     Deck& operator+=(ostream&);
-    Card* draw();
-    void add(Card* _card);
-    bool isEmpty();
-    void shuffle();
+    Card* draw(); // Return and removes top card
+    void add(Card* _card); // Add cards to the deck
+    bool isEmpty(); // Check if deck is empty;
+    void shuffle(); // Shuffle the deck
 };
 
 
