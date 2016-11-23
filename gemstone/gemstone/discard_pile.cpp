@@ -11,27 +11,52 @@
 
 #include "discard_pile.hpp"
 
+using std::cout; using std::endl;
+
 DiscardPile::DiscardPile( const istream& _is, CardFactory* _cardPool)
 {
-
+    //read from file
 }
 
 DiscardPile& DiscardPile::operator+=( Card* _card )
 {
-
+    d_cards.push_back( _card );
+    return *this;
 }
 
 Card* DiscardPile::pickUp()
 {
-
+    if( d_cards.empty() )
+    {
+        cout << "Discard Pile is empty!";
+        return nullptr;
+    } else {
+        Card* pickUpCard = d_cards.back();
+        d_cards.pop_back();
+        return pickUpCard;
+    }
 }
 
 Card* DiscardPile::top()
 {
-
+    if( d_cards.empty() )
+    {
+        cout << "Discard Pile is empty!";
+        return nullptr;
+    } else {
+        return d_cards.back();
+    }
 }
 
 void DiscardPile::print( ostream& _os )
 {
+    for( auto card : d_cards )
+    {
+        card->print( _os );
+    }
+}
 
+operator<<( ostream& _os, const DiscardPile& _discardPile )
+{
+    //output to ostream
 }

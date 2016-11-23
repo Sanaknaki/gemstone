@@ -18,9 +18,14 @@
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
 
-using std::ostream; using std::istream;
+using std::ostream; using std::istream; using std::vector;
+
+class DiscardPile;
+
+ostream& operator<<( ostream&, const DiscardPile& );
 
 class DiscardPile{
+    vector<Card*> d_cards;
 
 protected:
 
@@ -35,6 +40,8 @@ public:
     Card* top();
     // insert all the cards in the DiscardPile to an std::ostream
     void print( ostream& _os);
+    // insertion operator to insert only the top card of the discard pile to an ostream
+    friend operator<<( ostream&, const DiscardPile& );
 };
 
 #endif /* discard_pile_hpp */
