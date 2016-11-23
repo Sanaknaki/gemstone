@@ -52,6 +52,11 @@ void DiscardPile::print( ostream& _os )
 {
     for( auto card : d_cards )
     {
-        _os << ;
+        card->print( _os );
     }
+}
+
+operator<<( ostream& _os, const DiscardPile& _discardPile )
+{
+    //output to ostream
 }
