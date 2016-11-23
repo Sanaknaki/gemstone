@@ -50,10 +50,11 @@ Card* Hand::top()
 
 ostream& operator<<( ostream& _os, const Hand& _hand )
 {
-    for( auto card : _hand.d_cards )
+    for( auto card : d_cards )
     {
-        //print card
+        card->print( _os );
     }
+    return _os;
 }
 
 Card* Hand::operator[]( int i )

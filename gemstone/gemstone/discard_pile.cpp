@@ -56,7 +56,8 @@ void DiscardPile::print( ostream& _os )
     }
 }
 
-operator<<( ostream& _os, const DiscardPile& _discardPile )
+ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
-    //output to ostream
+    d_cards.back()->print( _os );
+    return _os;
 }
