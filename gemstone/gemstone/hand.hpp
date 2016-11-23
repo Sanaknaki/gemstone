@@ -13,6 +13,7 @@
 #define hand_hpp
 
 #include <stdio.h>
+#include <vector>
 
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
