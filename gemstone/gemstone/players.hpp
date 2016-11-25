@@ -8,6 +8,7 @@
 // ==========================================================================
 //  Copyright © 2016 commitCommittee. All rights reserved.
 // ==========================================================================
+
 #ifndef players_hpp
 #define players_hpp
 
@@ -23,7 +24,8 @@ class Player{
     string d_name;
     int d_coin;
     int d_chain;
-    //Hand d_hand;
+    //Hand hand;                                                        --Each player has a hand.--
+    //Chain chain;                                                      --Each player has a chain.--
 public:
     Player(string& _name);                                              // Player constructor
     string getName();                                                   // Return name of player

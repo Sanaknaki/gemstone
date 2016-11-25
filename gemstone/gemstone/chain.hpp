@@ -26,10 +26,7 @@ private:
     vector<Card*> d_cards;
 public:
     
-    Chain()
-    {
-        
-    }
+    Chain(){}
     
     Chain<T>& operator+=( Card* _card)
     {

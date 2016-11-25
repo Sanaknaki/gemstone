@@ -14,7 +14,7 @@
 
 
 CardFactory::CardFactory()
-{
+{    
     int count = 20;
     
     for(int i = 0; i < 8; ++i)

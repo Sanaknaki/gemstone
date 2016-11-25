@@ -30,8 +30,6 @@ public:
     static CardFactory* getFactory();
     //Returns deck with all 104 cards, [Shuffle it in the Deck class]
     Deck getDeck();
-    //Build deck
-    void buildDeck();
 };
 
 #endif /* cardfactory_hpp */
