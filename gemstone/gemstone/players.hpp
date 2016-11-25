@@ -24,9 +24,10 @@ class Player{
     string d_name;
     int d_coin;
     int d_chain;
-    //Hand hand;                                                        --Each player has a hand.--
     //Chain chain;                                                      --Each player has a chain.--
 public:
+    Hand hand;
+    
     Player(string& _name);                                              // Player constructor
     string getName();                                                   // Return name of player
     int getNumCoins();                                                  // Return amount of coins

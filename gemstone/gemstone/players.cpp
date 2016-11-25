@@ -19,7 +19,7 @@ Player::Player(string& _name)
     d_name = _name;
     d_coin = 0;
     d_chain = 2;
-    //Hand hand;   --Each player has a hand.--
+    Hand hand;
     //Chain chain; --Each player has a chain.--
 }
 

@@ -47,7 +47,16 @@ int main(void)
     Card* drawCard;
     int i = 0;
     
-    while(!deck.isEmpty())
+    // GIVE PLAYERS 5 CARDS AT THE START
+    for(int i = 0; i < 5; ++i)
+    {
+        drawCard = deck.draw();
+        playerOne.hand.operator+=(drawCard);
+        drawCard = deck.draw();
+        playerTwo.hand.operator+=(drawCard);
+    }
+    
+    /*while(!deck.isEmpty())
     {
         drawCard = deck.draw();
         cout << i << endl;
@@ -59,7 +68,6 @@ int main(void)
         }
         
         i++;
-    }
-    
+    }*/
     
 }
