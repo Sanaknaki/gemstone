@@ -48,15 +48,15 @@ int main(void)
     int i = 0;
     
     // GIVE PLAYERS 5 CARDS AT THE START
-    for(int i = 0; i < 5; ++i)
+    /*for(int i = 0; i < 5; ++i)
     {
         drawCard = deck.draw();
         playerOne.hand.operator+=(drawCard);
         drawCard = deck.draw();
         playerTwo.hand.operator+=(drawCard);
-    }
+    }*/
     
-    /*while(!deck.isEmpty())
+    while(!deck.isEmpty())
     {
         drawCard = deck.draw();
         cout << i << endl;
@@ -68,6 +68,6 @@ int main(void)
         }
         
         i++;
-    }*/
+    }
     
 }

@@ -19,9 +19,9 @@
 
 using std::istream; using std::vector;
 
-class Deck{
-    vector<Card*> d_original;
-    vector<Card*> d_playable;
+class Deck : vector<Card*> {
+    /*vector<Card*> d_original;
+    vector<Card*> d_playable;*/
 public:
     Deck();
     //~Deck();
