@@ -13,19 +13,19 @@
 #define hand_hpp
 
 #include <stdio.h>
-#include <vector>
+#include <queue>
 
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
 
-using std::istream; using std::ostream; using std::vector;
+using std::istream; using std::ostream; using std::queue;
 
 class Hand;
 
 ostream& operator<<( ostram&, const Hand& );
 
 class Hand {
-    vector<Card*> d_cards;
+    queue<Card*> d_cards;
 
 protected:
 

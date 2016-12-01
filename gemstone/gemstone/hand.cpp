@@ -20,7 +20,7 @@ Hand::Hand( const istream& _is, CardFactor* _cardPool )
 
 Hand& Hand::operator+=( Card* _card )
 {
-    d_cards.push_back( _card );
+    d_cards.push( _card );
     return *this;
 }
 
@@ -32,7 +32,7 @@ Card* Hand::play()
         return nullptr;
     } else {
         Card* playCard = d_cards.front();
-        d_cards.erase(d_cards.begin());
+        d_cards.pop();
         return playCard;
     }
 }
@@ -50,10 +50,14 @@ Card* Hand::top()
 
 ostream& operator<<( ostream& _os, const Hand& _hand )
 {
-    for( auto card : d_cards )
+    queue<Card*> temp_d_cards;
+    for( int i=0; !d_cards.empty(); i++ )
     {
-        card->print( _os );
+        ( d_cards.front() )->print( _os ); // print to _os
+        temp_d_cards.push(d_cards.front()); // store into temporary queue
+        d_cards.pop(); // remove from current queue
     }
+    d_cards = temp_d_cards;
     return _os;
 }
 
@@ -64,8 +68,18 @@ Card* Hand::operator[]( int i )
         cout << "Given index is out of bounds!" << endl;
         return nullptr;
     } else {
-        Card* cardAtIndex = d_cards[i];
-        d_cards.erase(d_cards.begin()+i);
+        queue<Card*> temp_d_cards; // store popped Cards to temporary queue
+        for( int index=0; !d_cards.empty(); i++ )
+        {
+            if( index == i  ) // if at given index in queue
+            {
+                Card* cardAtIndex = d_cards.front(); // save wanted Card to return
+            } else {
+                temp_d_cards.push(d_cards.front()); // push front to temp queue
+            }
+            d_cards.pop(); // remove Card from current queue
+        }
+        d_cards = temp_d_cards;
         return cardAtIndex;
     }
 }
