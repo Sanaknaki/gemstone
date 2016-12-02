@@ -13,8 +13,27 @@
 
 using std::cout; using std::endl;
 
-bool win(string& _name)
+Table::Table( istream& _is, CardFactory* _cardPool )
 {
-    cout << _name << " is the winner!" << endl;
-    return true;
+    // read from istream
+}
+
+bool Table::win(string& _name)
+{
+    if( d_deck.isEmpty() )
+    {
+        cout << _name << " is the winner!" << endl;
+        return true;
+    }
+    return false;
+}
+
+void Table::print( ostream& _os )
+{
+
+}
+
+ostream& operator<<( ostream& _os, const Table )
+{
+
 }

@@ -21,13 +21,35 @@ using std::string;
 using std::ostream;
 using std::istream;
 
-class Table{
-private:
+class Table;
 
+ostream& operator<<( ostream&, const Table );
+
+class Table {
+    Player d_p1, d_p2;
+    Deck d_deck;
+    DiscardPile d_discardPile;
+    TradeArea d_tradeArea;
 public:
-    Table(const istream&,CardFactory*);
-    bool win(string& _name);
-    void print(ostream&);
+    // accepts an istream and reconstruct the Table from file
+    Table( istream&, CardFactory* );
+    /*
+    returns true when a player has won.
+    conditions are:
+    - deck is empty
+    - player with the most card wins
+    */
+    bool win( string& _name );
+    // prints the complete table with all content.
+    // intended for serialization to file.
+    void print( ostream& _os);
+    /*
+    insertion operator to print a Table to an std::ostream.
+    The two players, the discardpile, the trading area should be printed.
+    This is the top level print out. Note that a complete output with all
+    cards for the pause functionality is printed with the separate function print above.
+    */
+    friend ostream& operator<<( ostream&, const Table );
 };
 
 #endif /* table_hpp */
