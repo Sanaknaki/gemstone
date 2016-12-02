@@ -24,19 +24,38 @@ class Player{
     string d_name;
     int d_coin;
     int d_chain;
-    //Chain chain;                                                      --Each player has a chain.--
+    //Chain chain;
 public:
+    
+    // Player has a hand.
     Hand hand;
     
-    Player(string& _name);                                              // Player constructor
-    string getName();                                                   // Return name of player
-    int getNumCoins();                                                  // Return amount of coins
-    Player& operator+=(int _coin);                                      // Add coins to player
-    int getMaxNumChains();                                              // Get max number of chains
-    int getNumChains();                                                 // Get number of chains you have
-    Chain<Card>& operator[](int i);                                     // Return chain at pos i
-    void buyThirdChain();                                               // Buy a third chain if allowed
-    void printHand(ostream& , bool);                                    // print top card or full hand of player
+    // Constructor.
+    Player(string& _name);
+    
+    // Return the name of the player.
+    string getName();
+    
+    // Return the amount of coins a player has.
+    int getNumCoins();
+    
+    // Add coins to a player.
+    Player& operator+=(int _coin);
+    
+    // Get the max number of chains.
+    int getMaxNumChains();
+    
+    // Get the number of chains a player has.
+    int getNumChains();
+    
+    // Return chain a position i.
+    Chain<Card>& operator[](int i);
+    
+    // Buy a third chain if possible.
+    void buyThirdChain();
+    
+    // Print top card of full hand of player.
+    void printHand(ostream& , bool);                                
 };
 
 #endif /* players_hpp */

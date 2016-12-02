@@ -14,9 +14,11 @@
 
 
 CardFactory::CardFactory()
-{    
+{
+    // Initital counter for 20 cards.
     int count = 20;
     
+    // Loop through all card types, i = type, count = amount of cards of type 'i' made.
     for(int i = 0; i < 8; ++i)
     {
         for(int j = 0; j < count; ++j)
@@ -62,18 +64,25 @@ CardFactory::CardFactory()
             }
         }
         
+        // Decrement count for the next type of cards.
         count = count - 2;
     }
     
+    // Shuffle the deck.
     d_deck.shuffle();
 }
 
-/*CardFactory* CardFactory::getFactory()
+CardFactory* CardFactory::getFactory()
 {
+    // Create static instant of Cardfactory.
+    static CardFactory sendBackFactory;
     
-}*/
+    // Send back reference.
+    return &sendBackFactory;
+}
 
 Deck CardFactory::getDeck()
 {
+    // Return deck.
     return d_deck;
 }

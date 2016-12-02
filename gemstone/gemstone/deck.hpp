@@ -23,13 +23,24 @@ class Deck : vector<Card*> {
     /*vector<Card*> d_original;
     vector<Card*> d_playable;*/
 public:
+    
+    // Deck.
     Deck();
-    //~Deck();
+    
+    // Deck increment operator.
     Deck& operator+=(ostream&);
-    Card* draw(); // Return and removes top card
-    void add(Card* _card); // Add cards to the deck
-    bool isEmpty(); // Check if deck is empty;
-    void shuffle(); // Shuffle the deck
+    
+    // Remove and return top card from deck.
+    Card* draw();
+    
+    // Add card to the deck.
+    void add(Card* _card);
+    
+    // Check if the deck is empty.
+    bool isEmpty();
+    
+    // Shuffle the deck.
+    void shuffle();
 };
 
 

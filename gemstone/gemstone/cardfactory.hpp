@@ -20,15 +20,16 @@
 using std::vector;
 
 class CardFactory{
+    // Variable.
     Deck d_deck;
 public:
-    //Constructor
+    // Constructor.
     CardFactory();
-    //Destructor
-    //~CardFactory(); implement later
-    //Returns pointer to the only instance of CardFactory
+    
+    // Returns pointer to the only instance of CardFactory.
     static CardFactory* getFactory();
-    //Returns deck with all 104 cards, [Shuffle it in the Deck class]
+    
+    // Returns deck with all 104 cards, [Shuffle it in the Deck class].
     Deck getDeck();
 };
 

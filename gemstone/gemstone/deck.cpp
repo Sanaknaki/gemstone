@@ -13,15 +13,22 @@
 
 using std::out_of_range; using std::random_shuffle;
 using std::cout; using std::endl;
+
+// Deck.
 Deck::Deck(){}
 
+// Draw card form the deck.
 Card* Deck::draw()
 {
+    // Initial size check.
     if(this->size() < 0)
     {
-        cout << "Deck is empty! " << endl;
+        // Return.
+        cout << "ERR : Deck is empty! " << endl;
         return nullptr;
     }else{
+        
+        // Set top card, remove, return it.
         Card* top = this->back();
         (*this).pop_back();
         return top;
@@ -36,20 +43,26 @@ Card* Deck::draw()
     return top;*/
 }
 
-void Deck::add(Card* _card)
+// Add card to the deck.
+void Deck::add(Card*_card)
 {
+    // Push back card to deck.
     (*this).push_back(_card);
     /*d_original.push_back(_card);
     d_playable.push_back(_card);*/
 }
 
+// Check if the deck is empty.
 bool Deck::isEmpty()
 {
+    // Condition.
     if(this->empty())
     {
+        // Return.
         return true;
     }
     
+    // Return.
     return false;
     
     /*if(d_playable.empty())
@@ -60,10 +73,17 @@ bool Deck::isEmpty()
     return false;*/
 }
 
+// Shuffle the deck.
 void Deck::shuffle()
 {
+    // Check if the deck is empty.
     if(!this->empty())
     {
+        // Shuffle it.
         random_shuffle(this->begin(), this->end());
+    }else{
+        
+        // Error.
+        cout << "ERR : Cannot shuffle an empty deck!" << endl;
     }
 }

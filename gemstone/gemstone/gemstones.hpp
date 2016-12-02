@@ -20,20 +20,20 @@ using std::string; using std::ostream;
 
 class Card{
 public:
-    //Gemstone types
-    //enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
-    //Returns how many cards are needed for the coins
+    // Gemstone types
+    // enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
+    // Returns how many cards are needed for the coins
     virtual int getCardsPerCoin(int _nCards) = 0;
-    //Returns the name of the card corresponding to its type
+    // Returns the name of the card corresponding to its type
     virtual string getName() = 0;
-    //Inserts the first character for the card into the output stream supplied as argument.
+    // Inserts the first character for the card into the output stream supplied as argument.
     virtual void print(ostream& out) = 0;
 };
 
 class Quartz : public Card
 {
 public:
-    //Quartz() { Card::d_title = "Quartz"; }
+    // Quartz() { Card::d_title = "Quartz"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -42,7 +42,7 @@ public:
 class Hematite : public Card
 {
 public:
-    //Hematite() { Card::d_title = "Hematite"; }
+    // Hematite() { Card::d_title = "Hematite"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -51,7 +51,7 @@ public:
 class Obsidian : public Card
 {
 public:
-    //Obsidian() { Card::d_title = "Obsidian"; }
+    // Obsidian() { Card::d_title = "Obsidian"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -61,7 +61,7 @@ public:
 class Malachite : public Card
 {
 public:
-    //Malachite() { Card::d_title = "Malachite"; }
+    // Malachite() { Card::d_title = "Malachite"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -71,7 +71,7 @@ public:
 class Turquoise : public Card
 {
 public:
-    //Turquois() { Card::d_title = "Turquoise"; }
+    // Turquois() { Card::d_title = "Turquoise"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -81,7 +81,7 @@ public:
 class Ruby : public Card
 {
 public:
-    //Ruby() { Card::d_title = "Ruby"; }
+    // Ruby() { Card::d_title = "Ruby"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -91,7 +91,7 @@ public:
 class Amethyst : public Card
 {
 public:
-    //Amethyst() { Card::d_title = "Amethyst"; }
+    // Amethyst() { Card::d_title = "Amethyst"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);
@@ -101,7 +101,7 @@ public:
 class Emerald : public Card
 {
 public:
-    //Emerald() { Card::d_title = "Emerald"; }
+    // Emerald() { Card::d_title = "Emerald"; }
     int getCardsPerCoin(int _nCards);
     string getName();
     void print(ostream& out);

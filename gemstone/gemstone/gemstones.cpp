@@ -108,6 +108,8 @@ int Card::getCardsPerCoin(int _nCards)
 }*/
 
 /***** QUARTZ IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Quartz::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -118,11 +120,17 @@ int Quartz::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Quartz::getName()          { return "Quartz"; }
+
+// Print it's 'type' letter.
 void Quartz::print(ostream & out) { out << "Q"; }
+
 /***************************************/
 
 /***** HEMATITE IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Hematite::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -133,11 +141,17 @@ int Hematite::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Hematite::getName()         { return "Hematite"; }
+
+// Print it's 'type' letter.
 void Hematite::print(ostream &out) { out << "H"; }
+
 /*******************************************/
 
 /***** OBSIDIAN IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Obsidian::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -148,11 +162,17 @@ int Obsidian::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Obsidian::getName()         { return "Obsidian"; }
+
+// Print it's 'type' letter.
 void Obsidian::print(ostream &out) { out << "O"; }
+
 /*******************************************/
 
 /***** MALACHITE IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Malachite::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -163,11 +183,17 @@ int Malachite::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Malachite::getName()         { return "Malachite"; }
+
+// Print it's 'type' letter.
 void Malachite::print(ostream &out) { out << "M"; }
+
 /********************************************/
 
 /***** TURQUOISE IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Turquoise::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -178,11 +204,17 @@ int Turquoise::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Turquoise::getName()         { return "Turquoise"; }
+
+// Print it's 'type' letter.
 void Turquoise::print(ostream &out) { out << "T"; }
+
 /********************************************/
 
 /***** RUBY IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Ruby::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -193,11 +225,17 @@ int Ruby::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Ruby::getName()         { return "Ruby"; }
+
+// Print it's 'type' letter.
 void Ruby::print(ostream &out) { out << "R"; }
+
 /****************************************/
 
 /***** AMETHYST IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Amethyst::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -208,11 +246,17 @@ int Amethyst::getCardsPerCoin(int _nCards)
     else                  { return 4; }
 }
 
+// Get the name of the card.
 string Amethyst::getName()         { return "Amethyst"; }
+
+// Print it's 'type' letter.
 void Amethyst::print(ostream &out) { out << "A"; }
+
 /*******************************************/
 
 /***** EMERALD IMPLEMENTATION (START) *****/
+
+// Return the amount of carsd earned for '_nCards' amount of a card.
 int Emerald::getCardsPerCoin(int _nCards)
 {
     if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
@@ -221,6 +265,10 @@ int Emerald::getCardsPerCoin(int _nCards)
     else                  { return 3; }
 }
 
+// Get the name of the card.
 string Emerald::getName()         { return "Emerald"; }
+
+// Print it's 'type' letter.
 void Emerald::print(ostream &out) { out << "E"; }
+
 /******************************************/
