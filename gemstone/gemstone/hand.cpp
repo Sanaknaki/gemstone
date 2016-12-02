@@ -13,9 +13,15 @@
 
 using std::cout; using std::endl;
 
-Hand::Hand( const istream& _is, CardFactor* _cardPool )
+Hand::Hand( istream& _is, CardFactor* _cardPool )
 {
-    // read from file
+    char tmp, card;
+    _is >> tmp >> card; // stores "[" and first card
+    while( card != ']' )
+    {
+        d_cards.push( _cardPool->getPtr(card) );
+        _is >> card;
+    }
 }
 
 Hand& Hand::operator+=( Card* _card )
@@ -54,6 +60,7 @@ ostream& operator<<( ostream& _os, const Hand& _hand )
     for( int i=0; !d_cards.empty(); i++ )
     {
         ( d_cards.front() )->print( _os ); // print to _os
+        _os << " ";
         temp_d_cards.push(d_cards.front()); // store into temporary queue
         d_cards.pop(); // remove from current queue
     }

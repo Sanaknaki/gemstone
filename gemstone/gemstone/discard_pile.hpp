@@ -31,7 +31,7 @@ protected:
 
 public:
     // a constructor which accepts an istream and reconstructs the DiscardPile from file.
-    DiscardPile( const istream& _is, CardFactory* _cardPool );
+    DiscardPile( istream& _is, CardFactory* _cardPool );
     // discard the card to the pile
     DiscardPile& operator+=( Card* _card );
     // returns and removes the top card from the discard pile

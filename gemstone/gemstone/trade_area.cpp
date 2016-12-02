@@ -11,9 +11,15 @@
 
 #include "trade_area.hpp"
 
-TradeArea::TradeArea( const istream& _is, CardFactory* _cardPool )
+TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 {
-    //read from file
+    char tmp, card;
+    _is >> tmp >> card; // should store "[" and first card
+    while( card != ']' )
+    {
+        d_cards.push_back( _cardPool->getPtr(card) );
+        _is >> card;
+    }
 }
 
 TradeArea& TradeArea::operator+=( Card* _card)
@@ -24,24 +30,24 @@ TradeArea& TradeArea::operator+=( Card* _card)
 
 bool TradeArea::legal( Card* _card )
 {
-    for( auto card : d_cards )
+    for( auto cardInTrade : d_cards )
     {
-        if( _card->getName() == card->getName() )
+        if( _card->getName() == cardInTrade->getName() )
         {
-            return true;
+            return false;
         }
     }
-    return false;
+    return true;
 }
 
 Card* TradeArea::trade( string _gemName )
 {
-    Card* cardInTrade = nullptr; //default return if no such card is in TradeArea
+    // need to use iterators in order to know where to delete in list
     for( auto iter=d_cards.begin(); iter != d_cards.end(); ++iter )
     {
-        if( _gemName == (*iter)->getName() )
+        if( (*iter)->getName() == _gemName ) // card is found with given name
         {
-            cardInTrade = *iter;
+            Card* cardInTrade = *iter;
             d_cards.erase(iter);
             return cardInTrade;
         }
@@ -49,7 +55,7 @@ Card* TradeArea::trade( string _gemName )
 
     //instance when no such card is in TradeArea
     cout << "No such card found in Trade Area!" << endl;
-    return cardInTrade;
+    return nullptr;
 }
 
 int TradeArea::numCards()
@@ -59,9 +65,10 @@ int TradeArea::numCards()
 
 ostream& operator<<( ostream& _os, const TradeArea _tradeArea )
 {
-    for( auto card : d_cards )
+    for( auto cardInTrade : d_cards )
     {
-        card->print( _os );
+        cardInTrade->print( _os );
+        os << " ";
     }
     return _os;
 }

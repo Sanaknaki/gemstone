@@ -30,7 +30,7 @@ class TradeArea {
 
 public:
     // constructor which accepts an istream and reconstruct the TradeArea from file
-    TradeArea( const istream& _is, CardFactory* _cardPool );
+    TradeArea( istream& _is, CardFactory* _cardPool );
     // adds the card to the trade area but it does not check if it is legal to place the card
     TradeArea& operator+=( Card* _card );
     // returns true if the card can be legally added to the TradeArea, i.e., a card of the same gemstone is already in the TradeArea

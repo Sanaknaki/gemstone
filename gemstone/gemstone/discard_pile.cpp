@@ -13,9 +13,15 @@
 
 using std::cout; using std::endl;
 
-DiscardPile::DiscardPile( const istream& _is, CardFactory* _cardPool)
+DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
 {
-    //read from file
+    char tmp, card;
+    _is >> tmp >> card; // stores "[" and first card
+    while( card != ']' )
+    {
+        d_cards.push_back( _cardPool->getPtr(card) );
+        _is >> card;
+    }
 }
 
 DiscardPile& DiscardPile::operator+=( Card* _card )

@@ -31,7 +31,7 @@ protected:
 
 public:
     // Hand needs a constructor which accepts an istream and reconstructs the Hand from file.
-    Hand( const istream&, CardFactory* );
+    Hand( istream&, CardFactory* );
     virtual ~Hand();
     // adds the card to the rear of the hand
     Hand& operator+=( Card* _card );
