@@ -15,12 +15,11 @@ using std::cout; using std::endl;
 
 DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
 {
-    char tmp, card;
-    _is >> tmp >> card; // stores "[" and first card
-    while( card != ']' )
+    char card;
+    // get individual white space seperated tokens
+    while( _is >> card ) // false when end of line or invalid input
     {
         d_cards.push_back( _cardPool->getPtr(card) );
-        _is >> card;
     }
 }
 

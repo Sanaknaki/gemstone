@@ -15,12 +15,11 @@ using std::cout; using std::endl;
 
 Hand::Hand( istream& _is, CardFactor* _cardPool )
 {
-    char tmp, card;
-    _is >> tmp >> card; // stores "[" and first card
-    while( card != ']' )
+    char card;
+    // get individual white space seperated tokens
+    while( _is >> card )  // false when end of line or invalid input
     {
         d_cards.push( _cardPool->getPtr(card) );
-        _is >> card;
     }
 }
 

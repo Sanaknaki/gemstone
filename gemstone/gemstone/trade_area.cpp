@@ -14,11 +14,10 @@
 TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 {
     char tmp, card;
-    _is >> tmp >> card; // should store "[" and first card
-    while( card != ']' )
+    // get individual white space sperated tokens
+    while( _is >> card ) // false when end of line or invalid input
     {
         d_cards.push_back( _cardPool->getPtr(card) );
-        _is >> card;
     }
 }
 
