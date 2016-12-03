@@ -10,12 +10,40 @@
 // ==========================================================================
 
 #include "table.hpp"
+#include <string>
 
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::string;
 
 Table::Table( istream& _is, CardFactory* _cardPool )
 {
-    // read from istream
+    string line, token;
+    // get a line from _is
+    while( getLine(_is, line) ) {
+        istringstream streamLine( line );
+        // get individual white space separated tokens
+        while( streamLine >> token ) {
+            // process token
+            if( token == "Player1" ) {
+                d_p1 = Player( _is, _cardPool );
+                break;
+            }
+            if( token == "Player2" ) {
+                d_p2 = Player( _is, _cardPool );
+                break;
+            }
+            if( token == "DiscardPile" ) {
+                d_discardPile = DiscardPile( streamLine, _cardPool );
+                break;
+            }
+            if( token == "TradeArea" ) {
+                d_tradeArea = TradeArea( streamLine, _cardPool );
+                break;
+            }
+            if( token == "end" ) break;
+            cerr << "Unknown token!" << endl;
+        }
+        if( token == "end" ) break;
+    }
 }
 
 bool Table::win(string& _name)
@@ -30,12 +58,12 @@ bool Table::win(string& _name)
 
 /*
  *  prints the following to file as an example
- *  Player 1
+ *  Player1
  *  Adam        4 coins
  *  Malachite   M M M M M
  *  Amethyst    A A
  *  Hand        A M Q R T R
- *  Player 2
+ *  Player2
  *  Betty       7 coins
  *  Ruby        R R R R
  *  Quartz      Q Q Q Q Q Q Q
@@ -47,9 +75,9 @@ bool Table::win(string& _name)
  */
 void Table::print( ostream& _os )
 {
-    _os << "Player 1 " << endl << d_p1;
+    _os << "Player1 " << endl << d_p1;
     d_p1.printHand( _os, true );
-    _os << "Player 2 " << endl << d_p2;
+    _os << "Player2 " << endl << d_p2;
     d_p2.printHand( _os, true );
     _os << "DiscardPile " << d_discardPile << endl;
     _os << "TradeArea" << d_tradeArea << endl;
