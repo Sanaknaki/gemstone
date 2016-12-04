@@ -12,77 +12,67 @@
 #include "cardfactory.hpp"
 #include <iostream>
 
+using namespace std;
+
+// enum for gemstones
+enum { Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7 };
+
+const vector<Card*> CardFactory::GEMSTONES = { new Quartz(), new Hematite(), new Obsidian(), new Malachite(),
+                                                new Turquoise(), new Ruby(), new Amethyst(), new Emerald() };
 
 CardFactory::CardFactory()
 {
     // Initital counter for 20 cards.
     int count = 20;
-    
-    // Loop through all card types, i = type, count = amount of cards of type 'i' made.
-    for(int i = 0; i < 8; ++i)
+
+    // Loop through all card types, count = amount of cards of type to make.
+    for(int type = 0; type < 8; ++type)
     {
         for(int j = 0; j < count; ++j)
         {
-            if(i == 0)
-            {
-                d_deck.add(new Quartz);
-            }else if(i == 1)
-            {
-                //Hematite* card = new Hematite();
-                d_deck.add(new Hematite);
-                //d_deck.add(card);
-            }else if(i == 2)
-            {
-                //Obsidian* card = new Obsidian();
-                d_deck.add(new Obsidian);
-                //d_deck.add(card);
-            }else if(i == 3)
-            {
-                //Malachite* card = new Malachite();
-                d_deck.add(new Malachite);
-                //d_deck.add(card);
-            }else if(i == 4)
-            {
-                //Turquoise* card = new Turquoise();
-                d_deck.add(new Turquoise);
-                //d_deck.add(card);
-            }else if(i == 5)
-            {
-                //Ruby* card = new Ruby();
-                d_deck.add(new Ruby);
-                //d_deck.add(card);
-            }else if(i == 6)
-            {
-                //Amethyst* card = new Amethyst();
-                d_deck.add(new Amethyst);
-                //d_deck.add(card);
-            }else
-            {
-                //Emerald* card = new Emerald();
-                d_deck.add(new Emerald);
-                //d_deck.add(card);
-            }
+            d_deck.push_back( GEMSTONES[type] );
         }
-        
+
         // Decrement count for the next type of cards.
-        count = count - 2;
+        count -= 2;
     }
-    
-    // Shuffle the deck.
-    d_deck.shuffle();
 }
 
 CardFactory* CardFactory::getFactory()
 {
     // Create static instant of Cardfactory.
     static CardFactory sendBackFactory;
-    
+
     // Send back reference.
     return &sendBackFactory;
 }
 
 Deck CardFactory::getDeck()
 {
+    // Shuffle the deck.
+    d_deck.shuffle();
     // Return deck.
     return d_deck;
+}
+
+Card* CardFactory::getPtr( const char card ) const
+{
+    switch ( card ) {
+        case 'Q': return GEMSTONES[Q];
+        case 'H': return GEMSTONES[H];
+        case 'O': return GEMSTONES[O];
+        case 'M': return GEMSTONES[M];
+        case 'T': return GEMSTONES[T];
+        case 'R': return GEMSTONES[R];
+        case 'A': return GEMSTONES[A];
+        case 'E': return GEMSTONES[E];
+        default: cout << "Invalid Card!" << endl;
+    }
+    return nullptr; // default return
+}
+
+CardFactory::~CardFactory() {
+    for( auto gemstone : GEMSTONES ) {
+        delete gemstone;
+    }
 }

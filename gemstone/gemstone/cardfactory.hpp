@@ -22,15 +22,24 @@ using std::vector;
 class CardFactory{
     // Variable.
     Deck d_deck;
+    // store different cards in a vector
+    static const vector<Card*> GEMSTONES;
+
 public:
     // Constructor.
     CardFactory();
-    
+
     // Returns pointer to the only instance of CardFactory.
     static CardFactory* getFactory();
-    
+
     // Returns deck with all 104 cards, [Shuffle it in the Deck class].
     Deck getDeck();
+
+    // return Card pointer according to given char
+    Card* getPtr( const char ) const;
+
+    // deconstructor
+    ~CardFactory();
 };
 
 #endif /* cardfactory_hpp */

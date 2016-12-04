@@ -28,6 +28,8 @@ public:
     virtual string getName() = 0;
     // Inserts the first character for the card into the output stream supplied as argument.
     virtual void print(ostream& out) = 0;
+    // destructor
+    virtual ~Card(){};
 };
 
 class Quartz : public Card
@@ -37,6 +39,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Quartz(){};
 };
 
 class Hematite : public Card
@@ -46,6 +49,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Hematite(){};
 };
 
 class Obsidian : public Card
@@ -55,6 +59,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Obsidian(){};
 };
 
 
@@ -65,6 +70,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Malachite(){};
 };
 
 
@@ -75,6 +81,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Turquoise(){};
 };
 
 
@@ -85,6 +92,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Ruby(){};
 };
 
 
@@ -95,6 +103,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Amethyst(){};
 };
 
 
@@ -105,6 +114,7 @@ public:
     int getCardsPerCoin(int _coins);
     string getName();
     void print(ostream& out);
+    ~Emerald(){};
 };
 
 #endif /* gemstones_hpp */
