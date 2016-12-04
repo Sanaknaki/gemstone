@@ -10,15 +10,15 @@
 // ==========================================================================
 
 #include "table.hpp"
-#include <string>
+#include <sstream>
 
-using std::cout; using std::endl; using std::string;
+using namespace std;
 
 Table::Table( istream& _is, CardFactory* _cardPool )
 {
     string line, token;
     // get a line from _is
-    while( getLine(_is, line) ) {
+    while( getline(_is, line) ) {
         istringstream streamLine( line );
         // get individual white space separated tokens
         while( streamLine >> token ) {
@@ -75,20 +75,20 @@ bool Table::win(string& _name)
  */
 void Table::print( ostream& _os )
 {
-    _os << "Player1 " << endl << d_p1;
-    d_p1.printHand( _os, true );
-    _os << "Player2 " << endl << d_p2;
-    d_p2.printHand( _os, true );
-    _os << "DiscardPile " << d_discardPile << endl;
-    _os << "TradeArea" << d_tradeArea << endl;
-    _os << "end";
+    _os << "Player1 " << endl << d_p1; // output player1
+    d_p1.printHand( _os, true ); // output player1 hand
+    _os << "Player2 " << endl << d_p2; // output player2
+    d_p2.printHand( _os, true ); // output player2 hand
+    _os << "DiscardPile " << d_discardPile << endl; // output discardPile
+    _os << "TradeArea" << d_tradeArea << endl; // output tradeArea
+    _os << "end"; // output end of file
 }
 
-ostream& operator<<( ostream& _os, const Table )
+ostream& operator<<( ostream& _os, const Table& _table )
 {
-    _os << "Player 1" << endl << d_p1; // displays player 1
-    _os << "Player 2" << endl << d_p2; // displays player 2
-    _os << "Trading Area" << endl << d_tradeArea; // displays trade area
-    _os << "Discard Pile" << endl << d_discardPile; // displays top card of discard pile
+    _os << "Player 1" << endl << _table.d_p1; // displays player 1
+    _os << "Player 2" << endl << _table.d_p2; // displays player 2
+    _os << "Trading Area" << endl << _table.d_tradeArea; // displays trade area
+    _os << "Discard Pile" << endl << _table.d_discardPile; // displays top card of discard pile
     return _os;
 }

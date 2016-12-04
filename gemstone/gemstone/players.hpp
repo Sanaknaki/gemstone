@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <sstream>
 
 #include "chain.hpp"
 #include "hand.hpp"
@@ -34,6 +35,9 @@ public:
 
     // Player has a hand.
     // Hand hand;
+
+    // default constructor
+    Player();
 
     // Constructor.
     Player(string& _name);

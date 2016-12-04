@@ -29,6 +29,8 @@ class TradeArea {
     list<Card*> d_cards;
 
 public:
+    // default constructor
+    TradeArea();
     // constructor which accepts an istream and reconstruct the TradeArea from file
     TradeArea( istream& _is, CardFactory* _cardPool );
     // adds the card to the trade area but it does not check if it is legal to place the card

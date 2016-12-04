@@ -13,7 +13,10 @@
 #include "hand.hpp"
 #include <string>
 
-using std::string;
+using namespace std;
+
+// default constructor
+Player::Player() = default;
 
 // Constructor.
 Player::Player(string& _name) : d_name{ _name }
@@ -108,12 +111,12 @@ Player::Player( istream& _is, CardFactory* _cardPool )
 {
     string token, line;
     // get a line
-    while( getLine(_is, line) ) {
+    while( getline(_is, line) ) {
         istringstream streamLine(line);
         // get individual white space seperated token
         while( streamLine >> token ) {
             // process token
-            
+
         }
     }
 }
