@@ -13,6 +13,8 @@
 
 using std::cout; using std::endl;
 
+Hand::Hand() = default;
+
 Hand::Hand( istream& _is, CardFactor* _cardPool )
 {
     char card;

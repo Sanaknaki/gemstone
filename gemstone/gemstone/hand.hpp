@@ -22,7 +22,7 @@ using std::istream; using std::ostream; using std::queue;
 
 class Hand;
 
-ostream& operator<<( ostram&, const Hand& );
+ostream& operator<<( ostream&, const Hand& );
 
 class Hand {
     queue<Card*> d_cards;
@@ -30,6 +30,8 @@ class Hand {
 protected:
 
 public:
+    // default constructor
+    Hand();
     // Hand needs a constructor which accepts an istream and reconstructs the Hand from file.
     Hand( istream&, CardFactory* );
     virtual ~Hand();
