@@ -33,11 +33,15 @@ public:
     // Add card to the deck.
     void add(Card* _card);
 
+    /***************************
+     *  See deck.cpp for details
+     ***************************
     // Check if the deck is empty.
     bool isEmpty();
 
     // Shuffle the deck.
     void shuffle();
+    */
 };
 
 

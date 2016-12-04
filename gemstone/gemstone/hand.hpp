@@ -34,7 +34,6 @@ public:
     Hand();
     // Hand needs a constructor which accepts an istream and reconstructs the Hand from file.
     Hand( istream&, CardFactory* );
-    virtual ~Hand();
     // adds the card to the rear of the hand
     Hand& operator+=( Card* _card );
     // returns and removes the top card from the player's hand

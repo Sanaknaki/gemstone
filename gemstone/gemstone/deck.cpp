@@ -11,7 +11,7 @@
 
 #include "deck.hpp"
 
-using std::out_of_range; using std::random_shuffle;
+using std::out_of_range; // using std::random_shuffle;
 using std::cout; using std::endl;
 
 // Draw card form the deck.
@@ -48,7 +48,9 @@ void Deck::add(Card*_card)
     /*d_original.push_back(_card);
     d_playable.push_back(_card);*/
 }
-
+/*****************************************************
+ *  Since Deck extends vector, no need for this method
+ *****************************************************
 // Check if the deck is empty.
 bool Deck::isEmpty()
 {
@@ -67,9 +69,13 @@ bool Deck::isEmpty()
         return true;
     }
 
-    return false;*/
+    return false;
 }
+*/
 
+/**************************************************
+ *  Moved shuffle function to inside of CardFactory
+ **************************************************
 // Shuffle the deck.
 void Deck::shuffle()
 {
@@ -84,3 +90,4 @@ void Deck::shuffle()
         cout << "ERR : Cannot shuffle an empty deck!" << endl;
     }
 }
+*/

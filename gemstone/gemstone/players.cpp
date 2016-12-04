@@ -79,7 +79,7 @@ void Player::buyThirdChain()
 }
 
 // Print top card or full hand of player.
-void printHand( ostream& _os, const bool fullHand ) const
+void Player::printHand( ostream& _os, const bool fullHand ) const
 {
     if( !fullHand ) { // prints top card only
         Card* topCard = d_hand.top();
@@ -99,7 +99,7 @@ ostream& operator<<( ostream& _os, const Player& _p )
 {
     // print name and number of coins
     _os << _p.d_name << "\t\t" << _p.d_coin << "coin";
-    if( d_coin != 1 ) _os << "s";
+    if( _p.d_coin != 1 ) _os << "s";
     _os << endl;
     // print chains
 

@@ -48,7 +48,7 @@ Table::Table( istream& _is, CardFactory* _cardPool )
 
 bool Table::win(string& _name)
 {
-    if( d_deck.isEmpty() )
+    if( d_deck.empty() )
     {
         cout << _name << " is the winner!" << endl;
         return true;

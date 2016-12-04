@@ -19,13 +19,13 @@
 #include "chain.hpp"
 #include "hand.hpp"
 
-using std::string; using std::ostream; using std::cout; using std::endl;
+using namespace std;
 
 class Player;
 
 ostream& operator<<( ostream&, const Player& );
 
-class Player{
+class Player {
     string d_name;
     int d_coin = 0; // default
     int d_chain = 2; // default
@@ -70,7 +70,7 @@ public:
     void printHand(ostream& , const bool) const;
 
     // insertion operator to print a Player to an ostream
-    friend ostream& operator<<( ostream&, Player& );
+    friend ostream& operator<<( ostream&, const Player& );
 };
 
 #endif /* players_hpp */
