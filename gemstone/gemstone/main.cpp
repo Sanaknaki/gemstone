@@ -1,8 +1,8 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.cpp
+//  File    : main.cpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================
@@ -41,6 +41,33 @@ int main(void)
     Player playerOne = *new Player(p1Name);
     Player playerTwo = *new Player(p2Name);
     
+    CardFactory factory = *new CardFactory();
+    Deck deck = factory.getDeck();
     
+    Card* drawCard;
+    int i = 0;
+    
+    // GIVE PLAYERS 5 CARDS AT THE START
+    /*for(int i = 0; i < 5; ++i)
+    {
+        drawCard = deck.draw();
+        playerOne.hand.operator+=(drawCard);
+        drawCard = deck.draw();
+        playerTwo.hand.operator+=(drawCard);
+    }*/
+    
+    while(!deck.isEmpty())
+    {
+        drawCard = deck.draw();
+        cout << i << endl;
+        cout << "Card drawn : " << drawCard->getName() << endl;
+        
+        for(int j = 0; j < 11; ++j)
+        {
+            cout << "Card worth at [" << j << "] :" << drawCard->getCardsPerCoin(j) << endl;
+        }
+        
+        i++;
+    }
     
 }

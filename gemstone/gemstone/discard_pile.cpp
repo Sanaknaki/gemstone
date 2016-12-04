@@ -10,10 +10,17 @@
 // ==========================================================================
 
 #include "discard_pile.hpp"
+/*
+=======
 
 using std::cout; using std::endl;
 
+<<<<<<< HEAD
 DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
+=======
+>>>>>>> 027a0b0cdf747fa7a0619888fc2d24b123178b26
+DiscardPile::DiscardPile( const istream& _is, CardFactory* _cardPool)
+>>>>>>> dbc26af54eb2d972c0112ff2c39d0f2738e37986
 {
     char card;
     // get individual white space seperated tokens
@@ -25,8 +32,12 @@ DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
 
 DiscardPile& DiscardPile::operator+=( Card* _card )
 {
+<<<<<<< HEAD
+    
+=======
     d_cards.push_back( _card );
     return *this;
+>>>>>>> 027a0b0cdf747fa7a0619888fc2d24b123178b26
 }
 
 Card* DiscardPile::pickUp()
@@ -52,6 +63,7 @@ Card* DiscardPile::top() const
         return d_cards.back();
     }
 }
+*/
 
 void DiscardPile::print( ostream& _os ) const
 {
@@ -61,8 +73,15 @@ void DiscardPile::print( ostream& _os ) const
     }
 }
 
+<<<<<<< HEAD
 ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
     _discardPile.d_cards.back()->print( _os );
     return _os;
 }
+=======
+/*operator<<( ostream& _os, const DiscardPile& _discardPile )
+{
+    //output to ostream
+}*/
+>>>>>>> dbc26af54eb2d972c0112ff2c39d0f2738e37986

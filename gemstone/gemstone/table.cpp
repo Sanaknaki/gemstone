@@ -1,8 +1,8 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : table.cpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================

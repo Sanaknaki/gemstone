@@ -10,10 +10,15 @@
 // ==========================================================================
 
 #include "trade_area.hpp"
+<<<<<<< HEAD
 
 using namespace std;
 
 TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
+=======
+/*
+TradeArea::TradeArea( const istream& _is, CardFactory* _cardPool )
+>>>>>>> dbc26af54eb2d972c0112ff2c39d0f2738e37986
 {
     char tmp, card;
     // get individual white space sperated tokens
@@ -73,3 +78,4 @@ ostream& operator<<( ostream& _os, const TradeArea& _tradeArea )
     }
     return _os;
 }
+*/

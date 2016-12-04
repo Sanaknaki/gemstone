@@ -1,8 +1,8 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : gemstones.hpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================
@@ -18,25 +18,93 @@
 
 using std::string; using std::ostream;
 
-enum Gemstone                                                           // Enumerator for the gemstone types
-{
-    Q,
-    H,
-    O,
-    M,
-    T,
-    R,
-    A,
-    E
+class Card{
+public:
+    // Gemstone types
+    // enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
+    // Returns how many cards are needed for the coins
+    virtual int getCardsPerCoin(int _nCards) = 0;
+    // Returns the name of the card corresponding to its type
+    virtual string getName() = 0;
+    // Inserts the first character for the card into the output stream supplied as argument.
+    virtual void print(ostream& out) = 0;
 };
 
-class Card{
-private:
-    
+class Quartz : public Card
+{
 public:
-    virtual int getCardsPerCoin(int coins);                             // Returns how many cards are needed for the coins
-    virtual string getName();                                           // Returns the name of the card corresponding to its type
-    virtual void print(const ostream& out);                             // Inserts the first character for the card into the output stream supplied as argument.
+    // Quartz() { Card::d_title = "Quartz"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+class Hematite : public Card
+{
+public:
+    // Hematite() { Card::d_title = "Hematite"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+class Obsidian : public Card
+{
+public:
+    // Obsidian() { Card::d_title = "Obsidian"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+
+class Malachite : public Card
+{
+public:
+    // Malachite() { Card::d_title = "Malachite"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+
+class Turquoise : public Card
+{
+public:
+    // Turquois() { Card::d_title = "Turquoise"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+
+class Ruby : public Card
+{
+public:
+    // Ruby() { Card::d_title = "Ruby"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+
+class Amethyst : public Card
+{
+public:
+    // Amethyst() { Card::d_title = "Amethyst"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
+};
+
+
+class Emerald : public Card
+{
+public:
+    // Emerald() { Card::d_title = "Emerald"; }
+    int getCardsPerCoin(int _nCards);
+    string getName();
+    void print(ostream& out);
 };
 
 #endif /* gemstones_hpp */

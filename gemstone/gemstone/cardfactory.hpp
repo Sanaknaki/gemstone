@@ -1,8 +1,8 @@
 // ==========================================================================
 //  Project : gemstone
-//  File    : card-hierarchy.hpp
+//  File    : cardfactory.hpp
 //  Student : Ali Sanaknaki (7745880)
-//  Student : Peter Doan (#######)
+//  Student : Peter Doan (6842312)
 //
 //  Github  : http://www.github.com/sanaknaki/gemstone
 // ==========================================================================
@@ -15,13 +15,22 @@
 #include <stdio.h>
 
 #include "deck.hpp"
+#include "gemstones.hpp"
+
+using std::vector;
 
 class CardFactory{
-private:
-
+    // Variable.
+    Deck d_deck;
 public:
+    // Constructor.
+    CardFactory();
+    
+    // Returns pointer to the only instance of CardFactory.
     static CardFactory* getFactory();
-    //Deck getDeck();
+    
+    // Returns deck with all 104 cards, [Shuffle it in the Deck class].
+    Deck getDeck();
 };
 
 #endif /* cardfactory_hpp */

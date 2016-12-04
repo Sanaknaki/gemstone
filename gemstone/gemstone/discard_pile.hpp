@@ -41,7 +41,11 @@ public:
     // insert all the cards in the DiscardPile to an std::ostream
     void print( ostream& _os) const;
     // insertion operator to insert only the top card of the discard pile to an ostream
+<<<<<<< HEAD
     friend ostream& operator<<( ostream&, const DiscardPile& );
+=======
+    //friend operator<<( ostream&, const DiscardPile& );
+>>>>>>> dbc26af54eb2d972c0112ff2c39d0f2738e37986
 };
 
 #endif /* discard_pile_hpp */
