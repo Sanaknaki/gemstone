@@ -13,27 +13,28 @@
 #define hand_hpp
 
 #include <stdio.h>
-#include <vector>
+#include <queue>
 
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
 
-using std::istream; using std::ostream; using std::vector;
+using std::istream; using std::ostream; using std::queue;
 
 class Hand;
 
 ostream& operator<<( ostream&, const Hand& );
 
 class Hand {
-    vector<Card*> d_cards;
+    queue<Card*> d_cards;
 
 protected:
 
 public:
+    // default constructor
     Hand();
     // Hand needs a constructor which accepts an istream and reconstructs the Hand from file.
-    Hand( const istream&, CardFactory* );
-    //virtual ~Hand() = 0;
+    Hand( istream&, CardFactory* );
+    virtual ~Hand();
     // adds the card to the rear of the hand
     Hand& operator+=( Card* _card );
     // returns and removes the top card from the player's hand
