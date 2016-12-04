@@ -11,27 +11,24 @@
 
 #include "players.hpp"
 #include "hand.hpp"
+#include <string>
 
 using std::string;
 
 // Constructor.
-Player::Player(string& _name)
+Player::Player(string& _name) : d_name{ _name }
 {
-    d_name = _name;
-    d_coin = 0;
-    d_chain = 2;
-    Hand d_hand;
     //Chain chain; --Each player has a chain.--
 }
 
 // Return the name of the player.
-string Player::getName()
+string Player::getName() const
 {
     return d_name;
 }
 
 // Return the amount of coins a player has.
-int Player::getNumCoins()
+int Player::getNumCoins() const
 {
     return d_coin;
 }
@@ -44,13 +41,13 @@ Player& Player::operator+=(int _coin)
 }
 
 // Get the max number of chains.
-int Player::getMaxNumChains()
+int Player::getMaxNumChains() const
 {
     return d_chain;
 }
 
 // Get the number of chains a player has.
-int Player::getNumChains()
+int Player::getNumChains() const
 {
     return d_chain;
 }
@@ -78,8 +75,8 @@ void Player::buyThirdChain()
     }
 }
 
-// Print top card of full hand of player.
-void printHand( ostream& _os, bool fullHand )
+// Print top card or full hand of player.
+void printHand( ostream& _os, const bool fullHand ) const
 {
     if( !fullHand ) { // prints top card only
         Card* topCard = d_hand.top();
@@ -109,5 +106,14 @@ ostream& operator<<( ostream& _os, const Player& _p )
 // constructor which accepts an istream and reconstructs the Player from file
 Player::Player( istream& _is, CardFactory* _cardPool )
 {
-    // read from file
+    string token, line;
+    // get a line
+    while( getLine(_is, line) ) {
+        istringstream streamLine(line);
+        // get individual white space seperated token
+        while( streamLine >> token ) {
+            // process token
+            
+        }
+    }
 }

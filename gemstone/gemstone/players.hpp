@@ -26,8 +26,8 @@ ostream& operator<<( ostream&, const Player& );
 
 class Player{
     string d_name;
-    int d_coin;
-    int d_chain;
+    int d_coin = 0; // default
+    int d_chain = 2; // default
     Hand d_hand;
     //Chain chain;
 public:
@@ -42,19 +42,19 @@ public:
     Player( istream&, CardFactory* );
 
     // Return the name of the player.
-    string getName();
+    string getName() const;
 
     // Return the amount of coins a player has.
-    int getNumCoins();
+    int getNumCoins() const;
 
     // Add coins to a player.
     Player& operator+=(int _coin);
 
     // Get the max number of chains.
-    int getMaxNumChains();
+    int getMaxNumChains() const;
 
     // Get the number of chains a player has.
-    int getNumChains();
+    int getNumChains() const;
 
     // Return chain a position i.
     Chain<Card>& operator[](int i);
@@ -63,7 +63,7 @@ public:
     void buyThirdChain();
 
     // Print top card of full hand of player.
-    void printHand(ostream& , bool);
+    void printHand(ostream& , const bool) const;
 
     // insertion operator to print a Player to an ostream
     friend ostream& operator<<( ostream&, Player& );
