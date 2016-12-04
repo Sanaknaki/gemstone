@@ -37,11 +37,11 @@ public:
     // returns and removes the top card from the discard pile
     Card* pickUp();
     // returns but does not remove the top card from the discard pile
-    Card* top();
+    Card* top() const;
     // insert all the cards in the DiscardPile to an std::ostream
-    void print( ostream& _os);
+    void print( ostream& _os) const;
     // insertion operator to insert only the top card of the discard pile to an ostream
-    friend operator<<( ostream&, const DiscardPile& );
+    friend ostream& operator<<( ostream&, const DiscardPile& );
 };
 
 #endif /* discard_pile_hpp */

@@ -15,7 +15,7 @@ using std::cout; using std::endl;
 
 Hand::Hand() = default;
 
-Hand::Hand( istream& _is, CardFactor* _cardPool )
+Hand::Hand( istream& _is, CardFactory* _cardPool )
 {
     char card;
     // get individual white space seperated tokens
@@ -44,7 +44,7 @@ Card* Hand::play()
     }
 }
 
-Card* Hand::top()
+Card* Hand::top() const
 {
     if( d_cards.empty() )
     {
@@ -57,37 +57,34 @@ Card* Hand::top()
 
 ostream& operator<<( ostream& _os, const Hand& _hand )
 {
-    queue<Card*> temp_d_cards;
-    for( int i=0; !d_cards.empty(); i++ )
+    queue<Card*> temp = _hand.d_cards; // copy d_cards from _hand to temp
+    for( int i=0; i < temp.size(); i++ )
     {
-        ( d_cards.front() )->print( _os ); // print to _os
+        ( temp.front() )->print( _os ); // print to _os
         _os << " ";
-        temp_d_cards.push(d_cards.front()); // store into temporary queue
-        d_cards.pop(); // remove from current queue
+        temp.push(temp.front()); // copy front card to back
+        temp.pop(); // remove top card
     }
-    d_cards = temp_d_cards;
     return _os;
 }
 
-Card* Hand::operator[]( int i )
+Card* Hand::operator[]( const int i ) const
 {
     if( i >= d_cards.size() )
     {
         cout << "Given index is out of bounds!" << endl;
         return nullptr;
     } else {
-        queue<Card*> temp_d_cards; // store popped Cards to temporary queue
-        for( int index=0; !d_cards.empty(); i++ )
+        queue<Card*> temp = d_cards; // copy d_cards to temp
+        for( int index=0; index < temp.size(); index++ )
         {
             if( index == i  ) // if at given index in queue
             {
-                Card* cardAtIndex = d_cards.front(); // save wanted Card to return
+                return temp.front(); // save wanted Card to return
             } else {
-                temp_d_cards.push(d_cards.front()); // push front to temp queue
+                temp.push( temp.front() ); // push front card to back
             }
-            d_cards.pop(); // remove Card from current queue
+            temp.pop(); // remove front card
         }
-        d_cards = temp_d_cards;
-        return cardAtIndex;
     }
 }

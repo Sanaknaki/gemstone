@@ -11,6 +11,8 @@
 
 #include "trade_area.hpp"
 
+using namespace std;
+
 TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 {
     char tmp, card;
@@ -27,7 +29,7 @@ TradeArea& TradeArea::operator+=( Card* _card)
     return *this;
 }
 
-bool TradeArea::legal( Card* _card )
+bool TradeArea::legal( Card* _card ) const
 {
     for( auto cardInTrade : d_cards )
     {
@@ -39,7 +41,7 @@ bool TradeArea::legal( Card* _card )
     return true;
 }
 
-Card* TradeArea::trade( string _gemName )
+Card* TradeArea::trade( const string _gemName )
 {
     // need to use iterators in order to know where to delete in list
     for( auto iter=d_cards.begin(); iter != d_cards.end(); ++iter )
@@ -57,17 +59,17 @@ Card* TradeArea::trade( string _gemName )
     return nullptr;
 }
 
-int TradeArea::numCards()
+int TradeArea::numCards() const
 {
     return d_cards.size();
 }
 
-ostream& operator<<( ostream& _os, const TradeArea _tradeArea )
+ostream& operator<<( ostream& _os, const TradeArea& _tradeArea )
 {
-    for( auto cardInTrade : d_cards )
+    for( auto cardInTrade : _tradeArea.d_cards )
     {
         cardInTrade->print( _os );
-        os << " ";
+        _os << " ";
     }
     return _os;
 }

@@ -40,12 +40,12 @@ public:
     // returns and removes the top card from the player's hand
     Card* play();
     // returns but does not remove the top card from the player's hand
-    Card* top();
+    Card* top() const;
     // insertion operator to print Hand on an std::ostream
     // the hand should print all the cards in order
     friend ostream& operator<<( ostream&, const Hand& );
     // returns and removes the Card at a given index
-    Card* operator[]( int i );
+    Card* operator[]( int i ) const;
 };
 
 #endif /* hand_hpp */

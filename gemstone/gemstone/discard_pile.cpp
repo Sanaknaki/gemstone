@@ -42,7 +42,7 @@ Card* DiscardPile::pickUp()
     }
 }
 
-Card* DiscardPile::top()
+Card* DiscardPile::top() const
 {
     if( d_cards.empty() )
     {
@@ -53,7 +53,7 @@ Card* DiscardPile::top()
     }
 }
 
-void DiscardPile::print( ostream& _os )
+void DiscardPile::print( ostream& _os ) const
 {
     for( auto card : d_cards )
     {
@@ -63,6 +63,6 @@ void DiscardPile::print( ostream& _os )
 
 ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
-    d_cards.back()->print( _os );
+    _discardPile.d_cards.back()->print( _os );
     return _os;
 }
