@@ -11,7 +11,7 @@
 
 #include "gemstones.hpp"
 
-using std::cout; using std::endl; using std::string;
+using namespace std;
 
 /*
 string Card::getName()
@@ -25,7 +25,7 @@ int Card::getCardsPerCoin(int _nCards)
     {
         return 0;
     }
-    
+
     if(getTitle() == "Quartz") // Quartz card coin worth
     {
         if(_nCards < 4)                    { return 0; }
@@ -35,7 +35,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 10)                  { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Hematite") // Hematite card coin worth
     {
         if(_nCards < 3)                    { return 0; }
@@ -45,7 +45,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 9)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Obsidian") // Obsidian card coin worth
     {
         if(_nCards < 3)                    { return 0; }
@@ -55,7 +55,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 8)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Malachite") // Malachite card coin worth
     {
         if(_nCards < 3)                    { return 0; }
@@ -65,7 +65,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 7)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Turquoise") // Turquoise card coin worth
     {
         if(_nCards < 2)                    { return 0; }
@@ -75,7 +75,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 7)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Ruby") // Ruby card coin worth
     {
         if(_nCards < 2)                    { return 0; }
@@ -85,7 +85,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 6)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Amethyst") // Amethyst card coin worth
     {
         if(_nCards < 2)                    { return 0; }
@@ -95,7 +95,7 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 5)                   { return 4; }
         else return 0;
     }
-    
+
     if(getTitle() == "Emerald") // Emerald card coin worth
     {
         if(_nCards < 2)                    { return 0; }
@@ -103,21 +103,23 @@ int Card::getCardsPerCoin(int _nCards)
         if(_nCards >= 3)                   { return 3; }
         else return 0;
     }
-    
+
     else return 0;
 }*/
 
 /***** QUARTZ IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Quartz::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Quartz::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 3)      { return 0; }
-    else if(_nCards <= 5) { return 1; }
-    else if(_nCards <= 7) { return 2; }
-    else if(_nCards <= 9) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 4; break;
+        case 2: return 6; break;
+        case 3: return 8; break;
+        case 4: return 10; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -130,15 +132,17 @@ void Quartz::print(ostream & out) { out << "Q"; }
 
 /***** HEMATITE IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Hematite::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Hematite::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 2)      { return 0; }
-    else if(_nCards <= 5) { return 1; }
-    else if(_nCards <= 7) { return 2; }
-    else if(_nCards == 8) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 3; break;
+        case 2: return 6; break;
+        case 3: return 8; break;
+        case 4: return 9; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -151,15 +155,17 @@ void Hematite::print(ostream &out) { out << "H"; }
 
 /***** OBSIDIAN IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Obsidian::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Obsidian::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 2)      { return 0; }
-    else if(_nCards <= 4) { return 1; }
-    else if(_nCards <= 6) { return 2; }
-    else if(_nCards == 7) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 3; break;
+        case 2: return 5; break;
+        case 3: return 7; break;
+        case 4: return 8; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -172,15 +178,17 @@ void Obsidian::print(ostream &out) { out << "O"; }
 
 /***** MALACHITE IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Malachite::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Malachite::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 2)      { return 0; }
-    else if(_nCards <= 4) { return 1; }
-    else if(_nCards == 5) { return 2; }
-    else if(_nCards == 6) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 3; break;
+        case 2: return 5; break;
+        case 3: return 6; break;
+        case 4: return 7; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -193,15 +201,17 @@ void Malachite::print(ostream &out) { out << "M"; }
 
 /***** TURQUOISE IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Turquoise::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Turquoise::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 1)      { return 0; }
-    else if(_nCards <= 3) { return 1; }
-    else if(_nCards <= 5) { return 2; }
-    else if(_nCards == 6) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 2; break;
+        case 2: return 4; break;
+        case 3: return 6; break;
+        case 4: return 7; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -214,15 +224,17 @@ void Turquoise::print(ostream &out) { out << "T"; }
 
 /***** RUBY IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Ruby::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Ruby::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 1)      { return 0; }
-    else if(_nCards <= 3) { return 1; }
-    else if(_nCards == 4) { return 2; }
-    else if(_nCards == 5) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 2; break;
+        case 2: return 4; break;
+        case 3: return 5; break;
+        case 4: return 6; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -235,15 +247,17 @@ void Ruby::print(ostream &out) { out << "R"; }
 
 /***** AMETHYST IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Amethyst::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Amethyst::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards <= 1)      { return 0; }
-    else if(_nCards == 2) { return 1; }
-    else if(_nCards == 3) { return 2; }
-    else if(_nCards == 4) { return 3; }
-    else                  { return 4; }
+    switch ( _coins ) {
+        case 1: return 2; break;
+        case 2: return 3; break;
+        case 3: return 4; break;
+        case 4: return 5; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
@@ -256,13 +270,15 @@ void Amethyst::print(ostream &out) { out << "A"; }
 
 /***** EMERALD IMPLEMENTATION (START) *****/
 
-// Return the amount of carsd earned for '_nCards' amount of a card.
-int Emerald::getCardsPerCoin(int _nCards)
+// Return minimum amount of cards needed to earn given amount of coins.
+int Emerald::getCardsPerCoin(int _coins)
 {
-    if(_nCards < 0)       { cout << "Error : Number of cards must be positive!" << endl; return 0; }
-    if(_nCards < 2)       { return 0; }
-    else if(_nCards == 2) { return 2; }
-    else                  { return 3; }
+    switch ( _coins ) {
+        case 2: return 2; break;
+        case 3: return 3; break;
+        default: cout << "Invalid coin entry!" << endl;
+    }
+    return 0; // default returns 0
 }
 
 // Get the name of the card.
