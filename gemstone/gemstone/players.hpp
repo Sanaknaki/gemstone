@@ -20,6 +20,10 @@
 
 using std::string; using std::ostream; using std::cout; using std::endl;
 
+class Player;
+
+ostream& operator<<( ostream&, const Player& );
+
 class Player{
     string d_name;
     int d_coin;
@@ -60,6 +64,9 @@ public:
 
     // Print top card of full hand of player.
     void printHand(ostream& , bool);
+
+    // insertion operator to print a Player to an ostream
+    friend ostream& operator<<( ostream&, Player& );
 };
 
 #endif /* players_hpp */
