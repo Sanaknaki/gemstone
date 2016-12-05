@@ -11,7 +11,7 @@
 
 #include "discard_pile.hpp"
 
-using std::cout; using std::endl;
+using namespace std;
 
 DiscardPile::DiscardPile() = default;
 
@@ -33,15 +33,13 @@ DiscardPile& DiscardPile::operator+=( Card* _card )
 
 Card* DiscardPile::pickUp()
 {
-    if( d_cards.empty() )
-    {
-        cout << "Discard Pile is empty!";
-        return nullptr;
-    } else {
+    if( d_cards.empty() ) cout << "Discard Pile is empty!" << endl;
+    else {
         Card* pickUpCard = d_cards.back();
         d_cards.pop_back();
         return pickUpCard;
     }
+    return nullptr; // default return value
 }
 
 Card* DiscardPile::top() const
@@ -49,7 +47,6 @@ Card* DiscardPile::top() const
     if( d_cards.empty() )
     {
         cout << "Discard Pile is empty!";
-        return nullptr;
     } else {
         return d_cards.back();
     }
@@ -65,6 +62,6 @@ void DiscardPile::print( ostream& _os ) const
 
 ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
-    _discardPile.d_cards.back()->print( _os );
+    _discardPile.top()->print( _os );
     return _os;
 }

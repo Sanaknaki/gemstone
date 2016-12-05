@@ -68,23 +68,22 @@ ostream& operator<<( ostream& _os, const Hand& _hand )
     return _os;
 }
 
-Card* Hand::operator[]( const int i ) const
+Card* Hand::operator[]( const int i )
 {
     if( i >= d_cards.size() )
     {
         cout << "Given index is out of bounds!" << endl;
         return nullptr;
     } else {
-        queue<Card*> temp = d_cards; // copy d_cards to temp
         for( int index=0; index < temp.size(); index++ )
         {
             if( index == i  ) // if at given index in queue
             {
-                return temp.front(); // save wanted Card to return
+                return d_cards.front(); // save wanted Card to return
             } else {
-                temp.push( temp.front() ); // push front card to back
+                d_cards.push( d_cards.front() ); // push front card to back
             }
-            temp.pop(); // remove front card
+            d_cards.pop(); // remove front card
         }
     }
 }

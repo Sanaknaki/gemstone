@@ -55,7 +55,7 @@ int Player::getNumChains() const
 }
 
 // Return chain a position i.
-/*Chain<Card>& Player::operator[](int i)
+/*Chain_Base& Player::operator[](int i)
 {
     return 0;
 }*/
@@ -108,14 +108,14 @@ ostream& operator<<( ostream& _os, const Player& _p )
 // constructor which accepts an istream and reconstructs the Player from file
 Player::Player( istream& _is, CardFactory* _cardPool )
 {
+    _is >> d_name >> d_coin; // line containing name and # of coins
     string token, line;
-    // get a line
-    while( getline(_is, line) ) {
+    while( getline( _is, line ) ) { // lines containing chain and hand
         istringstream streamLine(line);
-        // get individual white space seperated token
         while( streamLine >> token ) {
-            // process token
-
+            if( token == "Hand" ) d_hand = Hand( _is, _cardPool ); break;
+            // else build Chains using Chain::(istream constructor)
         }
+        if( token == "Hand" ) break;
     }
 }

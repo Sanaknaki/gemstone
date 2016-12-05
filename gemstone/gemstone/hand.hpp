@@ -44,7 +44,7 @@ public:
     // the hand should print all the cards in order
     friend ostream& operator<<( ostream&, const Hand& );
     // returns and removes the Card at a given index
-    Card* operator[]( int i ) const;
+    Card* operator[]( const int i );
 };
 
 #endif /* hand_hpp */

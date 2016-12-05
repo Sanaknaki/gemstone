@@ -61,7 +61,7 @@ public:
     int getNumChains() const;
 
     // Return chain a position i.
-    Chain<Card>& operator[](int i);
+    Chain_Base& operator[](int i);
 
     // Buy a third chain if possible.
     void buyThirdChain();

@@ -17,7 +17,7 @@ TradeArea::TradeArea() = default;
 
 TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 {
-    char tmp, card;
+    char card;
     // get individual white space sperated tokens
     while( _is >> card ) // false when end of line or invalid input
     {
@@ -37,10 +37,10 @@ bool TradeArea::legal( Card* _card ) const
     {
         if( _card->getName() == cardInTrade->getName() )
         {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 }
 
 Card* TradeArea::trade( const string _gemName )
