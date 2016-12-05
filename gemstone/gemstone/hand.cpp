@@ -75,7 +75,7 @@ Card* Hand::operator[]( const int i )
         cout << "Given index is out of bounds!" << endl;
         return nullptr;
     } else {
-        for( int index=0; index < temp.size(); index++ )
+        for( int index=0; index < d_cards.size(); index++ )
         {
             if( index == i  ) // if at given index in queue
             {
