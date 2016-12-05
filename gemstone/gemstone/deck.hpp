@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "gemstones.hpp"
+//#include "cardfactory.hpp"
 
 using std::istream; using std::ostream; using std::vector;
 
@@ -32,7 +33,7 @@ public:
     Deck(){};
 
     // constructor which accepts an istream and reconstructs the deck from file
-    Deck( istream&, CardFactory* );
+    //Deck( istream&, CardFactory* );
 
     // Deck increment operator.
     Deck& operator+=(ostream&);

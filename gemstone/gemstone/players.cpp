@@ -10,7 +10,6 @@
 // ==========================================================================
 
 #include "players.hpp"
-#include "hand.hpp"
 #include <string>
 
 using namespace std;

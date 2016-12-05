@@ -15,15 +15,15 @@ using std::out_of_range; // using std::random_shuffle;
 using std::cout; using std::endl;
 
 // istream constructor
-Deck::Deck( istream& _is, CardFactory* _cardPool )
+/*Deck::Deck( istream& _is, CardFactory* _cardPool )
 {
     char card;
     // get individual white space seperated tokens
     while( _is >> card )  // false when end of line or invalid input
     {
-        (this*).push( _cardPool->getPtr(card) );
+        this->push( _cardPool->getPtr(card) );
     }
-}
+}*/
 
 // Draw card form the deck.
 Card* Deck::draw()
@@ -38,7 +38,7 @@ Card* Deck::draw()
 
         // Set top card, remove, return it.
         Card* top = this->back();
-        (*this).pop_back();
+        this->pop_back();
         return top;
     }
     /*if(d_playable.empty())
