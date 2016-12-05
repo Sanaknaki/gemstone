@@ -42,10 +42,10 @@ public:
      *  - deck is empty
      *  - player with the most card wins
     */
-    bool win( string& _name );
+    bool win( string& _name ) const;
     // prints the complete table with all content.
     // intended for serialization to file.
-    void print( ostream& _os);
+    void print( ostream& _os) const;
     /*
      *  insertion operator to print a Table to an std::ostream.
      *  The two players, the discardpile, the trading area should be printed.

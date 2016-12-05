@@ -40,17 +40,27 @@ Table::Table( istream& _is, CardFactory* _cardPool )
                 break;
             }
             if( token == "end" ) break;
-            cerr << "Unknown token!" << endl;
+            cout << "Unknown token!" << endl;
         }
         if( token == "end" ) break;
     }
 }
 
-bool Table::win(string& _name)
+bool Table::win(string& _name) const
 {
     if( d_deck.empty() )
     {
-        cout << _name << " is the winner!" << endl;
+        int p1_coins = d_p1.getNumCoins();
+        int p2_coins = d_p2.getNumCoins();
+
+        // check if it's a tie game
+        if( p1_coins == p2_coins ) {
+            _name = "Tie";
+        } else if( p1_coins > p2_coins ) { // check if player1 is the winner
+            _name = d_p1.getName(); // player1 is the winner
+        } else {
+            _name = d_p2.getName(); // player2 is the winner
+        }
         return true;
     }
     return false;
@@ -73,13 +83,14 @@ bool Table::win(string& _name)
  *  TradeArea   O E A E E A O O A O O E E A A A A O
  *  end
  */
-void Table::print( ostream& _os )
+void Table::print( ostream& _os ) const
 {
     _os << "Player1 " << endl << d_p1; // output player1
     d_p1.printHand( _os, true ); // output player1 hand
     _os << "Player2 " << endl << d_p2; // output player2
     d_p2.printHand( _os, true ); // output player2 hand
-    _os << "DiscardPile " << d_discardPile << endl; // output discardPile
+    _os << "DiscardPile ";
+    d_discardPile.print(_os); // output discardPile
     _os << "TradeArea" << d_tradeArea << endl; // output tradeArea
     _os << "end"; // output end of file
 }
