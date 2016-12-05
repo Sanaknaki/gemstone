@@ -19,9 +19,11 @@
 
 using std::vector;
 
-class CardFactory{
+class Deck;
+
+class CardFactory {
     // Variable.
-    Deck d_deck;
+    vector<Card*> d_cards;
     // store different cards in a vector
     static const vector<Card*> GEMSTONES;
 

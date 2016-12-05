@@ -11,19 +11,21 @@
 
 #include "deck.hpp"
 
-using std::out_of_range; // using std::random_shuffle;
-using std::cout; using std::endl;
+using namespace std;
+
+// constructor
+Deck::Deck( vector<Card*>& _cards ) : vector( _cards ) {}
 
 // istream constructor
-/*Deck::Deck( istream& _is, CardFactory* _cardPool )
+Deck::Deck( istream& _is, CardFactory* _cardPool )
 {
     char card;
     // get individual white space seperated tokens
     while( _is >> card )  // false when end of line or invalid input
     {
-        this->push( _cardPool->getPtr(card) );
+        this->push_back( _cardPool->getPtr(card) );
     }
-}*/
+}
 
 // Draw card form the deck.
 Card* Deck::draw()

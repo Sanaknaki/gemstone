@@ -16,24 +16,28 @@
 #include <vector>
 
 #include "gemstones.hpp"
-//#include "cardfactory.hpp"
+#include "cardfactory.hpp"
 
 using std::istream; using std::ostream; using std::vector;
 
+// forward declarations
 class Deck;
+class CardFactory;
 
 ostream& operator<<( ostream&, const Deck& );
 
 class Deck : public vector<Card*> {
-    /*vector<Card*> d_original;
-    vector<Card*> d_playable;*/
+    friend class CardFactory;
 public:
 
     // Default constructor
     Deck(){};
 
+    // constructor using given vector
+    Deck( vector<Card*>& _cards );
+
     // constructor which accepts an istream and reconstructs the deck from file
-    //Deck( istream&, CardFactory* );
+    Deck( istream&, CardFactory* );
 
     // Deck increment operator.
     Deck& operator+=(ostream&);

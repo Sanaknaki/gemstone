@@ -32,7 +32,7 @@ CardFactory::CardFactory()
     {
         for(int j = 0; j < count; ++j)
         {
-            d_deck.push_back( GEMSTONES[type] );
+            d_cards.push_back( GEMSTONES[type] );
         }
 
         // Decrement count for the next type of cards.
@@ -51,13 +51,14 @@ CardFactory* CardFactory::getFactory()
 
 Deck CardFactory::getDeck()
 {
+    Deck returnDeck{ d_cards };
     // Shuffle the deck.
     // See address below for example
     // http://stackoverflow.com/questions/6926433/how-to-shuffle-a-stdvector
     auto engine = default_random_engine{};
-    shuffle( d_deck.begin(), d_deck.end(), engine );
+    shuffle( returnDeck.begin(), returnDeck.end(), engine );
     // Return deck.
-    return d_deck;
+    return returnDeck;
 }
 
 Card* CardFactory::getPtr( const char card ) const
