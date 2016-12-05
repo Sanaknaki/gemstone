@@ -32,6 +32,8 @@ class Table {
     DiscardPile d_discardPile;
     TradeArea d_tradeArea;
 public:
+    // default constructor
+    Table(){};
     // accepts an istream and reconstruct the Table from file
     Table( istream&, CardFactory* );
     /*
