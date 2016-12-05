@@ -17,12 +17,22 @@
 
 #include "gemstones.hpp"
 
-using std::istream; using std::vector;
+using std::istream; using std::ostream; using std::vector;
+
+class Deck;
+
+ostream& operator<<( ostream&, const Deck& );
 
 class Deck : public vector<Card*> {
     /*vector<Card*> d_original;
     vector<Card*> d_playable;*/
 public:
+
+    // Default constructor
+    Deck(){};
+
+    // constructor which accepts an istream and reconstructs the deck from file
+    Deck( istream&, CardFactory* );
 
     // Deck increment operator.
     Deck& operator+=(ostream&);
@@ -32,6 +42,9 @@ public:
 
     // Add card to the deck.
     void add(Card* _card);
+
+    // insertion operator to insert all the cards in the deck to an ostream
+    friend ostream& operator<<( ostream&, const Deck& );
 
     /***************************
      *  See deck.cpp for details

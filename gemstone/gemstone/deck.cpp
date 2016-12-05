@@ -14,6 +14,17 @@
 using std::out_of_range; // using std::random_shuffle;
 using std::cout; using std::endl;
 
+// istream constructor
+Deck::Deck( istream& _is, CardFactory* _cardPool )
+{
+    char card;
+    // get individual white space seperated tokens
+    while( _is >> card )  // false when end of line or invalid input
+    {
+        (this*).push( _cardPool->getPtr(card) );
+    }
+}
+
 // Draw card form the deck.
 Card* Deck::draw()
 {
@@ -48,6 +59,16 @@ void Deck::add(Card*_card)
     /*d_original.push_back(_card);
     d_playable.push_back(_card);*/
 }
+
+// insertion operator
+ostream& operator<<( ostream& _os, const Deck& _deck )
+{
+    for( auto card : _deck ) {
+        card->print(_os);
+    }
+    return _os;
+}
+
 /*****************************************************
  *  Since Deck extends vector, no need for this method
  *****************************************************
