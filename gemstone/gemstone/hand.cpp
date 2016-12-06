@@ -70,20 +70,19 @@ ostream& operator<<( ostream& _os, const Hand& _hand )
 
 Card* Hand::operator[]( const int i )
 {
-    if( i >= d_cards.size() )
-    {
-        cout << "Given index is out of bounds!" << endl;
-        return nullptr;
-    } else {
-        for( int index=0; index < d_cards.size(); index++ )
-        {
+    Card* cardAtIndex = nullptr;
+    if( i >= d_cards.size() ) cout << "Given index is out of bounds!" << endl;
+    else {
+        for( int index=0; index < d_cards.size(); index++ ) {
             if( index == i  ) // if at given index in queue
             {
-                return d_cards.front(); // save wanted Card to return
+                cardAtIndex = d_cards.front(); // save wanted Card to return
             } else {
                 d_cards.push( d_cards.front() ); // push front card to back
             }
             d_cards.pop(); // remove front card
         }
     }
+
+    return cardAtIndex; // returns nullptr if index is out of bounds
 }
