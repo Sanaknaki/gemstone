@@ -21,14 +21,47 @@
 
 using namespace std;
 
+/***********************************************************
+ ***********  Chain_Base Class Implementation   ************
+ ***********************************************************
+*/
+
+class Chain_Base {
+protected:
+    string d_type; // Chain type
+public:
+    // virtual functions
+    virtual int sell() const {
+        cout << "Nothing in Chain!" << endl;
+        return 0;
+    };
+    // implemented after class template Chain is initialized
+    virtual Chain_Base& operator+=( Card* _card );
+
+    // new exception named IllegalType
+    // followed "Define New Exceptions" in address below
+    // https://www.tutorialspoint.com/cplusplus/cpp_exceptions_handling.htm
+    struct IllegalType : public exception {
+        const char * what () const throw () {
+            return "Chain and Card are not of the same gem type!";
+        }
+    };
+};
+
+
+/***************************************************************
+ **********  Class Template Chain<T> Implementation  ***********
+ ***************************************************************
+ */
+
 template <class T>
-class Chain{
+class Chain : protected Chain_Base {
 private:
     // Chain will hold the T type cards by pointer in a vector<T*>
     vector<T*> d_cards;
 public:
     // default constructor
-    Chain() = default;
+    Chain(){};
 
     // istream constructor
     Chain( istream& _is, CardFactory* _cardPool )
@@ -40,7 +73,7 @@ public:
         }
     }
 
-    Chain<T>& operator+=( Card* _card )
+    Chain_Base& operator+=( Card* _card )
     {
         T* cardT;
         // try to convert _card to T type card
@@ -55,16 +88,6 @@ public:
         // conversion successful!
         d_cards.push_back( cardT );
         return *this;
-
-        /*
-        string chainType = typeid(T).name();
-        string cardType  = typeid(*_card).name();
-
-        if(chainType != cardType)
-        {
-            cout << "Chain and Card are not the same gem type!" << endl;
-        }else { d_cards.push_back(_card); return this; }
-        */
     }
 
     // using binary search to determine amount of coins to return
@@ -88,50 +111,20 @@ public:
             }
         }
     }
-
-    // new exception named IllegalType
-    // followed "Define New Exceptions" in address below
-    // https://www.tutorialspoint.com/cplusplus/cpp_exceptions_handling.htm
-    struct IllegalType : public exception {
-        const char * what () const throw () {
-            return "Chain and Card are not the same gem type!";
-        }
-    };
-
 };
 
-    /*vector<Card*> d_cards;
-    int size() = 0;
-    void print(ostream&) = 0;
-public:
-    Chain()
-    {
-
-    }
-
-    Chain(const istream&, CardFactory* cardFactory)
-    {
-
-    }
-
-    Chain<T>& operator+=(Card* _card)
-    {
-        string chainType = typeid(T).name();
-        string cardType  = typeid(*_card).name();
-
-        if(chainType != cardType)
-        {
-            cout << "Chain and Card are not the same gem type!" << endl;
-        }else{
-            d_cards.push_back(_card);
-            return this;
-        }
-    }
-
-    int sell()
-    {
-        return(int)(new T)->getCoinsPerCard((d_cards.size()));
-    }
-};*/
+Chain_Base& Chain_Base::operator+=( Card* _card ) {
+    Chain_Base* newChain;
+    string type = _card->getName();
+    if( type == "Quartz" ) newChain = new Chain<Quartz>();
+    else if( type == "Hematite" ) newChain = new Chain<Hematite>();
+    else if( type == "Obsidian" ) newChain = new Chain<Obsidian>();
+    else if( type == "Malachite" ) newChain = new Chain<Malachite>();
+    else if( type == "Turquoise" ) newChain = new Chain<Turquoise>();
+    else if( type == "Ruby" ) newChain = new Chain<Ruby>();
+    else if( type == "Amethyst" ) newChain = new Chain<Amethyst>();
+    else if( type == "Emerald" ) newChain = new Chain<Emerald>();
+    return (*newChain) += _card;
+}
 
 #endif /* chain_h */

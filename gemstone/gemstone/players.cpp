@@ -18,10 +18,7 @@ using namespace std;
 Player::Player() = default;
 
 // Constructor.
-Player::Player(string& _name) : d_name{ _name }
-{
-    //Chain chain; --Each player has a chain.--
-}
+Player::Player(string& _name) : d_name( _name ) {}
 
 // Return the name of the player.
 string Player::getName() const
@@ -45,33 +42,40 @@ Player& Player::operator+=(int _coin)
 // Get the max number of chains.
 int Player::getMaxNumChains() const
 {
-    return d_chain;
+    return d_chains.size();
 }
 
 // Get the number of chains a player has.
+// counts how many elements are not nullptr in d_chains
+// execution takes O(1) time
 int Player::getNumChains() const
 {
-    return d_chain;
+    int numChains = 0;
+    for( auto chainRef : d_chains ) {
+        if( chainRef != 0 ) ++numChains;
+    }
+    return numChains;
 }
 
-// Return chain a position i.
-/*Chain_Base& Player::operator[](int i)
+// Return chain at position i.
+// vector throws out_of_bounds exception if invalid index is given
+Chain_Base& Player::operator[]( int i )
 {
-    return 0;
-}*/
+    return *( d_chains.at(i) );
+}
 
 // Buy a third chain if possible.
 void Player::buyThirdChain()
 {
-    if(d_coin >= 3 && d_chain == 2)
+    if(d_coin >= 3 && d_chains.size() == 2)
     {
         d_coin -=3;
-        d_chain +=1;
-        cout << this->d_name << " has bought their 3 chain!" << endl;
+        d_chains.push_back(nullptr);
+        cout << this->d_name << " has bought their 3rd chain!" << endl;
     }else if(d_coin < 3)
     {
         cout << "ERROR : Not enough coins to buy the chain!" << endl;
-    }else if(d_chain == 3)
+    }else if(d_chains.size() == 3)
     {
         cout << "ERROR : You already have 3 chains!" << endl;
     }
@@ -101,7 +105,9 @@ ostream& operator<<( ostream& _os, const Player& _p )
     if( _p.d_coin != 1 ) _os << "s";
     _os << endl;
     // print chains
-
+    /*for( auto chain : _p.d_chains ) {
+        _os << *chain;
+    }*/
     return _os;
 }
 
