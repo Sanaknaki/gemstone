@@ -26,6 +26,10 @@ using namespace std;
  ***********************************************************
 */
 
+class Chain_Base;
+
+ostream& operator<<( ostream&, const Chain_Base& );
+
 class Chain_Base {
 protected:
     string d_type; // Chain type
@@ -35,8 +39,13 @@ public:
         cout << "Nothing in Chain!" << endl;
         return 0;
     };
+    virtual void print( ostream& _os ) {
+        _os << "Empty" << endl;
+    };
     // implemented after class template Chain is initialized
     virtual Chain_Base& operator+=( Card* _card );
+
+    friend ostream& operator<<( ostream&, Chain_Base& );
 
     // new exception named IllegalType
     // followed "Define New Exceptions" in address below
@@ -47,6 +56,11 @@ public:
         }
     };
 };
+
+ostream& operator<<( ostream& _os, Chain_Base& _chain ) {
+    _chain.print( _os );
+    return _os;
+}
 
 
 /***************************************************************
@@ -110,6 +124,17 @@ public:
                 else return 4;
             }
         }
+    }
+
+    void print( ostream& _os )
+    {
+        // print gem type
+        _os << d_cards.front()->getName() << "\t";
+        for( auto card : d_cards ) {
+            card->print( _os );
+            _os << " ";
+        }
+        _os << endl;
     }
 };
 
