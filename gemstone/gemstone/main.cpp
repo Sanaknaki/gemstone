@@ -21,7 +21,7 @@
 #include "hand.hpp"
 #include "players.hpp"
 
-using std::cout; using std::endl; using std::cin;
+using std::cout; using std::endl; using std::cin; using std::ostream;
 
 int main(void)
 {
@@ -34,7 +34,9 @@ int main(void)
     Deck deck = cardFactory.getDeck();              // Deck, taken from factory
     int gameType = 0;                               // 0 = new new, 1 = new, 2 = loadup
     int turn = 1;                                   // 1 = p1, 2 = p2
+    int chainNumber = -1;                           // 1 = chain 1, 2 = chain 2
     Table table;
+    Card* topCard;
     
     cout << "#################################################" << endl;
     cout << "#              WELCOME TO GEMSTONE              #" << endl;
@@ -71,7 +73,7 @@ int main(void)
         }
     
         // Player one is made.
-        playerOne = *new Player(playerOneName);
+        table.d_p1 = *new Player(playerOneName);
 
         // Player two name input.
         cout << "Game : What is your name Player 2?" << endl;
@@ -86,34 +88,38 @@ int main(void)
         }
         
         // Player two is made.
-        playerTwo = *new Player(playerTwoName);
+        table.d_p2 = *new Player(playerTwoName);
         
         // Give both players 5 cards to start.
-        for(int i = 0; i < 6; ++i)
+        for(int i = 0; i < 5; ++i)
         {
-            playerOne.d_hand.operator+=(deck.draw());
-            playerTwo.d_hand.operator+=(deck.draw());
+            table.d_p1.d_hand.operator+=(deck.draw());
+            table.d_p2.d_hand.operator+=(deck.draw());
         }
     }else{
         // LOAD SAVE GAME IN HERE <3
     }
     
     // Game time.
-    while(!deck.empty())
-    {
+    //while(!deck.empty())
+    //{
         cout << "Game : Here is the table as it stands :" << endl;
+        cout << endl;
+        cout << "############## GAME TABLE ##############" << endl;
         cout << table << endl;
-        
+        cout << "########################################" << endl;
+        cout << endl;
+    
         // Keep track of turn.
         if(turn == 1)
         {
             // Chain purchasing.
-            if(playerOne.getNumCoins() >= 3 && playerOne.getNumChains() < 3)
+            if(table.d_p1.getMaxNumChains() < 3)
             {
                 string answer = "";
-                cout << "Game : Would you like to buy your third chain " << playerOne.getName() << "?" << endl;
+                cout << "Game : Would you like to buy your third chain " << table.d_p1.getName() << "?" << endl;
                 cout << "[Buy third chain? yes or no]" << endl;
-                cout << playerOne.getName() << " : ";
+                cout << table.d_p1.getName() << " : ";
                 cin >> answer;
                 
                 if(answer != "yes")
@@ -131,12 +137,65 @@ int main(void)
                 cout << "Game : Draw a card before continuing!" << endl;
                 Card* drawCard = deck.draw();
                 cout << "[You draw " + drawCard->getName() + "]" << endl;
-                playerOne.d_hand.operator+=(deck.draw());
+                table.d_p1.d_hand.operator+=(deck.draw());
             }
+            
+            if(table.d_tradeArea.numCards() != 0)
+            {
+                cout << "Trade area is not empty!" << endl;
+            }
+            cout << endl;
+            
+            // Play topmost card
+            cout << "Top card : ";
+            table.d_p1.printHand(cout ,false);
+            cout << endl;
+            topCard = table.d_p1.d_hand.top();
+            
+            
+            //for(;;)
+            //{
+                cout << "Game : Please choose a chain to add your card to!" << endl;
+                
+                cout << table.d_p1.getName() << " : " ; cin >> chainNumber;
+                
+                Chain_Base chosenChain = table.d_p1[chainNumber];
+                
+                if(chosenChain.isEmpty())
+                {
+                    table.d_p1.startChain(chainNumber, table.d_p1.d_hand.play());
+                    cout << table << endl;
+                }else{
+                    try{
+                        chosenChain += (topCard);
+                    }
+                    catch(Card::IllegalType& e)
+                    {
+                        string answer;
+                        cout << "Game : Card types do not match, would you like to sell this chain?" << endl;
+                        cout << table.d_p1.getName() << " : "; cin >> answer;
+                        
+                        if(answer == "yes" || answer == "Yes")
+                        {
+                            table.d_p1 += (chosenChain.sell());
+                            delete &chosenChain;
+                            
+                            table.d_p1.startChain(chainNumber, table.d_p1.d_hand.play());
+                        }
+                    }
+                }
+            
+                for(int i = 0; i < 3; ++i)
+                {
+                    table.d_tradeArea += (deck.draw());
+                }
+            
+                cout << endl; cout << endl;
+                cout << table << endl;
+            //}
         }
-    }
+    //}
 }
-
 
     // GIVE PLAYERS 5 CARDS AT THE START
     /*for(int i = 0; i < 5; ++i)

@@ -106,7 +106,7 @@ ostream& operator<<( ostream& _os, const Player& _p )
     _os << "Chains" << endl;
     int i = 0;
     for( auto iter = _p.d_chains.begin(); iter != _p.d_chains.end(); ++iter ) {
-         _os << i << "- " << *(*iter); ++i; // print Chains and their indexes
+         _os << i << " - " << *(*iter); ++i; // print Chains and their indexes
     }
     _os << endl;
     return _os;
