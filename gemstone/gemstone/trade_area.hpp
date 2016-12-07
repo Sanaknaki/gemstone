@@ -18,7 +18,7 @@
 #include "gemstones.hpp"
 #include "cardfactory.hpp"
 
-using std::istream; using std::ostream; using std::list;
+using std::istream; using std::ostream; using std::list; using std::string;
 
 class TradeArea;
 
@@ -27,6 +27,7 @@ ostream& operator<<( ostream&, const TradeArea& );
 class TradeArea
 {
     list<Card*> d_cards;
+    vector<string> d_types;
 
 public:
     // default constructor
