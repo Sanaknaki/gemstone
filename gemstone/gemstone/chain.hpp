@@ -115,15 +115,19 @@ public:
     // an exception of type IllegalType is raised.
     Chain_Base& operator+=( Card* _card )
     {
-        T* cardT;cardT = dynamic_cast<T*>( _card );
+        T* cardT;
+        cardT = dynamic_cast<T*>( _card );
         // check if conversion worked
         if ( cardT == 0 ) {
+            cout << "Conversion Fialed!" << endl;
             throw Card::IllegalType();
             return *this;
         }
         // conversion successful!
         else {
+            cout << "Conversion successful!" << endl;
             d_cards.push_back( cardT );
+            cout << "Added to Chain" << endl;
             return *this;
         }
     }
