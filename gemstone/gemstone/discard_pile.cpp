@@ -47,6 +47,7 @@ Card* DiscardPile::top() const
     if( d_cards.empty() )
     {
         cout << "Discard Pile is empty!";
+        return nullptr;
     } else {
         return d_cards.back();
     }

@@ -28,7 +28,6 @@ ostream& operator<<( ostream&, const Player& );
 class Player {
     string d_name;
     int d_coin = 0; // default
-    Hand d_hand;
     /*
      *  Default to 2 empty chains.
      *  vector will always hold at least 2 Chain_Base pointers,
@@ -38,7 +37,7 @@ class Player {
 public:
 
     // Player has a hand.
-    // Hand hand;
+    Hand d_hand;
 
     // default constructor
     Player();
