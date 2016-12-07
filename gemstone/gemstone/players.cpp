@@ -136,7 +136,7 @@ Player::Player( istream& _is, CardFactory* _cardPool ) : d_chains{}
 }
 
 // starts a Chain at given index i
-Chain_Base* Player::startChain( const int i, Card* _card )
+void Player::startChain( const int i, Card* _card )
 {
     // delete empty Chain_Base
     delete d_chains[i];
@@ -154,7 +154,7 @@ Chain_Base* Player::startChain( const int i, Card* _card )
     else if( type == "Emerald" ) newChain = new Chain<Emerald>();
     // add Card to returning Chain template
     (*newChain) += _card;
-    return newChain;
+    d_chains[i] = newChain;
 }
 
 // getter for Chain template istream constructor
