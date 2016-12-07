@@ -27,9 +27,11 @@ ostream& operator<<( ostream&, const TradeArea& );
 class TradeArea
 {
     list<Card*> d_cards;
-    vector<string> d_types;
 
 public:
+    // types of cards in TradeArea
+    vector<string> d_types;
+
     // default constructor
     TradeArea(){};
 

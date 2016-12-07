@@ -89,7 +89,9 @@ void Player::printHand( ostream& _os, const bool fullHand ) const
         Card* topCard = d_hand.top();
         topCard->print( _os );
     }
-    else _os << d_hand; // prints all of d_hand
+    else { // prints all of d_hand
+        _os << d_hand;
+    }
 }
 
 /*
