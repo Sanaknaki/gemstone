@@ -99,14 +99,15 @@ void Player::printHand( ostream& _os, const bool fullHand ) const
  *  Hand is printed with a separate function above.
  */
 ostream& operator<<( ostream& _os, const Player& _p )
-{   // print name and number of coins
-    _os << _p.d_name << " " << _p.d_coin << " coin";
-    if( _p.d_coin != 1 ) _os << "s";
-    _os << endl;
+{
+    _os << "Name: " << _p.d_name << endl; // print name
+    _os << "Coin(s): " << _p.d_coin << endl; // print coins
     // print chains
     _os << "Chains" << endl;
     int i = 0;
-    for( auto chain : _p.d_chains ) _os << *chain;
+    for( auto iter = d_chains.begin(); iter != d_chains.end(); ++iter ) {
+         _os << i << "- " << *chain; ++i; // print Chains and their indexes
+    }
     _os << endl;
     return _os;
 }
