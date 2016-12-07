@@ -155,7 +155,8 @@ void Player::startChain( const int i, Card* _card )
     // add Card to returning Chain template
     (*newChain) += _card;
     d_chains[i] = newChain;
-    cout << "New Chain started" << endl;
+    cout << "New Chain: " << *newChain << endl;
+    cout << *d_chains[i] << endl;
 }
 
 // getter for Chain template istream constructor
