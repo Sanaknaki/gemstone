@@ -115,20 +115,16 @@ public:
     // an exception of type IllegalType is raised.
     Chain_Base& operator+=( Card* _card )
     {
-        T* cardT;
-        try // try to convert _card to T type card
-        {
-            cardT = dynamic_cast<T*>( _card );
-            // check if conversion worked
-            if ( cardT == 0 ) {
-                throw Card::IllegalType();
-                return *this;
-            }
-            // conversion successful!
-            else {
-                d_cards.push_back( cardT );
-                return *this;
-            }
+        T* cardT;cardT = dynamic_cast<T*>( _card );
+        // check if conversion worked
+        if ( cardT == 0 ) {
+            throw Card::IllegalType();
+            return *this;
+        }
+        // conversion successful!
+        else {
+            d_cards.push_back( cardT );
+            return *this;
         }
     }
 
