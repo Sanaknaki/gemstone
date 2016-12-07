@@ -151,7 +151,7 @@ void Player::startChain( const int i, Card* _card )
     else if( type == "Turquoise" ) newChain = new Chain<Turquoise>();
     else if( type == "Ruby" ) newChain = new Chain<Ruby>();
     else if( type == "Amethyst" ) newChain = new Chain<Amethyst>();
-    else if( type == "Emerald" ) newChain = new Chain<Emerald>();
+    else newChain = new Chain<Emerald>();
     // add Card to returning Chain template
     (*newChain) += _card;
     d_chains[i] = newChain;
