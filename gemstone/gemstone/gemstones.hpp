@@ -18,7 +18,11 @@
 
 using std::string; using std::ostream;
 
-class Card{
+class Card;
+
+ostream& operator<<( ostream&, Card* );
+
+class Card {
 public:
     // Gemstone types
     // enum Gemstone {Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7};
@@ -30,6 +34,8 @@ public:
     virtual void print(ostream& out) = 0;
     // destructor
     virtual ~Card(){};
+    // global stream insertion operator
+    friend ostream& operator<<( ostream&, Card* );
 };
 
 class Quartz : public Card

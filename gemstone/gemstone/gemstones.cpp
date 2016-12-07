@@ -13,100 +13,6 @@
 
 using namespace std;
 
-/*
-string Card::getName()
-{
-    return d_title;
-}
-
-int Card::getCardsPerCoin(int _nCards)
-{
-    if(_nCards == 0) // Initial check for card count
-    {
-        return 0;
-    }
-
-    if(getTitle() == "Quartz") // Quartz card coin worth
-    {
-        if(_nCards < 4)                    { return 0; }
-        if(_nCards >= 4 && _nCards <= 5)   { return 1; }
-        if(_nCards >= 6 && _nCards <= 7)   { return 2; }
-        if(_nCards >= 8 && _nCards <= 9)   { return 3; }
-        if(_nCards >= 10)                  { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Hematite") // Hematite card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 5)   { return 1; }
-        if(_nCards >= 6 && _nCards <= 7)   { return 2; }
-        if(_nCards == 8)                   { return 3; }
-        if(_nCards >= 9)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Obsidian") // Obsidian card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 4)   { return 1; }
-        if(_nCards >= 5 && _nCards <= 6)   { return 2; }
-        if(_nCards == 7)                   { return 3; }
-        if(_nCards >= 8)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Malachite") // Malachite card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 4)   { return 1; }
-        if(_nCards == 5)                   { return 2; }
-        if(_nCards == 6)                   { return 3; }
-        if(_nCards >= 7)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Turquoise") // Turquoise card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards >= 2 && _nCards <= 3)   { return 1; }
-        if(_nCards >= 4 && _nCards <= 5)   { return 2; }
-        if(_nCards == 6)                   { return 3; }
-        if(_nCards >= 7)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Ruby") // Ruby card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards >= 2 && _nCards <= 3)   { return 1; }
-        if(_nCards == 4)                   { return 2; }
-        if(_nCards == 5)                   { return 3; }
-        if(_nCards >= 6)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Amethyst") // Amethyst card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards == 2)                   { return 1; }
-        if(_nCards == 3)                   { return 2; }
-        if(_nCards == 4)                   { return 3; }
-        if(_nCards >= 5)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Emerald") // Emerald card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards == 2)                   { return 2; }
-        if(_nCards >= 3)                   { return 3; }
-        else return 0;
-    }
-
-    else return 0;
-}*/
-
 /***** QUARTZ IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
@@ -288,3 +194,10 @@ string Emerald::getName()         { return "Emerald"; }
 void Emerald::print(ostream &out) { out << "E"; }
 
 /******************************************/
+
+// global stream insertion operator
+ostream& operator<<( ostream& _os, Card* _card )
+{
+    _os << ( _card->getName() );
+    return _os;
+}
