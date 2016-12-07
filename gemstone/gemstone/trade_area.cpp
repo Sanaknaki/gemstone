@@ -28,7 +28,8 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 TradeArea& TradeArea::operator+=( Card* _card)
 {
     d_cards.push_back( _card );
-    if( !legal(_card) ) d_types.push_back(_card->getName());
+    //if( !legal(_card) ) 
+    d_types.push_back(_card->getName());
     return *this;
 }
 
