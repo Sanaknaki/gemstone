@@ -155,7 +155,7 @@ public:
     // prints Chain<T> to ostream
     void print( ostream& _os ) const
     {
-        _os << d_cards.front()->getName() << ": "; // prints Chain type
+        _os << d_cards.front()->getName() << " : "; // prints Chain type
         for( auto card : d_cards ) { // prints Cards in Chain
             card->print( _os );
             _os << " ";
