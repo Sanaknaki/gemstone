@@ -104,7 +104,9 @@ ostream& operator<<( ostream& _os, const Player& _p )
     if( _p.d_coin != 1 ) _os << "s";
     _os << endl;
     // print chains
-    for( auto chain : _p.d_chains ) _os << *chain;
+    _os << "Chains" << endl;
+    int i = 0;
+    for( auto chain : _p.d_chains ) _os << i << *chain; ++i;
     return _os;
 }
 

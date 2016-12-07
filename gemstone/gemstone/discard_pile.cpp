@@ -66,6 +66,7 @@ void DiscardPile::print( ostream& _os ) const
 // insertion operator to insert only the top card of the discard pile to an ostream
 ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
-    _discardPile.top()->print( _os );
+    Card* topCard = _discardPile.top();
+    if( topCard != nullptr ) topCard->print( _os );
     return _os;
 }
