@@ -120,16 +120,16 @@ public:
         {
             cardT = dynamic_cast<T*>( _card );
             // check if conversion worked
-            if ( cardT == 0 ) throw Card::IllegalType();
+            if ( cardT == 0 ) {
+                throw Card::IllegalType();
+                return *this;
+            }
+            // conversion successful!
+            else {
+                d_cards.push_back( cardT );
+                return *this;
+            }
         }
-        catch ( Card::IllegalType& e ) // conversion didn't work!
-        {
-            cout << e.what() << endl; // print out IllegalType message
-            return *this;
-        }
-        // conversion successful!
-        d_cards.push_back( cardT );
-        return *this;
     }
 
     // using binary search to determine amount of coins to return
