@@ -13,104 +13,10 @@
 
 using namespace std;
 
-/*
-string Card::getName()
-{
-    return d_title;
-}
-
-int Card::getCardsPerCoin(int _nCards)
-{
-    if(_nCards == 0) // Initial check for card count
-    {
-        return 0;
-    }
-
-    if(getTitle() == "Quartz") // Quartz card coin worth
-    {
-        if(_nCards < 4)                    { return 0; }
-        if(_nCards >= 4 && _nCards <= 5)   { return 1; }
-        if(_nCards >= 6 && _nCards <= 7)   { return 2; }
-        if(_nCards >= 8 && _nCards <= 9)   { return 3; }
-        if(_nCards >= 10)                  { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Hematite") // Hematite card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 5)   { return 1; }
-        if(_nCards >= 6 && _nCards <= 7)   { return 2; }
-        if(_nCards == 8)                   { return 3; }
-        if(_nCards >= 9)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Obsidian") // Obsidian card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 4)   { return 1; }
-        if(_nCards >= 5 && _nCards <= 6)   { return 2; }
-        if(_nCards == 7)                   { return 3; }
-        if(_nCards >= 8)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Malachite") // Malachite card coin worth
-    {
-        if(_nCards < 3)                    { return 0; }
-        if(_nCards >= 3 && _nCards <= 4)   { return 1; }
-        if(_nCards == 5)                   { return 2; }
-        if(_nCards == 6)                   { return 3; }
-        if(_nCards >= 7)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Turquoise") // Turquoise card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards >= 2 && _nCards <= 3)   { return 1; }
-        if(_nCards >= 4 && _nCards <= 5)   { return 2; }
-        if(_nCards == 6)                   { return 3; }
-        if(_nCards >= 7)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Ruby") // Ruby card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards >= 2 && _nCards <= 3)   { return 1; }
-        if(_nCards == 4)                   { return 2; }
-        if(_nCards == 5)                   { return 3; }
-        if(_nCards >= 6)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Amethyst") // Amethyst card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards == 2)                   { return 1; }
-        if(_nCards == 3)                   { return 2; }
-        if(_nCards == 4)                   { return 3; }
-        if(_nCards >= 5)                   { return 4; }
-        else return 0;
-    }
-
-    if(getTitle() == "Emerald") // Emerald card coin worth
-    {
-        if(_nCards < 2)                    { return 0; }
-        if(_nCards == 2)                   { return 2; }
-        if(_nCards >= 3)                   { return 3; }
-        else return 0;
-    }
-
-    else return 0;
-}*/
-
 /***** QUARTZ IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Quartz::getCardsPerCoin(int _coins)
+int Quartz::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 4; break;
@@ -123,17 +29,17 @@ int Quartz::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Quartz::getName()          { return "Quartz"; }
+string Quartz::getName() const { return "Quartz"; }
 
 // Print it's 'type' letter.
-void Quartz::print(ostream & out) { out << "Q"; }
+void Quartz::print(ostream & out) const { out << "Q"; }
 
 /***************************************/
 
 /***** HEMATITE IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Hematite::getCardsPerCoin(int _coins)
+int Hematite::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 3; break;
@@ -146,17 +52,17 @@ int Hematite::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Hematite::getName()         { return "Hematite"; }
+string Hematite::getName() const { return "Hematite"; }
 
 // Print it's 'type' letter.
-void Hematite::print(ostream &out) { out << "H"; }
+void Hematite::print(ostream &out) const { out << "H"; }
 
 /*******************************************/
 
 /***** OBSIDIAN IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Obsidian::getCardsPerCoin(int _coins)
+int Obsidian::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 3; break;
@@ -169,17 +75,17 @@ int Obsidian::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Obsidian::getName()         { return "Obsidian"; }
+string Obsidian::getName() const { return "Obsidian"; }
 
 // Print it's 'type' letter.
-void Obsidian::print(ostream &out) { out << "O"; }
+void Obsidian::print(ostream &out) const { out << "O"; }
 
 /*******************************************/
 
 /***** MALACHITE IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Malachite::getCardsPerCoin(int _coins)
+int Malachite::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 3; break;
@@ -192,17 +98,17 @@ int Malachite::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Malachite::getName()         { return "Malachite"; }
+string Malachite::getName() const { return "Malachite"; }
 
 // Print it's 'type' letter.
-void Malachite::print(ostream &out) { out << "M"; }
+void Malachite::print(ostream &out) const { out << "M"; }
 
 /********************************************/
 
 /***** TURQUOISE IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Turquoise::getCardsPerCoin(int _coins)
+int Turquoise::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 2; break;
@@ -215,17 +121,17 @@ int Turquoise::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Turquoise::getName()         { return "Turquoise"; }
+string Turquoise::getName() const { return "Turquoise"; }
 
 // Print it's 'type' letter.
-void Turquoise::print(ostream &out) { out << "T"; }
+void Turquoise::print(ostream &out) const { out << "T"; }
 
 /********************************************/
 
 /***** RUBY IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Ruby::getCardsPerCoin(int _coins)
+int Ruby::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 2; break;
@@ -238,17 +144,17 @@ int Ruby::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Ruby::getName()         { return "Ruby"; }
+string Ruby::getName() const { return "Ruby"; }
 
 // Print it's 'type' letter.
-void Ruby::print(ostream &out) { out << "R"; }
+void Ruby::print(ostream &out) const { out << "R"; }
 
 /****************************************/
 
 /***** AMETHYST IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Amethyst::getCardsPerCoin(int _coins)
+int Amethyst::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 1: return 2; break;
@@ -261,17 +167,17 @@ int Amethyst::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Amethyst::getName()         { return "Amethyst"; }
+string Amethyst::getName() const { return "Amethyst"; }
 
 // Print it's 'type' letter.
-void Amethyst::print(ostream &out) { out << "A"; }
+void Amethyst::print(ostream &out) const { out << "A"; }
 
 /*******************************************/
 
 /***** EMERALD IMPLEMENTATION (START) *****/
 
 // Return minimum amount of cards needed to earn given amount of coins.
-int Emerald::getCardsPerCoin(int _coins)
+int Emerald::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
         case 2: return 2; break;
@@ -282,9 +188,16 @@ int Emerald::getCardsPerCoin(int _coins)
 }
 
 // Get the name of the card.
-string Emerald::getName()         { return "Emerald"; }
+string Emerald::getName() const { return "Emerald"; }
 
 // Print it's 'type' letter.
-void Emerald::print(ostream &out) { out << "E"; }
+void Emerald::print(ostream &out) const { out << "E"; }
 
 /******************************************/
+
+// global stream insertion operator
+ostream& operator<<( ostream& _os, const Card& _card )
+{
+    _card.print( _os );
+    return _os;
+}

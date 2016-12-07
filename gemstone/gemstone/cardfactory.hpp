@@ -21,20 +21,21 @@ using std::vector;
 
 class Deck;
 
-class CardFactory {
-    // Variable.
+class CardFactory
+{
     vector<Card*> d_cards;
-    // store different cards in a vector
-    static const vector<Card*> GEMSTONES;
+
+    // store only instance of cards in a static vector
+    static vector<Card*> GEMSTONES;
 
 public:
-    // Constructor.
+    // constructor
     CardFactory();
 
-    // Returns pointer to the only instance of CardFactory.
+    // returns pointer to the only instance of CardFactory
     static CardFactory* getFactory();
 
-    // Returns deck with all 104 cards, [Shuffle it in the Deck class].
+    // returns deck with all 104 cards
     Deck getDeck();
 
     // return Card pointer according to given char

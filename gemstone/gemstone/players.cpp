@@ -10,118 +10,159 @@
 // ==========================================================================
 
 #include "players.hpp"
-#include <string>
 
 using namespace std;
 
-// default constructor
-Player::Player() = default;
+// constructor
+Player::Player( const string& _name ) : d_name( _name ) {}
 
-// Constructor.
-Player::Player(string& _name) : d_name( _name ) {}
+// destructor
+Player::~Player()
+{
+    for( auto chain : d_chains ) delete chain;
+}
 
-// Return the name of the player.
+// return the name of the player
 string Player::getName() const
 {
     return d_name;
 }
 
-// Return the amount of coins a player has.
+// return the amount of coins a player has
 int Player::getNumCoins() const
 {
     return d_coin;
 }
 
-// Add coins to a player.
-Player& Player::operator+=(int _coin)
+// add coins to a player
+Player& Player::operator+=( int _coin )
 {
     this->d_coin += _coin;
     return *this;
 }
 
-// Get the max number of chains.
+// get the max number of chains
 int Player::getMaxNumChains() const
 {
     return d_chains.size();
 }
 
 // Get the number of chains a player has.
-// counts how many elements are not nullptr in d_chains
-// execution takes O(1) time
+// Counts how many chain_Base are not empty in d_chains.
+// Execution takes O(1) time
 int Player::getNumChains() const
 {
     int numChains = 0;
     for( auto chainRef : d_chains ) {
-        if( chainRef != 0 ) ++numChains;
+        if( !chainRef->isEmpty() ) ++numChains;
     }
     return numChains;
 }
 
 // Return chain at position i.
-// vector throws out_of_bounds exception if invalid index is given
+// Vector throws out_of_bounds exception if invalid index is given.
 Chain_Base& Player::operator[]( int i )
 {
     return *( d_chains.at(i) );
 }
 
-// Buy a third chain if possible.
+// buy a third chain if possible
 void Player::buyThirdChain()
 {
-    if(d_coin >= 3 && d_chains.size() == 2)
-    {
+    if( d_coin >= 3 && d_chains.size() == 2 ) {
         d_coin -=3;
-        d_chains.push_back(nullptr);
+        d_chains.push_back( new Chain_Base() ); // push empty Chain to d_chains
         cout << this->d_name << " has bought their 3rd chain!" << endl;
-    }else if(d_coin < 3)
-    {
+    }
+    else if(d_coin < 3) {
         cout << "ERROR : Not enough coins to buy the chain!" << endl;
-    }else if(d_chains.size() == 3)
-    {
+    }
+    else if (d_chains.size() == 3) {
         cout << "ERROR : You already have 3 chains!" << endl;
     }
 }
 
-// Print top card or full hand of player.
+// print top card or full hand of player
 void Player::printHand( ostream& _os, const bool fullHand ) const
-{
-    if( !fullHand ) { // prints top card only
+{   // prints top card only
+    if( !fullHand ) {
         Card* topCard = d_hand.top();
         topCard->print( _os );
-    } else { // prints all of d_hand
-        _os << d_hand;
     }
+    else _os << d_hand; // prints all of d_hand
 }
 
 /*
- *  Insertion operator to print a Player to an std::ostream.
+ *  Insertion operator to print a Player to an ostream.
  *  The player's name, the number of coins in the player's possession and each
  *  of the chains (2 or 3, some possibly empty) should be printed. Note that the
  *  Hand is printed with a separate function above.
  */
 ostream& operator<<( ostream& _os, const Player& _p )
-{
-    // print name and number of coins
+{   // print name and number of coins
     _os << _p.d_name << "\t\t" << _p.d_coin << "coin";
     if( _p.d_coin != 1 ) _os << "s";
     _os << endl;
     // print chains
-    /*for( auto chain : _p.d_chains ) {
-        _os << *chain;
-    }*/
+    for( auto chain : _p.d_chains ) _os << *chain;
     return _os;
 }
 
 // constructor which accepts an istream and reconstructs the Player from file
-Player::Player( istream& _is, CardFactory* _cardPool )
+Player::Player( istream& _is, CardFactory* _cardPool ) : d_chains{}
 {
     _is >> d_name >> d_coin; // line containing name and # of coins
-    string token, line;
+    string temp, token, line;
+    _is >> temp; // remove "coin(s)" from _is
     while( getline( _is, line ) ) { // lines containing chain and hand
         istringstream streamLine(line);
         while( streamLine >> token ) {
-            if( token == "Hand" ) d_hand = Hand( _is, _cardPool ); break;
-            // else build Chains using Chain::(istream constructor)
+            // if Hand is read, build Hand with streamLine
+            if( token == "Hand" ) {
+                d_hand = Hand( streamLine, _cardPool ); break;
+            }
+            // if Empty is read, build Chain_Base
+            else if( token == "Empty" ) {
+                d_chains.push_back( new Chain_Base() ); break;
+            }
+            // otherwise, Chain is read with type stored in token and cards in streamLine
+            else d_chains.push_back( getChainTemplate( token, streamLine, _cardPool ) ); break;
         }
         if( token == "Hand" ) break;
     }
+}
+
+// starts a Chain at given index i
+Chain_Base* Player::startChain( const int i, Card* _card )
+{
+    // delete empty Chain_Base
+    delete d_chains[i];
+    // get Chain type
+    string type = _card->getName();
+    // return Chain template
+    Chain_Base* newChain;
+    if( type == "Quartz" ) newChain = new Chain<Quartz>();
+    else if( type == "Hematite" ) newChain = new Chain<Hematite>();
+    else if( type == "Obsidian" ) newChain = new Chain<Obsidian>();
+    else if( type == "Malachite" ) newChain = new Chain<Malachite>();
+    else if( type == "Turquoise" ) newChain = new Chain<Turquoise>();
+    else if( type == "Ruby" ) newChain = new Chain<Ruby>();
+    else if( type == "Amethyst" ) newChain = new Chain<Amethyst>();
+    else if( type == "Emerald" ) newChain = new Chain<Emerald>();
+    // add Card to returning Chain template
+    (*newChain) += _card;
+    return newChain;
+}
+
+// getter for Chain template istream constructor
+Chain_Base* Player::getChainTemplate( const string _type, istream& _is, CardFactory* _cardPool )
+{
+    if( _type == "Quartz" ) return new Chain<Quartz>( _is, _cardPool );
+    else if( _type == "Hematite" ) return new Chain<Hematite>( _is, _cardPool );
+    else if( _type == "Obsidian" ) return new Chain<Obsidian>( _is, _cardPool );
+    else if( _type == "Malachite" ) return new Chain<Malachite>( _is, _cardPool );
+    else if( _type == "Turquoise" ) return new Chain<Turquoise>( _is, _cardPool );
+    else if( _type == "Ruby" ) return new Chain<Ruby>( _is, _cardPool );
+    else if( _type == "Amethyst" ) return new Chain<Amethyst>( _is, _cardPool );
+    else return new Chain<Emerald>( _is, _cardPool );
 }

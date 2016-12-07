@@ -12,68 +12,75 @@
 #ifndef players_hpp
 #define players_hpp
 
-#include <stdio.h>
 #include <iostream>
 #include <sstream>
 
 #include "chain.hpp"
 #include "hand.hpp"
 
-using namespace std;
+using std::istream; using std::ostream; using std::vector;
 
 class Player;
 
 ostream& operator<<( ostream&, const Player& );
 
-class Player {
+class Player
+{
     string d_name;
-    int d_coin = 0; // default
-    /*
-     *  Default to 2 empty chains.
-     *  vector will always hold at least 2 Chain_Base pointers,
-     *  whether they are empty or not.
-     */
-    vector<Chain_Base*> d_chains { 2, new Chain_Base() };
+    int d_coin = 0;
+    // Default to 2 empty chains.
+    // Vector will always hold at least 2 Chain_Base pointers,
+    // whether they are of Chain_Base or Chain<T>.
+    vector<Chain_Base*> d_chains { new Chain_Base(), new Chain_Base() };
+    
 public:
-
-    // Player has a hand.
+    // Hand public variable
     Hand d_hand;
-
+    
     // default constructor
-    Player();
-
-    // Constructor.
-    Player(string& _name);
-
+    Player(){};
+    
+    // constructor
+    Player( const string& _name );
+    
     // constructor from istream
     Player( istream&, CardFactory* );
-
-    // Return the name of the player.
+    
+    // destructor
+    ~Player();
+    
+    // return the name of the player
     string getName() const;
-
-    // Return the amount of coins a player has.
+    
+    // return the amount of coins a player has
     int getNumCoins() const;
-
-    // Add coins to a player.
-    Player& operator+=(int _coin);
-
-    // Get the max number of chains.
+    
+    // add coins to a player
+    Player& operator+=( int _coin );
+    
+    // get the max number of chains
     int getMaxNumChains() const;
-
-    // Get the number of chains a player has.
+    
+    // get the number of chains a player has
     int getNumChains() const;
-
-    // Return chain a position i.
+    
+    // return chain a position i
     Chain_Base& operator[](int i);
-
-    // Buy a third chain if possible.
+    
+    //bBuy a third chain if possible
     void buyThirdChain();
-
-    // Print top card of full hand of player.
-    void printHand(ostream& , const bool) const;
-
+    
+    // print top card of full hand of player
+    void printHand( ostream& , const bool ) const;
+    
     // insertion operator to print a Player to an ostream
     friend ostream& operator<<( ostream&, const Player& );
+    
+    // creates Chain template at given index
+    Chain_Base* startChain( const int i, Card* _card );
+    
+    // getter for Chain template istream constructor
+    Chain_Base* getChainTemplate( const string _type, istream& _is, CardFactory* _cardPool);
 };
 
 #endif /* players_hpp */
