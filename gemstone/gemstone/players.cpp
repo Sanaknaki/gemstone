@@ -166,5 +166,5 @@ Chain_Base* Player::getChainTemplate( const string _type, istream& _is, CardFact
     else if( _type == "Turquoise" ) return new Chain<Turquoise>( _is, _cardPool );
     else if( _type == "Ruby" ) return new Chain<Ruby>( _is, _cardPool );
     else if( _type == "Amethyst" ) return new Chain<Amethyst>( _is, _cardPool );
-    else if( _type == "Emerald" ) return new Chain<Emerald>( _is, _cardPool );
+    else return new Chain<Emerald>( _is, _cardPool );
 }
