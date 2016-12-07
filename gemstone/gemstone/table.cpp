@@ -97,7 +97,7 @@ ostream& operator<<( ostream& _os, const Table& _table )
 {
     _os << "Player 1" << endl << _table.d_p1; // displays player 1
     _os << "Player 2" << endl << _table.d_p2; // displays player 2
-    _os << "Trading Area" << endl << _table.d_tradeArea; // displays trade area
-    _os << "Discard Pile" << endl << _table.d_discardPile; // displays top card of discard pile
+    _os << "Trading Area: " << _table.d_tradeArea << endl; // displays trade area
+    _os << "Discard Pile: " << _table.d_discardPile << endl; // displays top card of discard pile
     return _os;
 }
