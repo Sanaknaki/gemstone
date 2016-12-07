@@ -27,12 +27,12 @@ ostream& operator<<( ostream&, const Table& );
 
 class Table
 {
+public:
     Player d_p1, d_p2;
     Deck d_deck;
     DiscardPile d_discardPile;
     TradeArea d_tradeArea;
 
-public:
     // default constructor
     Table(){};
 
