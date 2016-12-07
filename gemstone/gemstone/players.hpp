@@ -28,13 +28,13 @@ ostream& operator<<( ostream&, const Player& );
 class Player {
     string d_name;
     int d_coin = 0; // default
-    Hand d_hand;
     /*
      *  Default to 2 empty chains.
      *  vector will always hold at least 2 Chain_Base pointers,
      *  whether they are empty or not.
      */
-    vector<Chain_Base*> d_chains { 2, new Chain_Base() };
+    vector<Chain_Base*> d_chains { new Chain_Base(), new Chain_Base() };
+    Hand d_hand;
 public:
 
     // Player has a hand.
@@ -48,6 +48,9 @@ public:
 
     // constructor from istream
     Player( istream&, CardFactory* );
+
+    // destructor
+    ~Player();
 
     // Return the name of the player.
     string getName() const;
@@ -75,6 +78,12 @@ public:
 
     // insertion operator to print a Player to an ostream
     friend ostream& operator<<( ostream&, const Player& );
+
+    // creates Chain template
+    Chain_Base* startChain( int i, Card* _card );
+
+    // getter for Chain template istream constructor
+    Chain_Base* getChainTemplate( string _type, istream& _is, CardFactory* _cardPool);
 };
 
 #endif /* players_hpp */

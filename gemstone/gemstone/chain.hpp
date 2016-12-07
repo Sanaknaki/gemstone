@@ -32,20 +32,45 @@ ostream& operator<<( ostream&, const Chain_Base& );
 
 class Chain_Base {
 protected:
-    string d_type; // Chain type
+    bool empty = true;
 public:
+    // default constructor
+    Chain_Base(){};
+
+    // constructor with boolean
+    Chain_Base( bool _empty ) : empty(_empty) {};
+
     // virtual functions
-    virtual int sell() const {
+    virtual int sell() const
+    {
         cout << "Nothing in Chain!" << endl;
         return 0;
     };
-    virtual void print( ostream& _os ) {
+
+    virtual void print( ostream& _os )
+    {
         _os << "Empty" << endl;
     };
-    // implemented after class template Chain is initialized
-    virtual Chain_Base& operator+=( Card* _card );
 
-    friend ostream& operator<<( ostream&, Chain_Base& );
+    bool isEmpty()
+    {
+        return empty;
+    };
+
+    virtual Chain_Base& operator+=( Card* _card )
+    {
+        cout << "Must use startChain()" << endl;
+        return *this;
+    };
+
+    friend ostream& operator<<( ostream& _os, Chain_Base& _chain )
+    {
+        _chain.print( _os );
+        return _os;
+    };
+
+    // destructor
+    virtual ~Chain_Base(){};
 
     // new exception named IllegalType
     // followed "Define New Exceptions" in address below
@@ -57,11 +82,6 @@ public:
     };
 };
 
-ostream& operator<<( ostream& _os, Chain_Base& _chain ) {
-    _chain.print( _os );
-    return _os;
-}
-
 
 /***************************************************************
  **********  Class Template Chain<T> Implementation  ***********
@@ -69,21 +89,21 @@ ostream& operator<<( ostream& _os, Chain_Base& _chain ) {
  */
 
 template <class T>
-class Chain : protected Chain_Base {
+class Chain : public Chain_Base {
 private:
     // Chain will hold the T type cards by pointer in a vector<T*>
     vector<T*> d_cards;
 public:
     // default constructor
-    Chain(){};
+    Chain() : Chain_Base(false) {};
 
     // istream constructor
-    Chain( istream& _is, CardFactory* _cardPool )
+    Chain( istream& _is, CardFactory* _cardPool ) : Chain_Base(false)
     {
         char card;
         // get individual white space seperated tokens
         while( _is >> card ) {
-            d_cards.push( dynamic_cast<T*>( _cardPool->getPtr(card) ) );
+            d_cards.push_back( dynamic_cast<T*>( _cardPool->getPtr(card) ) );
         }
     }
 
@@ -108,19 +128,20 @@ public:
     int sell() const
     {
         int chainLength = d_cards.size();
+        T* card = d_cards.front();
         // if chain worth less than 2 coins
-        if( chainLength < T::getCardsPerCoin(2) ) {
+        if( chainLength < card->getCardsPerCoin(2) ) {
             // if chain worth less than 1 coin
-            if( chainLength < T::getCardsPerCoin(1) ) return 0;
+            if( chainLength < card->getCardsPerCoin(1) ) return 0;
             else return 1;
         }
         // chain worth 2 or more coins
         else {
             // if chain worth less than 3 coins
-            if( chainLength < T::getCardsPerCoin(3) ) return 2;
+            if( chainLength < card->getCardsPerCoin(3) ) return 2;
             else {
                 // if chain worth less than 4 coins
-                if( chainLength < T::getCardsPerCoin(4) ) return 3;
+                if( chainLength < card->getCardsPerCoin(4) ) return 3;
                 else return 4;
             }
         }
@@ -136,20 +157,8 @@ public:
         }
         _os << endl;
     }
-};
 
-Chain_Base& Chain_Base::operator+=( Card* _card ) {
-    Chain_Base* newChain;
-    string type = _card->getName();
-    if( type == "Quartz" ) newChain = new Chain<Quartz>();
-    else if( type == "Hematite" ) newChain = new Chain<Hematite>();
-    else if( type == "Obsidian" ) newChain = new Chain<Obsidian>();
-    else if( type == "Malachite" ) newChain = new Chain<Malachite>();
-    else if( type == "Turquoise" ) newChain = new Chain<Turquoise>();
-    else if( type == "Ruby" ) newChain = new Chain<Ruby>();
-    else if( type == "Amethyst" ) newChain = new Chain<Amethyst>();
-    else if( type == "Emerald" ) newChain = new Chain<Emerald>();
-    return (*newChain) += _card;
-}
+    ~Chain(){}; // default destructor
+};
 
 #endif /* chain_h */
