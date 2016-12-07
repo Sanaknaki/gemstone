@@ -13,8 +13,7 @@
 
 using namespace std;
 
-DiscardPile::DiscardPile() = default;
-
+// istream constructor
 DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
 {
     char card;
@@ -25,41 +24,46 @@ DiscardPile::DiscardPile( istream& _is, CardFactory* _cardPool)
     }
 }
 
+// discards the card to the discard pile
 DiscardPile& DiscardPile::operator+=( Card* _card )
 {
     d_cards.push_back( _card );
     return *this;
 }
 
+// returns and removes the top card from the discard pile
 Card* DiscardPile::pickUp()
-{
-    if( d_cards.empty() ) cout << "Discard Pile is empty!" << endl;
-    else {
+{   // check if discard pile is empty
+    if( d_cards.empty() )
+    {
+        cout << "Discard Pile is empty!" << endl;
+    }
+    else
+    {   // store last Card, pop last Card, return stored Card
         Card* pickUpCard = d_cards.back();
         d_cards.pop_back();
         return pickUpCard;
     }
-    return nullptr; // default return value
+    // returns null if discard pile is empty
+    return nullptr;
 }
 
+// returns but does not remove the top card from the discard pile
 Card* DiscardPile::top() const
-{
-    if( d_cards.empty() )
-    {
-        cout << "Discard Pile is empty!";
-    } else {
-        return d_cards.back();
-    }
+{   // check if discard pile is empty
+    if( d_cards.empty() ) cout << "Discard Pile is empty!";
+    else return d_cards.back();
+    // return null if discard pile is empty
+    return nullptr;
 }
 
+// inserts all the cards in the DiscardPile to an ostream
 void DiscardPile::print( ostream& _os ) const
 {
-    for( auto card : d_cards )
-    {
-        card->print( _os );
-    }
+    for( auto card : d_cards ) card->print( _os );
 }
 
+// insertion operator to insert only the top card of the discard pile to an ostream
 ostream& operator<<( ostream& _os, const DiscardPile& _discardPile )
 {
     _discardPile.top()->print( _os );

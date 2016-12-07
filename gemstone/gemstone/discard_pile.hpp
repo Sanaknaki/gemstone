@@ -12,7 +12,7 @@
 #ifndef discard_pile_hpp
 #define discard_pile_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include <vector>
 
 #include "gemstones.hpp"
@@ -24,24 +24,29 @@ class DiscardPile;
 
 ostream& operator<<( ostream&, const DiscardPile& );
 
-class DiscardPile{
+class DiscardPile
+{
     vector<Card*> d_cards;
-
-protected:
 
 public:
     // default constructor
-    DiscardPile();
-    // a constructor which accepts an istream and reconstructs the DiscardPile from file.
+    DiscardPile(){};
+
+    // istream constructor
     DiscardPile( istream& _is, CardFactory* _cardPool );
-    // discard the card to the pile
+
+    // discard the card to the discard pile
     DiscardPile& operator+=( Card* _card );
+
     // returns and removes the top card from the discard pile
     Card* pickUp();
+
     // returns but does not remove the top card from the discard pile
     Card* top() const;
-    // insert all the cards in the DiscardPile to an std::ostream
+
+    // inserts all the cards in the DiscardPile to an ostream
     void print( ostream& _os) const;
+
     // insertion operator to insert only the top card of the discard pile to an ostream
     friend ostream& operator<<( ostream&, const DiscardPile& );
 };

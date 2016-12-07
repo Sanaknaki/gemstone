@@ -10,52 +10,46 @@
 // ==========================================================================
 
 #include "players.hpp"
-#include <string>
 
 using namespace std;
 
-// default constructor
-Player::Player() = default;
-
-// Constructor.
-Player::Player(string& _name) : d_name( _name ) {}
+// constructor
+Player::Player( const string& _name ) : d_name( _name ) {}
 
 // destructor
 Player::~Player()
 {
-    for( auto chain : d_chains ) {
-        delete chain;
-    }
+    for( auto chain : d_chains ) delete chain;
 }
 
-// Return the name of the player.
+// return the name of the player
 string Player::getName() const
 {
     return d_name;
 }
 
-// Return the amount of coins a player has.
+// return the amount of coins a player has
 int Player::getNumCoins() const
 {
     return d_coin;
 }
 
-// Add coins to a player.
-Player& Player::operator+=(int _coin)
+// add coins to a player
+Player& Player::operator+=( int _coin )
 {
     this->d_coin += _coin;
     return *this;
 }
 
-// Get the max number of chains.
+// get the max number of chains
 int Player::getMaxNumChains() const
 {
     return d_chains.size();
 }
 
 // Get the number of chains a player has.
-// counts how many elements are not nullptr in d_chains
-// execution takes O(1) time
+// Counts how many chain_Base are not empty in d_chains.
+// Execution takes O(1) time
 int Player::getNumChains() const
 {
     int numChains = 0;
@@ -66,56 +60,51 @@ int Player::getNumChains() const
 }
 
 // Return chain at position i.
-// vector throws out_of_bounds exception if invalid index is given
+// Vector throws out_of_bounds exception if invalid index is given.
 Chain_Base& Player::operator[]( int i )
 {
     return *( d_chains.at(i) );
 }
 
-// Buy a third chain if possible.
+// buy a third chain if possible
 void Player::buyThirdChain()
 {
-    if(d_coin >= 3 && d_chains.size() == 2)
-    {
+    if( d_coin >= 3 && d_chains.size() == 2 ) {
         d_coin -=3;
-        d_chains.push_back( new Chain_Base() );
+        d_chains.push_back( new Chain_Base() ); // push empty Chain to d_chains
         cout << this->d_name << " has bought their 3rd chain!" << endl;
-    }else if(d_coin < 3)
-    {
+    }
+    else if(d_coin < 3) {
         cout << "ERROR : Not enough coins to buy the chain!" << endl;
-    }else if(d_chains.size() == 3)
-    {
+    }
+    else if (d_chains.size() == 3) {
         cout << "ERROR : You already have 3 chains!" << endl;
     }
 }
 
-// Print top card or full hand of player.
+// print top card or full hand of player
 void Player::printHand( ostream& _os, const bool fullHand ) const
-{
-    if( !fullHand ) { // prints top card only
+{   // prints top card only
+    if( !fullHand ) {
         Card* topCard = d_hand.top();
         topCard->print( _os );
-    } else { // prints all of d_hand
-        _os << d_hand;
     }
+    else _os << d_hand; // prints all of d_hand
 }
 
 /*
- *  Insertion operator to print a Player to an std::ostream.
+ *  Insertion operator to print a Player to an ostream.
  *  The player's name, the number of coins in the player's possession and each
  *  of the chains (2 or 3, some possibly empty) should be printed. Note that the
  *  Hand is printed with a separate function above.
  */
 ostream& operator<<( ostream& _os, const Player& _p )
-{
-    // print name and number of coins
+{   // print name and number of coins
     _os << _p.d_name << "\t\t" << _p.d_coin << "coin";
     if( _p.d_coin != 1 ) _os << "s";
     _os << endl;
     // print chains
-    for( auto chain : _p.d_chains ) {
-        _os << *chain;
-    }
+    for( auto chain : _p.d_chains ) _os << *chain;
     return _os;
 }
 
@@ -144,7 +133,7 @@ Player::Player( istream& _is, CardFactory* _cardPool ) : d_chains{}
 }
 
 // starts a Chain at given index i
-Chain_Base* Player::startChain( int i, Card* _card )
+Chain_Base* Player::startChain( const int i, Card* _card )
 {
     // delete empty Chain_Base
     delete d_chains[i];
@@ -166,7 +155,7 @@ Chain_Base* Player::startChain( int i, Card* _card )
 }
 
 // getter for Chain template istream constructor
-Chain_Base* Player::getChainTemplate( string _type, istream& _is, CardFactory* _cardPool )
+Chain_Base* Player::getChainTemplate( const string _type, istream& _is, CardFactory* _cardPool )
 {
     if( _type == "Quartz" ) return new Chain<Quartz>( _is, _cardPool );
     else if( _type == "Hematite" ) return new Chain<Hematite>( _is, _cardPool );

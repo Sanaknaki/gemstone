@@ -12,7 +12,6 @@
 #ifndef table_hpp
 #define table_hpp
 
-#include <stdio.h>
 #include <iostream>
 
 #include "cardfactory.hpp"
@@ -26,28 +25,34 @@ class Table;
 
 ostream& operator<<( ostream&, const Table& );
 
-class Table {
+class Table
+{
     Player d_p1, d_p2;
     Deck d_deck;
     DiscardPile d_discardPile;
     TradeArea d_tradeArea;
+
 public:
     // default constructor
     Table(){};
+
     // accepts an istream and reconstruct the Table from file
     Table( istream&, CardFactory* );
+
     /*
-     *  returns true when a player has won.
-     *  conditions are:
+     *  Returns true when a player has won.
+     *  Conditions are as follows:
      *  - deck is empty
      *  - player with the most card wins
     */
     bool win( string& _name ) const;
-    // prints the complete table with all content.
-    // intended for serialization to file.
+
+    // Prints the complete table with all content.
+    // Intended for serialization to file.
     void print( ostream& _os) const;
+
     /*
-     *  insertion operator to print a Table to an std::ostream.
+     *  Insertion operator to print a Table to an ostream.
      *  The two players, the discardpile, the trading area should be printed.
      *  This is the top level print out. Note that a complete output with all
      *  cards for the pause functionality is printed with the separate function print above.

@@ -13,8 +13,7 @@
 
 using namespace std;
 
-TradeArea::TradeArea() = default;
-
+// istream constructor
 TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 {
     char card;
@@ -25,27 +24,27 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
     }
 }
 
+// adds the card to the trade area but it does not check if it is legal to place the card
 TradeArea& TradeArea::operator+=( Card* _card)
 {
     d_cards.push_back( _card );
     return *this;
 }
 
+// returns true if the card can be legally added to the TradeArea,
+// i.e., a card of the same gemstone is already in the TradeArea
 bool TradeArea::legal( Card* _card ) const
 {
     for( auto cardInTrade : d_cards )
     {
-        if( _card->getName() == cardInTrade->getName() )
-        {
-            return true;
-        }
+        if( _card->getName() == cardInTrade->getName() ) return true;
     }
     return false;
 }
 
+// removes a card of the corresponding gemstone name from the trade area
 Card* TradeArea::trade( const string _gemName )
-{
-    // need to use iterators in order to know where to delete in list
+{   // need to use iterators in order to know where to delete in list
     for( auto iter=d_cards.begin(); iter != d_cards.end(); ++iter )
     {
         if( (*iter)->getName() == _gemName ) // card is found with given name
@@ -61,11 +60,13 @@ Card* TradeArea::trade( const string _gemName )
     return nullptr;
 }
 
+// returns the number of cards currently in the trade area
 int TradeArea::numCards() const
 {
     return d_cards.size();
 }
 
+// insertion operator to insert all the cards of the trade area to an ostream
 ostream& operator<<( ostream& _os, const TradeArea& _tradeArea )
 {
     for( auto cardInTrade : _tradeArea.d_cards )

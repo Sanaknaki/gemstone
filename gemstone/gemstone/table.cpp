@@ -47,20 +47,18 @@ Table::Table( istream& _is, CardFactory* _cardPool )
 }
 
 bool Table::win(string& _name) const
-{
+{   // check if deck is empty
     if( d_deck.empty() )
     {
         int p1_coins = d_p1.getNumCoins();
         int p2_coins = d_p2.getNumCoins();
 
         // check if it's a tie game
-        if( p1_coins == p2_coins ) {
-            _name = "Tie";
-        } else if( p1_coins > p2_coins ) { // check if player1 is the winner
-            _name = d_p1.getName(); // player1 is the winner
-        } else {
-            _name = d_p2.getName(); // player2 is the winner
-        }
+        if( p1_coins == p2_coins ) _name = "Tie";
+
+        // check if player1 is the winner
+        else if( p1_coins > p2_coins ) _name = d_p1.getName(); // player1 is the winner
+        else _name = d_p2.getName(); // player2 is the winner
         return true;
     }
     return false;

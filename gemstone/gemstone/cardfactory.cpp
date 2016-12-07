@@ -19,9 +19,11 @@ using namespace std;
 // enum for gemstones
 enum { Q = 0, H = 1, O = 2, M = 3, T = 4, R = 5, A = 6, E = 7 };
 
-const vector<Card*> CardFactory::GEMSTONES = { new Quartz(), new Hematite(), new Obsidian(), new Malachite(),
-                                                new Turquoise(), new Ruby(), new Amethyst(), new Emerald() };
+// only instance of each Card type
+vector<Card*> CardFactory::GEMSTONES = { new Quartz(), new Hematite(), new Obsidian(), new Malachite(),
+                                            new Turquoise(), new Ruby(), new Amethyst(), new Emerald() };
 
+//constructor
 CardFactory::CardFactory()
 {
     // Initital counter for 20 cards.
@@ -40,6 +42,7 @@ CardFactory::CardFactory()
     }
 }
 
+// returns pointer to the only instance of CardFactory
 CardFactory* CardFactory::getFactory()
 {
     // Create static instant of Cardfactory.
@@ -49,6 +52,7 @@ CardFactory* CardFactory::getFactory()
     return &sendBackFactory;
 }
 
+// returns deck with all 104 cards
 Deck CardFactory::getDeck()
 {
     Deck returnDeck{ d_cards };
@@ -61,6 +65,7 @@ Deck CardFactory::getDeck()
     return returnDeck;
 }
 
+// return Card pointer according to given char
 Card* CardFactory::getPtr( const char card ) const
 {
     switch ( card ) {
@@ -74,11 +79,12 @@ Card* CardFactory::getPtr( const char card ) const
         case 'E': return GEMSTONES[E];
         default: cout << "Invalid Card!" << endl;
     }
-    return nullptr; // default return
+    // default return
+    return nullptr;
 }
 
-CardFactory::~CardFactory() {
-    for( auto gemstone : GEMSTONES ) {
-        delete gemstone;
-    }
+// destructor
+CardFactory::~CardFactory()
+{
+    for( auto gemstone : GEMSTONES ) delete gemstone;
 }
