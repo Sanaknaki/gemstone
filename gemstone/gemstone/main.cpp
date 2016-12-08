@@ -274,7 +274,7 @@ int main(void)
                 addToChain(table->d_p1, *table, chainNumber, topCard);
             }
 
-            cout << "Game : Would you like to discard a card from your hard?" << endl;
+            cout << "Game : Would you like to discard a card from your hand?" << endl;
             cout << table->d_p1.getName() << " : "; cin >> answer;
 
             if(answer == "yes" || answer == "Yes")
@@ -298,7 +298,7 @@ int main(void)
                 }
             }
             // Place 3 cards into the trade area.
-            for(int i = 0; i < 3; ++i)
+            for(int i = 0; i < 3 && !table->d_deck.empty(); ++i)
             {
                 table->d_tradeArea += (table->d_deck.draw());
             }
@@ -335,17 +335,17 @@ int main(void)
                     }
                 }
             }
-
-            table->d_p1.d_hand += table->d_deck.draw();
-            table->d_p1.d_hand += table->d_deck.draw();
-
+            if( !table->d_deck.empty() ) {
+                table->d_p1.d_hand += table->d_deck.draw();
+                table->d_p1.d_hand += table->d_deck.draw();
+            }
             turn = 2;
         }
 
         cout << "Game : Here is the table as it stands :" << endl;
         cout << endl;
         cout << "############## GAME TABLE ##############" << endl;
-        cout << table;
+        cout << *table;
         cout << "########################################" << endl;
         cout << endl;
 
@@ -425,7 +425,7 @@ int main(void)
                 addToChain(table->d_p2, *table, chainNumber, topCard);
             }
 
-            cout << "Game : Would you like to discard a card from your hard?" << endl;
+            cout << "Game : Would you like to discard a card from your hand?" << endl;
             cout << table->d_p2.getName() << " : "; cin >> answer;
 
             if(answer == "yes" || answer == "Yes")
@@ -449,7 +449,7 @@ int main(void)
                 }
             }
             // Place 3 cards into the trade area.
-            for(int i = 0; i < 3; ++i)
+            for(int i = 0; i < 3 && !table->d_deck.empty(); ++i)
             {
                 table->d_tradeArea += (table->d_deck.draw());
             }
@@ -486,50 +486,20 @@ int main(void)
                     }
                 }
             }
-
-            table->d_p2.d_hand += table->d_deck.draw();
-            table->d_p2.d_hand += table->d_deck.draw();
-
+            if( !table->d_deck.empty() ) {
+                table->d_p2.d_hand += table->d_deck.draw();
+                table->d_p2.d_hand += table->d_deck.draw();
+            }
             turn = 1;
         }
     }
 
-	delete[] players;
+	if (winner == "Tie") cout << "Congratulations to the both of you!" << endl;
+	else cout << "Congratulations " << winner << ". You've won!" << endl;
+
 	delete table;
+	delete players[0];
+	delete players[1];
 
+	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-    // GIVE PLAYERS 5 CARDS AT THE START
-    /*for(int i = 0; i < 5; ++i)
-    {
-        drawCard = deck.draw();
-        playerOne.hand.operator+=(drawCard);
-        drawCard = deck.draw();
-        playerTwo.hand.operator+=(drawCard);
-    }*/
-
-
-
-
-    /*while(!deck.empty())
-    {
-        drawCard = deck.draw();
-        cout << i << endl;
-        cout << "Card drawn : " << drawCard->getName() << endl;
-
-        for(int j = 0; j < 11; ++j)
-        {
-            cout << "Card worth at [" << j << "] :" << drawCard->getCardsPerCoin(j) << endl;
-        }
-
-        i++;
-    }*/

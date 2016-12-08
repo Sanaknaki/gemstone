@@ -31,7 +31,7 @@ Deck::Deck( istream& _is, CardFactory* _cardPool )
 // Draw card form the deck.
 Card* Deck::draw()
 {   // Initial size check.
-    if(this->size() < 0)
+    if(this->size() <= 0)
     {
         // Return.
         cout << "ERR : Deck is empty! " << endl;

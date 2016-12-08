@@ -20,7 +20,7 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
     // get individual white space sperated tokens
     while( _is >> card ) // false when end of line or invalid input
     {
-        d_cards.push_back( _cardPool->getPtr(card) );
+        *this += _cardPool->getPtr(card);
     }
 }
 
