@@ -218,7 +218,7 @@ int main(void)
             cout << endl;
 
             cout << "Game : Do you wish to add your top card to a chain?" << endl;
-            cin >> answer;
+            cout << table.d_p1.getName() << " : "; cin >> answer;
 
             if(answer == "yes" || answer == "Yes")
             {
@@ -244,20 +244,16 @@ int main(void)
                     if(discardCard != nullptr)
                     {
                         table.d_discardPile += discardCard;
+                        cout << table.d_p1.getName() << " hand : "; table.d_p1.printHand(cout, true); cout << endl;
                         break;
                     }
                 }
             }
-
-            cout << table.d_p1.getName() << " hand : "; table.d_p1.printHand(cout, true); cout << endl;
-
             // Place 3 cards into the trade area.
             for(int i = 0; i < 3; ++i)
             {
                 table.d_tradeArea += (deck.draw());
             }
-
-            cout << "Trade Area : "; cout << table.d_tradeArea << endl;
 
             //for all the cards in the trade area, compare top card
             while(table.d_discardPile.top() != nullptr && table.d_tradeArea.legal(table.d_discardPile.top()))
@@ -265,6 +261,8 @@ int main(void)
                 table.d_tradeArea += (table.d_discardPile.pickUp());
             }
 
+            cout << "Trade Area : "; cout << table.d_tradeArea << endl;
+            
             if(table.d_tradeArea.numCards() != 0)
             {
                 for(auto iter = table.d_tradeArea.d_types.begin(); iter != table.d_tradeArea.d_types.end(); ++iter)
@@ -371,7 +369,7 @@ int main(void)
             cout << endl;
             
             cout << "Game : Do you wish to add your top card to a chain?" << endl;
-            cin >> answer;
+            cout << table.d_p2.getName() << " : "; cin >> answer;
             
             if(answer == "yes" || answer == "Yes")
             {
