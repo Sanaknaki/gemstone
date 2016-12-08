@@ -12,7 +12,6 @@
 #include "cardfactory.hpp"
 #include <iostream>
 #include <algorithm>
-#include <random>
 
 using namespace std;
 
@@ -57,10 +56,7 @@ Deck CardFactory::getDeck()
 {
     Deck returnDeck{ d_cards };
     // Shuffle the deck.
-    // See address below for example
-    // http://stackoverflow.com/questions/6926433/how-to-shuffle-a-stdvector
-    auto engine = default_random_engine{};
-    shuffle( returnDeck.begin(), returnDeck.end(), engine );
+    random_shuffle( returnDeck.begin(), returnDeck.end());
     // Return deck.
     return returnDeck;
 }
