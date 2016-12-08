@@ -28,11 +28,10 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 TradeArea& TradeArea::operator+=( Card* _card)
 {
     d_cards.push_back( _card );
-    for( auto cardInTrade : d_cards )
+    if(legal(_card))
     {
-        if( _card->getName() == cardInTrade->getName() ) return *this;
+        d_types.push_back(_card->getName());
     }
-    d_types.push_back("Fuck");
     return *this;
 }
 
