@@ -173,14 +173,15 @@ int main(void)
 		players[1] = new Player(playerTwoName);
 		table->d_p2 = *players[1];
 
+		// Deck, taken from factory
+		table->d_deck = cardFactory.getDeck();
+
         // Give both players 5 cards to start.
         for(int i = 0; i < 5; ++i)
         {
             table->d_p1.d_hand.operator+=(table->d_deck.draw());
             table->d_p2.d_hand.operator+=(table->d_deck.draw());
         }
-        // Deck, taken from factory
-    	table->d_deck = cardFactory.getDeck();
     }else{
 		// load from file
         table = loadGame( cardFactory.getFactory() );
