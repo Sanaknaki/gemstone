@@ -25,39 +25,36 @@ using std::cout; using std::endl; using std::cin; using std::ostream;
 
 void addToChain(Player& _player, Table& table, int chainNumber, Card* topCard)
 {
-    if(_player.getName() == table.d_p1.getName())
-    {
         cout << "Game : Please choose a chain to add your card to!" << endl;
         
-        while(chainNumber < 0 || chainNumber > table.d_p1.getMaxNumChains())
+        while(chainNumber < 0 || chainNumber > _player.getMaxNumChains())
         {
-            cout << table.d_p1.getName() << " : " ; cin >> chainNumber;
+            cout << _player.getName() << " : " ; cin >> chainNumber;
         }
         
-        Chain_Base chosenChain = table.d_p1[chainNumber];
+        Chain_Base* chosenChain = &_player[chainNumber];
         
-        if(chosenChain.isEmpty())
+        if(chosenChain->isEmpty())
         {
-            table.d_p1.startChain(chainNumber, topCard);
+            _player.startChain(chainNumber, topCard);
         }else{
             try{
-                chosenChain += (topCard);
+                *chosenChain += (topCard);
             }
             catch(Card::IllegalType& e)
             {
                 string answer;
                 cout << "Game : Card types do not match, would you like to sell this chain?" << endl;
-                cout << table.d_p1.getName() << " : "; cin >> answer;
+                cout << _player.getName() << " : "; cin >> answer;
                 
                 if(answer == "yes" || answer == "Yes")
                 {
-                    table.d_p1 += (chosenChain.sell());
-                    delete &chosenChain;
-                    
-                    table.d_p1.startChain(chainNumber, table.d_p1.d_hand.play());
+                    table.d_p1 += (chosenChain->sell());
+                    table.d_p1.startChain(chainNumber, topCard);
+                }else{
+                    addToChain(_player, table, -1, topCard);
                 }
             }
-        }
     }
 }
 
@@ -76,6 +73,8 @@ int main(void)
     Table table;
     Card* topCard;
     string answer;
+    int choice;
+    string winner = "";
     
     cout << "#################################################" << endl;
     cout << "#              WELCOME TO GEMSTONE              #" << endl;
@@ -140,8 +139,8 @@ int main(void)
     }
     
     // Game time.
-    //while(!deck.empty())
-    //{
+    while(!table.win(winner))
+    {
         cout << "Game : Here is the table as it stands :" << endl;
         cout << endl;
         cout << "############## GAME TABLE ##############" << endl;
@@ -161,12 +160,9 @@ int main(void)
                 cout << table.d_p1.getName() << " : ";
                 cin >> answer;
                 
-                if(answer != "yes")
+                if(answer == "yes")
                 {
-                    cout << "Game : You did not say yes, therefore you are not buying the chain this turn!" << endl;
-                }else
-                {
-                    // Buy a third chain <3
+                    table.d_p1.buyThirdChain();
                 }
             }
             
@@ -183,7 +179,28 @@ int main(void)
             
             if(table.d_tradeArea.numCards() != 0)
             {
-                cout << "Trade area is not empty!" << endl;
+                for(auto iter = table.d_tradeArea.d_types.begin(); iter != table.d_tradeArea.d_types.end(); ++iter)
+                {
+                    cout << "Game : Do you want to add " << *iter << "to a chain?" << endl;
+                    cout << table.d_p1.getName() << " : "; cin >> answer;
+                    
+                    Card* cardInTrade = table.d_tradeArea.trade(*iter);
+                    
+                    while(cardInTrade != nullptr)
+                    {
+                        if(answer == "yes" || answer == "Yes")
+                        {
+                            addToChain(table.d_p1, table, -1, cardInTrade);
+                        }else{
+                            table.d_discardPile += cardInTrade;
+                        }
+                        
+                        cardInTrade = table.d_tradeArea.trade(*iter);
+                    }
+                    
+                    table.d_tradeArea.d_types.erase(iter);
+                    --iter;
+                }
             }
             cout << endl;
             
@@ -197,7 +214,7 @@ int main(void)
             //for(;;)
             //{
                 
-                addToChain(table.d_p1, table, chainNumber, topCard);
+            addToChain(table.d_p1, table, chainNumber, topCard);
             
             cout << "Top card : ";
             table.d_p1.printHand(cout, false);
@@ -210,7 +227,7 @@ int main(void)
             {
                 topCard = table.d_p1.d_hand.play();
                 addToChain(table.d_p1, table, chainNumber, topCard);
-            }else{}
+            }
             
                 cout << "Game : Would you like to discard a card from your hard?" << endl;
             
@@ -218,7 +235,18 @@ int main(void)
             
                 cout << "Game : What card would you like to discard?" << endl;
             
-                table.d_discardPile += table.d_p1.d_hand[3];
+                for(;;)
+                {
+                    cout << table.d_p1.getName() << " : "; cin >> choice;
+                    Card* discardCard = table.d_p1.d_hand[choice];
+                    
+                    if(discardCard != nullptr)
+                    {
+                        table.d_discardPile += discardCard;
+                        break;
+                    }
+                    
+                }
             
                 cout << table.d_p1.getName() << " hand : "; table.d_p1.printHand(cout, true); cout << endl;
 
@@ -231,24 +259,43 @@ int main(void)
                 cout << "Trade Area : "; cout << table.d_tradeArea << endl;
             
                 //for all the cards in the trade area, compare top card
-                /*while(table.d_discardPile.top() != nullptr && table.d_tradeArea.legal(table.d_discardPile.top()))
+                while(table.d_discardPile.top() != nullptr && table.d_tradeArea.legal(table.d_discardPile.top()))
                 {
                     table.d_tradeArea += (table.d_discardPile.pickUp());
-                }*/
+                }
                 
-                for(auto type : table.d_tradeArea.d_types)
+                if(table.d_tradeArea.numCards() != 0)
                 {
-                    cout << "Game : Do you want to add all of the " << type << " cards to a chain?" << endl;
-                    
-                    if(1==1)
+                    for(auto iter = table.d_tradeArea.d_types.begin(); iter != table.d_tradeArea.d_types.end(); ++iter)
                     {
-                        addToChain(table.d_p1, table, -1, table.d_tradeArea.trade(type));
+                        cout << "Game : Do you want to add " << *iter << "to a chain?" << endl;
+                        cout << table.d_p1.getName() << " : "; cin >> answer;
+                    
+                        Card* cardInTrade = table.d_tradeArea.trade(*iter);
+                    
+                        if(answer == "yes" || answer == "Yes")
+                        {
+                            while(cardInTrade != nullptr)
+                            {
+                                addToChain(table.d_p1, table, -1, cardInTrade);
+                            }
+                            
+                            cardInTrade = table.d_tradeArea.trade(*iter);
+                        }
+                    
+                        table.d_tradeArea.d_types.erase(iter);
+                        --iter;
                     }
                 }
-            //}
+            
+                table.d_p1.d_hand += deck.draw();
+                table.d_p1.d_hand += deck.draw();
+            
+                turn = 2;
         }
-    //}
+    }
 }
+
 
     // GIVE PLAYERS 5 CARDS AT THE START
     /*for(int i = 0; i < 5; ++i)
