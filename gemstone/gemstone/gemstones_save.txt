@@ -1,0 +1,22 @@
+Player1 
+Name : Peter
+Coin(s) : 8
+Chains
+0 - Ruby : R 
+1 - Hematite : H H H H H H 
+2 - Quartz : Q Q Q Q 
+Hand : T O T T H O M H O M 
+
+Player2 
+Name : Tim
+Coin(s) : 1
+Chains
+0 - Malachite : M M 
+1 - Quartz : Q Q Q Q Q Q Q Q 
+2 - Amethyst : A A 
+Hand : M M M H M Q M R O R R 
+
+TradeArea : H R 
+DiscardPile : E A Q A O M A A O T 
+Deck : O H T H M H R M A O 
+end
