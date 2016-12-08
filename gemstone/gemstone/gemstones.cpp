@@ -19,11 +19,11 @@ using namespace std;
 int Quartz::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 4; break;
-        case 2: return 6; break;
-        case 3: return 8; break;
-        case 4: return 10; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 4;
+        case 2: return 6;
+        case 3: return 8;
+        case 4: return 10;
+        default:
     }
     return 0; // default returns 0
 }
@@ -42,11 +42,11 @@ void Quartz::print(ostream & out) const { out << "Q"; }
 int Hematite::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 3; break;
-        case 2: return 6; break;
-        case 3: return 8; break;
-        case 4: return 9; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 3;
+        case 2: return 6;
+        case 3: return 8;
+        case 4: return 9;
+        default:
     }
     return 0; // default returns 0
 }
@@ -65,11 +65,11 @@ void Hematite::print(ostream &out) const { out << "H"; }
 int Obsidian::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 3; break;
-        case 2: return 5; break;
-        case 3: return 7; break;
-        case 4: return 8; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 3;
+        case 2: return 5;
+        case 3: return 7;
+        case 4: return 8;
+        default:
     }
     return 0; // default returns 0
 }
@@ -88,11 +88,11 @@ void Obsidian::print(ostream &out) const { out << "O"; }
 int Malachite::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 3; break;
-        case 2: return 5; break;
-        case 3: return 6; break;
-        case 4: return 7; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 3;
+        case 2: return 5;
+        case 3: return 6;
+        case 4: return 7;
+        default:
     }
     return 0; // default returns 0
 }
@@ -111,11 +111,11 @@ void Malachite::print(ostream &out) const { out << "M"; }
 int Turquoise::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 2; break;
-        case 2: return 4; break;
-        case 3: return 6; break;
-        case 4: return 7; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 2;
+        case 2: return 4;
+        case 3: return 6;
+        case 4: return 7;
+        default:
     }
     return 0; // default returns 0
 }
@@ -134,11 +134,11 @@ void Turquoise::print(ostream &out) const { out << "T"; }
 int Ruby::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 2; break;
-        case 2: return 4; break;
-        case 3: return 5; break;
-        case 4: return 6; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 2;
+        case 2: return 4;
+        case 3: return 5;
+        case 4: return 6;
+        default:
     }
     return 0; // default returns 0
 }
@@ -157,11 +157,11 @@ void Ruby::print(ostream &out) const { out << "R"; }
 int Amethyst::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 1: return 2; break;
-        case 2: return 3; break;
-        case 3: return 4; break;
-        case 4: return 5; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 2;
+        case 2: return 3;
+        case 3: return 4;
+        case 4: return 5;
+        default:
     }
     return 0; // default returns 0
 }
@@ -180,9 +180,11 @@ void Amethyst::print(ostream &out) const { out << "A"; }
 int Emerald::getCardsPerCoin(int _coins) const
 {
     switch ( _coins ) {
-        case 2: return 2; break;
-        case 3: return 3; break;
-        default: cout << "Invalid coin entry!" << endl;
+        case 1: return 2;
+        case 2: return 2;
+        case 3: return 3;
+        case 4: return 7;
+        default:
     }
     return 0; // default returns 0
 }
