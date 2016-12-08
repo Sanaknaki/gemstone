@@ -71,7 +71,7 @@ void saveGame( const Table& _table )
         string fn{"gemstones_save.txt"};
         // open file
         ofstream out(fn);
-        if( !out ) {
+        if( !out || fn == "README.txt" || fn == "README") {
             cout << "ERROR: unable to open " << fn << endl << endl;
             saveGame( _table );
             return;
@@ -109,7 +109,7 @@ int main(void)
     string playerTwoName;									// Player two name
 	Player* players[2];
     CardFactory cardFactory = *CardFactory::getFactory();   // Create the instance of cardfactory
-    int gameType = 0;										// 0 = new new, 1 = new, 2 = loadup
+    string gameType;										// 0 = new new, 1 = new, 2 = loadup
     int turn = 1;											// 1 = p1, 2 = p2
     int chainNumber = -1;									// 1 = chain 1, 2 = chain 2
     Table* table;
@@ -123,22 +123,27 @@ int main(void)
     cout << "#################################################" << endl;
 
     // Load from save file or nah?
-    while(gameType == 0)
+    while(gameType != "1" || gameType != "2")
     {
         cout << "Game : Would you like to start a new game [1], or load from save file [2]?" << endl;
         cout << "You : ";
         cin >> gameType;
-
-        // Check to make sure the user inputs the right input.
-        if(gameType < 1 || gameType > 2)
+        
+        if(gameType == "1")
         {
-            cout << endl;
-            cout << "Game : Please enter the proper inputs to continue .." << endl;
+            gameType = "1";
+            break;
+        }else if(gameType == "2")
+        {
+            gameType = "2";
+            break;
+        }else{
+            gameType = "0";
         }
     }
 
     //======================== CREATE A NEW GAME ========================
-    if(gameType == 1)
+    if(gameType == "1")
     {
 		table = new Table();
         // Player one name input.
@@ -228,7 +233,8 @@ int main(void)
 
                 table->d_p1.printHand(cout, true);
             }
-
+            
+            // This version of checking if the trade area ends up deleting the trade area cards until it's 0.
             if(table->d_tradeArea.numCards() != 0)
             {
                 for(auto iter = table->d_tradeArea.d_types.begin(); iter != table->d_tradeArea.d_types.end(); iter = table->d_tradeArea.d_types.erase(iter))
@@ -313,6 +319,7 @@ int main(void)
             cout << endl;
             cout << "Trade Area : "; cout << table->d_tradeArea << endl;
 
+            // While the trade area is not empty, ask a user if they want to add each card to your chain, if not, leave it for the next player.
             if(table->d_tradeArea.numCards() != 0)
             {
                 for(auto iter = table->d_tradeArea.d_types.begin(); iter != table->d_tradeArea.d_types.end();)
@@ -455,7 +462,7 @@ int main(void)
                 table->d_tradeArea += (table->d_deck.draw());
             }
 
-            //for all the cards in the trade area, compare top card
+            // For all the cards in the trade area, compare top card
             while(table->d_discardPile.top() != nullptr && table->d_tradeArea.legal(table->d_discardPile.top()))
             {
                 table->d_tradeArea += (table->d_discardPile.pickUp());
@@ -463,7 +470,8 @@ int main(void)
 
             cout << endl;
             cout << "Trade Area : "; cout << table->d_tradeArea << endl;
-
+            
+            // While the trade area is not empty, ask a user if they want to add each card to your chain, if not, leave it for the next player.
             if(table->d_tradeArea.numCards() != 0)
             {
                 for(auto iter = table->d_tradeArea.d_types.begin(); iter != table->d_tradeArea.d_types.end();)
