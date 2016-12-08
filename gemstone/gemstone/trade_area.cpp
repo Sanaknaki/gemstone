@@ -35,11 +35,12 @@ TradeArea& TradeArea::operator+=( Card* _card)
 void TradeArea::addToType( Card* _card )
 {   // check if card is unique
     string type = _card->getName();
+    bool unique = true;
     for( auto card : d_cards )
     {
-        if( type == card->getName() ) return;
+        if( type == card->getName() ) unique = false;
     }
-    d_types.push_back( type );
+    if( unique ) d_types.push_back( type );
 }
 
 // returns true if the card can be legally added to the TradeArea,
