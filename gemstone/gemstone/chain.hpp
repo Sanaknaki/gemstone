@@ -67,7 +67,10 @@ public:
     };
 
     // returns this object because Chain<T> has not been initialized
-    virtual Chain_Base& operator+=( Card* _card );
+    virtual Chain_Base& operator+=( Card* _card )
+    {
+        
+    };
 
     // insertion operator using "Virtual Friend Function Idiom"
     friend ostream& operator<<( ostream& _os, const Chain_Base& _chain )
