@@ -41,6 +41,9 @@ public:
     // adds the card to the trade area but it does not check if it is legal to place the card
     TradeArea& operator+=( Card* _card );
 
+    // adds to type vector if given card is unique
+    void addToType( Card* _card );
+
     // returns true if the card can be legally added to the TradeArea,
     // i.e., a card of the same gemstone is already in the TradeArea
     bool legal( Card* _card ) const;

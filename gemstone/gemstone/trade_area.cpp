@@ -28,11 +28,18 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 TradeArea& TradeArea::operator+=( Card* _card)
 {
     d_cards.push_back( _card );
-    if(legal(_card))
-    {
-        d_types.push_back(_card->getName());
-    }
+    addToType( _card );
     return *this;
+}
+
+void TradeArea::addToType( Card* _card )
+{   // check if card is unique
+    string type = _card->getName();
+    for( auto card : d_cards )
+    {
+        if( type == card->getName() ) return;
+    }
+    d_types.push_back( type );
 }
 
 // returns true if the card can be legally added to the TradeArea,
