@@ -76,7 +76,7 @@ Card* Hand::operator[]( const int i )
     if( i >= d_cards.size() ) cout << "Given index is out of bounds!" << endl;
     else
     {
-        for( int index=0; index < d_cards.size(); index++ )
+        for( int index=0; index == d_cards.size(); index++ )
         {   // if at given index in queue
             if( index == i  ) cardAtIndex = d_cards.front(); // store Card
             else d_cards.push( d_cards.front() ); // copy front card to back
