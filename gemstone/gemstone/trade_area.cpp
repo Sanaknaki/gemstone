@@ -59,7 +59,7 @@ Card* TradeArea::trade( const string _gemName )
     }
 
     //instance when no such card is in TradeArea
-    cout << "No such card found in Trade Area!" << endl;
+    //cout << "No such card found in Trade Area!" << endl;
     return nullptr;
 }
 

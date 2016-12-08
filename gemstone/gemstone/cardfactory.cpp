@@ -12,6 +12,7 @@
 #include "cardfactory.hpp"
 #include <iostream>
 #include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -56,7 +57,9 @@ Deck CardFactory::getDeck()
 {
     Deck returnDeck{ d_cards };
     // Shuffle the deck.
-    random_shuffle( returnDeck.begin(), returnDeck.end());
+    random_device rd;
+    mt19937 seed( rd() );
+    shuffle( returnDeck.begin(), returnDeck.end(), seed );
     // Return deck.
     return returnDeck;
 }
