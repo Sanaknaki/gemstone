@@ -67,16 +67,10 @@ public:
     };
 
     // returns this object because Chain<T> has not been initialized
-    Chain_Base& operator+=( Card* _card )
-    {
-        return add( *this, _card );
-    };
-
-    // adds Card to Chain
-    virtual Chain_Base& add( Chain_Base& _chain, Card* _card )
+    virtual Chain_Base& operator+=( Card* _card )
     {
         cout << "Must start Chain!" << endl;
-        return _chain;
+        return *this;
     };
 
     // insertion operator using "Virtual Friend Function Idiom"
@@ -119,19 +113,19 @@ public:
     // Adds a Card to the Chain.
     // If the run-time type does not match the template type of the chain,
     // an exception of type IllegalType is raised.
-    Chain_Base& add( Chain_Base& _chain, Card* _card )
+    Chain_Base& add( Card* _card )
     {
         T* cardT;
         cardT = dynamic_cast<T*>( _card );
         // check if conversion worked
         if ( cardT == 0 ) {
             throw Card::IllegalType();
-            return _chain;
+            return *this;
         }
         // conversion successful!
         else {
-            _chain.d_cards.push_back( cardT );
-            return _chain;
+            d_cards.push_back( cardT );
+            return *this;
         }
     }
 
