@@ -33,12 +33,8 @@ DiscardPile& DiscardPile::operator+=( Card* _card )
 
 // returns and removes the top card from the discard pile
 Card* DiscardPile::pickUp()
-{   // check if discard pile is empty
-    if( d_cards.empty() )
-    {
-        cout << "Discard Pile is empty!" << endl;
-    }
-    else
+{   // check if discard pile is not empty
+    if( !d_cards.empty() )
     {   // store last Card, pop last Card, return stored Card
         Card* pickUpCard = d_cards.back();
         d_cards.pop_back();
@@ -50,9 +46,8 @@ Card* DiscardPile::pickUp()
 
 // returns but does not remove the top card from the discard pile
 Card* DiscardPile::top() const
-{   // check if discard pile is empty
-    if( d_cards.empty() ) cout << "Discard Pile is empty!";
-    else return d_cards.back();
+{   // check if discard pile is not empty
+    if( !d_cards.empty() ) return d_cards.back();
     // return null if discard pile is empty
     return nullptr;
 }

@@ -23,7 +23,7 @@ int Quartz::getCardsPerCoin(int _coins) const
         case 2: return 6;
         case 3: return 8;
         case 4: return 10;
-        default:
+		default: break;
     }
     return 0; // default returns 0
 }
@@ -46,7 +46,7 @@ int Hematite::getCardsPerCoin(int _coins) const
         case 2: return 6;
         case 3: return 8;
         case 4: return 9;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -69,7 +69,7 @@ int Obsidian::getCardsPerCoin(int _coins) const
         case 2: return 5;
         case 3: return 7;
         case 4: return 8;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -92,7 +92,7 @@ int Malachite::getCardsPerCoin(int _coins) const
         case 2: return 5;
         case 3: return 6;
         case 4: return 7;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -115,7 +115,7 @@ int Turquoise::getCardsPerCoin(int _coins) const
         case 2: return 4;
         case 3: return 6;
         case 4: return 7;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -138,7 +138,7 @@ int Ruby::getCardsPerCoin(int _coins) const
         case 2: return 4;
         case 3: return 5;
         case 4: return 6;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -161,7 +161,7 @@ int Amethyst::getCardsPerCoin(int _coins) const
         case 2: return 3;
         case 3: return 4;
         case 4: return 5;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
@@ -184,7 +184,7 @@ int Emerald::getCardsPerCoin(int _coins) const
         case 2: return 2;
         case 3: return 3;
         case 4: return 7;
-        default:
+        default: break;
     }
     return 0; // default returns 0
 }
