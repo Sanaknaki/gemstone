@@ -56,7 +56,7 @@ public:
     // prints the Chain_Base to ostream
     virtual void print( ostream& _os ) const
     {
-        _os << "Empty" << endl;
+        _os << "Empty";
     };
 
     // Returns true if object is of Chain_Base.
@@ -160,7 +160,6 @@ public:
             card->print( _os );
             _os << " ";
         }
-        _os << endl;
     }
 
     ~Chain(){}; // default destructor

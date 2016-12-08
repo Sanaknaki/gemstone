@@ -55,7 +55,10 @@ Card* DiscardPile::top() const
 // inserts all the cards in the DiscardPile to an ostream
 void DiscardPile::print( ostream& _os ) const
 {
-    for( auto card : d_cards ) card->print( _os );
+    for( auto card : d_cards ) {
+        card->print( _os );
+        _os << " ";
+    }
 }
 
 // insertion operator to insert only the top card of the discard pile to an ostream

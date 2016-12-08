@@ -102,37 +102,50 @@ void Player::printHand( ostream& _os, const bool fullHand ) const
  */
 ostream& operator<<( ostream& _os, const Player& _p )
 {
-    _os << "Name: " << _p.d_name << endl; // print name
-    _os << "Coin(s): " << _p.d_coin << endl; // print coins
+    _os << "Name : " << _p.d_name << endl; // print name
+    _os << "Coin(s) : " << _p.d_coin << endl; // print coins
     // print chains
     _os << "Chains" << endl;
     int i = 0;
     for( auto iter = _p.d_chains.begin(); iter != _p.d_chains.end(); ++iter ) {
-         _os << i << " - " << *(*iter); ++i; // print Chains and their indexes
+         _os << i << " - " << *(*iter) << endl; ++i; // print Chains and their indexes
     }
-    _os << endl;
     return _os;
 }
 
 // constructor which accepts an istream and reconstructs the Player from file
 Player::Player( istream& _is, CardFactory* _cardPool ) : d_chains{}
 {
-    _is >> d_name >> d_coin; // line containing name and # of coins
     string temp, token, line;
-    _is >> temp; // remove "coin(s)" from _is
     while( getline( _is, line ) ) { // lines containing chain and hand
         istringstream streamLine(line);
         while( streamLine >> token ) {
+            // if Name is read, store into d_name
+            if( token == "Name" ) {
+                streamLine >> temp >> d_name; break;
+            }
+            // if Coin(s) is read, store into d_coin
+            if( token == "Coin(s)" ) {
+                streamLine >> temp >> d_coin; break;
+            }
+            if( token == "Chains" ) break;
             // if Hand is read, build Hand with streamLine
             if( token == "Hand" ) {
+                streamLine >> temp; // should store ":"
                 d_hand = Hand( streamLine, _cardPool ); break;
             }
-            // if Empty is read, build Chain_Base
-            else if( token == "Empty" ) {
-                d_chains.push_back( new Chain_Base() ); break;
+            // else Chain<T> is read
+            else {
+                streamLine >> temp;
+                if( token == "Empty" ) {
+                    d_chains.push_back( new Chain_Base() ); break;
+                }
+                else {
+                    streamLine >> token;
+                    streamLine >> temp; // should store ":"
+                    d_chains.push_back( getChainTemplate( token, streamLine, _cardPool ) ); break;
+                }
             }
-            // otherwise, Chain is read with type stored in token and cards in streamLine
-            else d_chains.push_back( getChainTemplate( token, streamLine, _cardPool ) ); break;
         }
         if( token == "Hand" ) break;
     }

@@ -16,7 +16,7 @@ using namespace std;
 
 Table::Table( istream& _is, CardFactory* _cardPool )
 {
-    string line, token;
+    string line, token, temp;
     // get a line from _is
     while( getline(_is, line) ) {
         istringstream streamLine( line );
@@ -24,19 +24,26 @@ Table::Table( istream& _is, CardFactory* _cardPool )
         while( streamLine >> token ) {
             // process token
             if( token == "Player1" ) {
-                d_p1 = Player( _is, _cardPool );
+                d_p1 = *new Player( _is, _cardPool );
                 break;
             }
             if( token == "Player2" ) {
-                d_p2 = Player( _is, _cardPool );
-                break;
-            }
-            if( token == "DiscardPile" ) {
-                d_discardPile = DiscardPile( streamLine, _cardPool );
+                d_p2 = *new Player( _is, _cardPool );
                 break;
             }
             if( token == "TradeArea" ) {
+                streamLine >> temp;
                 d_tradeArea = TradeArea( streamLine, _cardPool );
+                break;
+            }
+            if( token == "DiscardPile" ) {
+                streamLine >> temp;
+                d_discardPile = DiscardPile( streamLine, _cardPool );
+                break;
+            }
+            if( token == "Deck" ) {
+                streamLine >> temp;
+                d_deck = Deck( streamLine, _cardPool );
                 break;
             }
             if( token == "end" ) break;
@@ -67,36 +74,45 @@ bool Table::win(string& _name) const
 /*
  *  prints the following to file as an example
  *  Player1
- *  Adam        4 coins
- *  Malachite   M M M M M
- *  Amethyst    A A
- *  Hand        A M Q R T R
+ *  Name: Adam
+ *  Coin(s): 4
+ *  Chains
+ *  0 -  Malachite : M M M M M
+ *  1 - Amethyst : A A
+ *  Hand : A M Q R T R
+ *
  *  Player2
- *  Betty       7 coins
- *  Ruby        R R R R
- *  Quartz      Q Q Q Q Q Q Q
- *  Obsidian    O O O O O
- *  Hand        M A T T A M
- *  DiscardPile A O Q T R M M T Q O E H Q T E M A
- *  TradeArea   O E A E E A O O A O O E E A A A A O
+ *  Name: Betty
+ *  Coin(s): 7
+ *  Chains
+ *  0 - Ruby : R R R R
+ *  1 - Quartz : Q Q Q Q Q Q Q
+ *  2 - Obsidian : O O O O O
+ *  Hand : M A T T A M
+
+ *  TradeArea : O E A E E A O O A O O E E A A A A O
+ *  DiscardPile : A O Q T R M M T Q O E H Q T E M A
+ *  Deck : etc...
  *  end
  */
 void Table::print( ostream& _os ) const
 {
     _os << "Player1 " << endl << d_p1; // output player1
-    d_p1.printHand( _os, true ); // output player1 hand
+    _os << "Hand : "; d_p1.printHand( _os, true ); _os << endl; // output player1 hand
+    _os << endl;
     _os << "Player2 " << endl << d_p2; // output player2
-    d_p2.printHand( _os, true ); // output player2 hand
-    _os << "DiscardPile ";
-    d_discardPile.print(_os); // output discardPile
-    _os << "TradeArea" << d_tradeArea << endl; // output tradeArea
+    _os << "Hand : "; d_p2.printHand( _os, true ); _os << endl; // output player2 hand
+    _os << endl;
+    _os << "TradeArea : " << d_tradeArea << endl; // output tradeArea
+    _os << "DiscardPile : "; d_discardPile.print(_os); _os << endl; // output discardPile
+    _os << "Deck : " << d_deck << endl; // output deck
     _os << "end"; // output end of file
 }
 
 ostream& operator<<( ostream& _os, const Table& _table )
 {
-    _os << "Player 1" << endl << _table.d_p1; // displays player 1
-    _os << "Player 2" << endl << _table.d_p2; // displays player 2
+    _os << "Player 1" << endl << _table.d_p1 << endl; // displays player 1
+    _os << "Player 2" << endl << _table.d_p2 << endl; // displays player 2
     _os << "Trading Area: " << _table.d_tradeArea << endl; // displays trade area
     _os << "Discard Pile: " << _table.d_discardPile << endl; // displays top card of discard pile
     return _os;

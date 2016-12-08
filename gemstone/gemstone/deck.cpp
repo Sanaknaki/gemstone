@@ -19,7 +19,8 @@ Deck::Deck( const vector<Card*>& _cards ) : vector( _cards ) {}
 // istream constructor
 Deck::Deck( istream& _is, CardFactory* _cardPool )
 {
-    char card;
+    char card, temp;
+    _is >> temp; // temp should store ':'
     // get individual white space seperated tokens
     while( _is >> card )  // false when end of line or invalid input
     {
@@ -47,6 +48,8 @@ Card* Deck::draw()
 // insertion operator
 ostream& operator<<( ostream& _os, const Deck& _deck )
 {
-    for( auto card : _deck ) card->print(_os);
+    for( auto card : _deck ) {
+        card->print(_os); _os << " ";
+    }
     return _os;
 }
