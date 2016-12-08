@@ -113,7 +113,7 @@ public:
     // Adds a Card to the Chain.
     // If the run-time type does not match the template type of the chain,
     // an exception of type IllegalType is raised.
-    Chain_Base& add( Card* _card )
+    Chain_Base& operator+=( Card* _card )
     {
         T* cardT;
         cardT = dynamic_cast<T*>( _card );
