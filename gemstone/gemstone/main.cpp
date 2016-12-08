@@ -25,7 +25,7 @@ using std::cout; using std::endl; using std::cin; using std::ostream;
 
 void addToChain(Player& _player, Table& table, int chainNumber, Card* topCard)
 {
-        cout << "Game : Please choose a chain to add your card to!" << endl;
+        cout << "Game : Please choose a chain to add " << topCard->getName() << " to." << endl;
 
         while(chainNumber < 0 || chainNumber > _player.getMaxNumChains())
         {
@@ -49,8 +49,8 @@ void addToChain(Player& _player, Table& table, int chainNumber, Card* topCard)
 
                 if(answer == "yes" || answer == "Yes")
                 {
-                    table.d_p1 += (chosenChain->sell());
-                    table.d_p1.startChain(chainNumber, topCard);
+                    _player += (chosenChain->sell());
+                    _player.startChain(chainNumber, topCard);
                 }else{
                     addToChain(_player, table, -1, topCard);
                 }
@@ -199,8 +199,8 @@ int main(void)
                         cardInTrade = table.d_tradeArea.trade(*iter);
                     }
 
-                    --iter;
                     table.d_tradeArea.d_types.erase(iter);
+                    --iter;
                 }
             }
             cout << endl;
@@ -260,7 +260,8 @@ int main(void)
             {
                 table.d_tradeArea += (table.d_discardPile.pickUp());
             }
-
+            
+            cout << endl;
             cout << "Trade Area : "; cout << table.d_tradeArea << endl;
             
             if(table.d_tradeArea.numCards() != 0)
@@ -298,6 +299,7 @@ int main(void)
         cout << table;
         cout << "########################################" << endl;
         cout << endl;
+        
         
         // Keep track of turn.
         if(turn == 2)
@@ -350,8 +352,8 @@ int main(void)
                         cardInTrade = table.d_tradeArea.trade(*iter);
                     }
                     
-                    --iter;
                     table.d_tradeArea.d_types.erase(iter);
+                    --iter;
                 }
             }
             cout << endl;
@@ -400,21 +402,20 @@ int main(void)
                     }
                 }
             }
-            
-            
             // Place 3 cards into the trade area.
             for(int i = 0; i < 3; ++i)
             {
                 table.d_tradeArea += (deck.draw());
             }
             
-            cout << "Trade Area : "; cout << table.d_tradeArea << endl;
-            
             //for all the cards in the trade area, compare top card
             while(table.d_discardPile.top() != nullptr && table.d_tradeArea.legal(table.d_discardPile.top()))
             {
                 table.d_tradeArea += (table.d_discardPile.pickUp());
             }
+            
+            cout << endl;
+            cout << "Trade Area : "; cout << table.d_tradeArea << endl;
             
             if(table.d_tradeArea.numCards() != 0)
             {
@@ -433,8 +434,8 @@ int main(void)
                             cardInTrade = table.d_tradeArea.trade(*iter);
                         }
                         
-                        --iter;
                         table.d_tradeArea.d_types.erase(iter);
+                        --iter;
                     }
                 }
             }
