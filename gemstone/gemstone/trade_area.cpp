@@ -27,11 +27,11 @@ TradeArea::TradeArea( istream& _is, CardFactory* _cardPool )
 // adds the card to the trade area but it does not check if it is legal to place the card
 TradeArea& TradeArea::operator+=( Card* _card)
 {
-    d_cards.push_back( _card );
     if( !legal( _card ) )
     {
         d_types.push_back( _card->getName() );
     }
+    d_cards.push_back( _card );
     return *this;
 }
 
