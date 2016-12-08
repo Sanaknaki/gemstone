@@ -62,7 +62,7 @@ ostream& operator<<( ostream& _os, const Hand& _hand )
     for( int i=0; i < temp.size(); i++ )
     {
         ( temp.front() )->print( _os ); // print to _os
-        _os << "\t";
+        _os << " ";
         temp.push(temp.front()); // copy front card to back
         temp.pop(); // remove top card
     }

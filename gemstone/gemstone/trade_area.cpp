@@ -32,7 +32,7 @@ TradeArea& TradeArea::operator+=( Card* _card)
     {
         if( _card->getName() == cardInTrade->getName() ) return *this;
     }
-    d_types.push_back(_card->getName());
+    d_types.push_back("Fuck");
     return *this;
 }
 
